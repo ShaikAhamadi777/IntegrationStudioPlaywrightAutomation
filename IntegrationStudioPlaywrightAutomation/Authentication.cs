@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.Auth
 {
     public class Authentication
     {
@@ -32,8 +32,7 @@ namespace IntegrationStudioPlaywrightAutomation
             {
                 Path = "auth.json"
             });
-
-            
+            Console.WriteLine("Saved auth.json at: " + Directory.GetCurrentDirectory());
             await browser.CloseAsync();
         }
     }

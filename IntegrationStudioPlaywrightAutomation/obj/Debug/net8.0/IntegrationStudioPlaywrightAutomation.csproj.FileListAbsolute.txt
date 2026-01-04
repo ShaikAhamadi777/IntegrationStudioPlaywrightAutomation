@@ -383,3 +383,4 @@ C:\Users\dell\source\repos\IntegrationStudioPlaywrightAutomation\IntegrationStud
 C:\Users\dell\source\repos\IntegrationStudioPlaywrightAutomation\IntegrationStudioPlaywrightAutomation\obj\Debug\net8.0\IntegrationStudioPlaywrightAutomation.pdb
 C:\Users\dell\source\repos\IntegrationStudioPlaywrightAutomation\IntegrationStudioPlaywrightAutomation\obj\Debug\net8.0\IntegrationStudioPlaywrightAutomation.genruntimeconfig.cache
 C:\Users\dell\source\repos\IntegrationStudioPlaywrightAutomation\IntegrationStudioPlaywrightAutomation\obj\Debug\net8.0\ref\IntegrationStudioPlaywrightAutomation.dll
+C:\Users\dell\source\repos\IntegrationStudioPlaywrightAutomation\IntegrationStudioPlaywrightAutomation\obj\Debug\net8.0\IntegrationStudioPlaywrightAutomation.sourcelink.json
