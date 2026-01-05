@@ -4,67 +4,79 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
-using NUnit.Framework;
+using Microsoft.Playwright.Assertions;
 
-namespace IntegrationStudioPlaywrightAutomation.Tests
+
+namespace IntegrationStudioPlaywrightAutomation.Pages
 {
-    public class NavigationBarPage:BaseTest
+    public class NavigationBarPage
     {
-        
-        //Creating a browser page or a tab
+        //Represents the broswer tab
         private readonly IPage Page;
 
+        //Page Object doesnot create browser . It only receives it 
         public NavigationBarPage(IPage page)
         {
            Page = page;
         }
 
         private ILocator AppBar => Page.Locator("");
-        
+        private ILocator NotificationPanel => Page.Locator("");
+        private ILocator AVEVAHelpIcon => Page.Locator("");
+        private ILocator UserProfileIcon => Page.Locator("");
+        private ILocator UserProfilePopup => Page.Locator("");
+        private ILocator NetworkSpeedTest => Page.Locator("");
+        private ILocator LogOutButton => Page.Locator("");
+        private ILocator LegalLink => Page.Locator("");
 
-         public async Task Verify_AppBar_Visibility()
+        public async Task VerifyAllNavigationBarElements()
         {
-
-            await AppBar.TitleAsync();
-            //Console.WriteLine(title);
-            //Assert.Equals(title, "Integration Studio");
-            await Page.ScreenshotAsync(new()
-            {
-                Path = "NavigationBarScreenshot.png"
-            });
+            await VerifyAppBarIsVisible();
+            await VerifyNotificationPanel();
+            await VerifyAVEVAHelpIcon();
+            await VerifyUserProfileIconIsVisible();
+            await VerifyUserProfilePopupIsDisplayed();
+            await VerifyNetworkSpeedTest();
+            await VerifyLogOutButton();
+            await VerifyLegalLink();
         }
 
-        public async Task Verify_NotificationPanel()
+        public async Task VerifyAppBarIsVisible()
         {
-
+           // await Expect(AppBar).IsVisibleAsync();
         }
 
-        public async Task Verify_AVEVAHelpIcon()
-        {
-
-        }
-
-        public async Task Verify_UserProfileIcon()
-        {
-
-        }
-
-        public async Task Verify_UserProfilePopup()
+        public async Task VerifyNotificationPanel()
         {
 
         }
 
-        public async Task Verify_NetworkSpeedTest()
+        public async Task VerifyAVEVAHelpIcon()
         {
 
         }
 
-        public async Task Verify_LogOutButton()
+        public async Task VerifyUserProfileIconIsVisible()
         {
 
         }
 
-        public async Task Verify_LegalLink()
+        public async Task VerifyUserProfilePopupIsDisplayed()
+        {
+
+        }
+
+        public async Task VerifyNetworkSpeedTest()
+        {
+
+        }
+
+        public async Task VerifyLogOutButton()
+        {
+
+        }
+
+        public async Task VerifyLegalLink()
         {
 
         }
