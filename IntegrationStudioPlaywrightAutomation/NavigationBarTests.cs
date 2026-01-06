@@ -20,6 +20,7 @@ namespace IntegrationStudioPlaywrightAutomation
 
             var nav = new NavigationBarPage(Page);
 
+            //NavigationBar Title
             await nav.AppBar.FocusAsync();
             await nav.AppBar.ScreenshotAsync(new()
             {
@@ -30,7 +31,31 @@ namespace IntegrationStudioPlaywrightAutomation
             Console.WriteLine(title);
             await Expect(Page).ToHaveTitleAsync(title);
 
-            await nav.NotificationPanel.ClickAsync();
+            //Notification Icons
+            await nav.NotificationPanel.FocusAsync();
+            await nav.NotificationPanel.ScreenshotAsync(new()
+            {
+                Path = "NotificationPanelIcon.png"
+            });
+            await Expect(nav.NotificationPanel).ToBeVisibleAsync();
+
+            //Help Icon
+            await nav.AVEVAHelpIcon.ScreenshotAsync(new()
+            {
+                Path = "AVEVAHelpIcon.png"
+            });
+            await Expect(nav.AVEVAHelpIcon).ToBeVisibleAsync();
+
+            //User Profile Icon
+            /*await nav.UserProfileIcon.ScreenshotAsync(new()
+            {
+               Path = "UserProfile.png"
+            });
+            await Expect(nav.UserProfileIcon).ToBeVisibleAsync();*/
+
+
+
+
 
 
 

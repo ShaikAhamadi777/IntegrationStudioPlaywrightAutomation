@@ -23,9 +23,9 @@ namespace IntegrationStudioPlaywrightAutomation
         }
 
         public ILocator AppBar => Page.Locator(".uilab-top-app-bar__title");
-        public ILocator NotificationPanel => Page.Locator(".mdc-top-app-bar__action-item d-none d-md-inline-block uilab-top-app-bar__notification hydrated");
-        //private ILocator AVEVAHelpIcon => Page.Locator("");
-        //private ILocator UserProfileIcon => Page.Locator("");
+        public ILocator NotificationPanel => Page.Locator("//uilab-icon-button[@aria-label='Notifications']");
+        public ILocator AVEVAHelpIcon => Page.Locator("//uilab-icon-button[@aria-label='Help']");
+        //public ILocator UserProfileIcon => Page.Locator("");
         //private ILocator UserProfilePopup => Page.Locator("");
         //private ILocator NetworkSpeedTest => Page.Locator("");
         //private ILocator LogOutButton => Page.Locator("");
