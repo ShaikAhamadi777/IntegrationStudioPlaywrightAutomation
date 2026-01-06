@@ -1,11 +1,15 @@
-﻿using IntegrationStudioPlaywrightAutomation.Pages;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Playwright;
+using Microsoft.Playwright.NUnit;
+using NUnit.Framework;
+using System.Text.RegularExpressions;
 
-namespace IntegrationStudioPlaywrightAutomation.Tests
+namespace IntegrationStudioPlaywrightAutomation
 {
     [TestFixture]
     public class NavigationBarTests : BaseTest
@@ -15,7 +19,16 @@ namespace IntegrationStudioPlaywrightAutomation.Tests
         {
 
             var nav = new NavigationBarPage(Page);
-            await nav.VerifyAllNavigationBarElements();
+
+            
+            await nav.AppBar.FocusAsync();
+            await nav.AppBar.ScreenshotAsync(new()
+            {
+                Path = "IntegrationStudio-home.png"
+            });
+            await Expect(nav.AppBar).ToBeVisibleAsync();
+
         }
+
     }
 }

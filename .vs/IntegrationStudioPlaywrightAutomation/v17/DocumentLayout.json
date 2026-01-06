@@ -1,21 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
+  "WorkspaceRootPath": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\navigationbarpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\navigationbarpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\local.runsettings||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\local.runsettings||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\navigationbartests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\navigationbartests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\navigationbartests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\basetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\navigationbarpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\navigationbarpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\basetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\basetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,60 +30,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NavigationBarTests.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T05:21:53.721Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NavigationBarPage.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABDAAAAAAAAAA==",
+              "Title": "local.runsettings",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\local.runsettings",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\local.runsettings",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\local.runsettings",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\local.runsettings",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-06T10:32:28.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NavigationBarTests.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\NavigationBarTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T05:21:44.079Z",
+              "WhenOpened": "2026-01-06T10:22:52.82Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "NavigationBarPage.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\NavigationBarPage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T10:22:50.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BaseTest.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-05T04:39:19.719Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Authentication.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Authentication.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Authentication.cs",
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Authentication.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Authentication.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Authentication.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Authentication.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-05T04:15:32.345Z",
               "EditorCaption": ""

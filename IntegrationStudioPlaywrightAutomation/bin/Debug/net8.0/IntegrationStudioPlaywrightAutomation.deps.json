@@ -9,6 +9,7 @@
       "IntegrationStudioPlaywrightAutomation/1.0.0": {
         "dependencies": {
           "Microsoft.NET.Test.Sdk": "17.8.0",
+          "Microsoft.Playwright": "1.27.1",
           "Microsoft.Playwright.NUnit": "1.27.1",
           "NUnit": "3.14.0",
           "NUnit.Analyzers": "3.9.0",

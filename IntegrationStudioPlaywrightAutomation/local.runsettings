@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <EnvironmentVariables>
+		<HEADED>1</HEADED>
+		<BASE_URL>https://internal.integrationstudio.capdev-connect.aveva.com/</BASE_URL>
+    </EnvironmentVariables>
+  </RunConfiguration>
+</RunSettings>

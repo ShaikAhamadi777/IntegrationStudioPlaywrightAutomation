@@ -3,16 +3,16 @@ using NUnit.Framework;
 
 
 
-namespace IntegrationStudioPlaywrightAutomation.Auth
+namespace IntegrationStudioPlaywrightAutomation
 {
-    public class Authentication
+    public class Authentication 
     {
         [Test]
         public async Task AuthenticationSetUp()
         {
             //Creating a playwright controller
             var playwright = await Playwright.CreateAsync();
-            
+
             //Creating a browser object
             var browser = await playwright.Chromium.LaunchAsync(
                                 new BrowserTypeLaunchOptions

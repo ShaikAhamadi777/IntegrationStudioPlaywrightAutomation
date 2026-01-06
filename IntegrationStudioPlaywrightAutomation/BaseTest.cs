@@ -4,36 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Playwright;
+using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 
-namespace IntegrationStudioPlaywrightAutomation.Tests
+namespace IntegrationStudioPlaywrightAutomation
 {
-    public class BaseTest
+    public class BaseTest : PageTest
     {
-        //Creating the variables outside the methods so that all the methods can use them
-        protected IPage Page;
-        protected IBrowser browser;
-        protected IPlaywright playwright;
+
         
+        public override BrowserNewContextOptions ContextOptions()
+        {
+            return new BrowserNewContextOptions
+            {
+                StorageStatePath = "auth.json"
+            };
+        }
+
         [SetUp] //Runs before every test
         public async Task SetUp()
         {
-            //Creating a playwright object 
-            playwright = await Playwright.CreateAsync();
-
-            //Creating a browser object which is similar to broswer profile
-            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false, SlowMo = 50, });
-
-            //Creating a browser context and checking the auth.json file
-            var context = await browser.NewContextAsync(new BrowserNewContextOptions { StorageStatePath = "auth.json" });
-
-            //Creating a new page or tab in the browser
-            Page = await context.NewPageAsync();
 
             //Navigating to the Integration studio URL
-            await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
+           // await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
 
-            //await page.ClickAsync("#submit");
+            await Page.GotoAsync(
+                Environment.GetEnvironmentVariable("BASE_URL")
+                ?? "https://internal.integrationstudio.capdev-connect.aveva.com/"
+            );
+
+            await Page.ClickAsync("#submit");
 
             //Clicking the Tenant name displayed from the list of Connect accounts and tenants
             await Page.ClickAsync("text=AV-Test2 ");
@@ -42,11 +42,5 @@ namespace IntegrationStudioPlaywrightAutomation.Tests
             await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");
         }
 
-
-        [TearDown] //Runs after every test
-        public async Task TearDown()
-        {
-            await browser.CloseAsync();
-        }
     }
 }
