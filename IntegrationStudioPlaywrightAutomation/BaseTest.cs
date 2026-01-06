@@ -26,12 +26,7 @@ namespace IntegrationStudioPlaywrightAutomation
         {
 
             //Navigating to the Integration studio URL
-           // await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
-
-            await Page.GotoAsync(
-                Environment.GetEnvironmentVariable("BASE_URL")
-                ?? "https://internal.integrationstudio.capdev-connect.aveva.com/"
-            );
+            await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
 
             await Page.ClickAsync("#submit");
 

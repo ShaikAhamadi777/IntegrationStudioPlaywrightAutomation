@@ -20,13 +20,21 @@ namespace IntegrationStudioPlaywrightAutomation
 
             var nav = new NavigationBarPage(Page);
 
-            
             await nav.AppBar.FocusAsync();
             await nav.AppBar.ScreenshotAsync(new()
             {
-                Path = "IntegrationStudio-home.png"
+                Path = "NavigationBar.png"
             });
             await Expect(nav.AppBar).ToBeVisibleAsync();
+            string title = await Page.TitleAsync();
+            Console.WriteLine(title);
+            await Expect(Page).ToHaveTitleAsync(title);
+
+            await nav.NotificationPanel.ClickAsync();
+
+
+
+
 
         }
 
