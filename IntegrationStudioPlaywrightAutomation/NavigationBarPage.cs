@@ -30,9 +30,10 @@ namespace IntegrationStudioPlaywrightAutomation
 
         //Notification Panel Elements locators
         public ILocator NotificationPanel => Page.Locator("#notifyContainer");
-        public ILocator NumberOfNotifications => Page.Locator("div#notifyHeader");
+        public ILocator NumberOfNotifications => Page.Locator("//span[@id='notifyCount']");
         public ILocator NumberOfNotificationsInBellIcon => Page.Locator(".uilab-badge on-icon-btn--");
-        public ILocator ClearAllButton => Page.Locator("#notifySubHeader");
+        public ILocator NotificationClearAllButton => Page.Locator("#notifySubHeader");
+        public ILocator NotificationCloseButton => Page.Locator("button[class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk']");
         //private ILocator UserProfilePopup => Page.Locator("");
         //private ILocator NetworkSpeedTest => Page.Locator("");
         //private ILocator LogOutButton => Page.Locator("");
