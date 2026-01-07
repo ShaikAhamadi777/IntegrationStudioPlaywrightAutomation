@@ -32,12 +32,12 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(Page).ToHaveTitleAsync(title);
 
             //Notification Icons
-            await nav.NotificationPanel.FocusAsync();
-            await nav.NotificationPanel.ScreenshotAsync(new()
+            await nav.NotificationBellIcon.FocusAsync();
+            await nav.NotificationBellIcon.ScreenshotAsync(new()
             {
-                Path = "NotificationPanelIcon.png"
+                Path = "NotificationBellIcon.png"
             });
-            await Expect(nav.NotificationPanel).ToBeVisibleAsync();
+            await Expect(nav.NotificationBellIcon).ToBeVisibleAsync();
 
             //Help Icon
             await nav.AVEVAHelpIcon.ScreenshotAsync(new()
@@ -47,20 +47,47 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(nav.AVEVAHelpIcon).ToBeVisibleAsync();
 
             //User Profile Icon
-            /*await nav.UserProfileIcon.ScreenshotAsync(new()
+            await nav.UserProfileIcon.ScreenshotAsync(new()
             {
                Path = "UserProfile.png"
             });
-            await Expect(nav.UserProfileIcon).ToBeVisibleAsync();*/
+            await Expect(nav.UserProfileIcon).ToBeVisibleAsync();
+        }
 
+        [Test]
+        public async Task Verify_NotificationPanel()
+        {
+            var notify = new NavigationBarPage(Page);
 
+            //Click on the Notification icon
+            await notify.NotificationBellIcon.ClickAsync();
+            await Expect(notify.NotificationPanel).ToBeVisibleAsync();
+            await notify.NotificationPanel.ScreenshotAsync(new()
+            {
+                Path = "NotificationPanelPage.png"
+            });
 
+            //Fetch the number of Notifications
+            await Expect(notify.NumberOfNotifications).ToBeVisibleAsync();
+            var CountOfNotifications = await notify.NumberOfNotifications.CountAsync();
+            Console.WriteLine($"Number of Notifications in the Panel: {CountOfNotifications}");
 
+            var CountOfNotificationInBellIcon = await notify.NumberOfNotificationsInBellIcon.IsVisibleAsync();
+            Console.WriteLine($"The Number of Notifications in the Bell Icon is : {CountOfNotificationInBellIcon}");
+            Console.WriteLine(CountOfNotificationInBellIcon);
 
+            //Check for the Clear All Button
+            await Expect(notify.ClearAllButton).ToBeVisibleAsync();
+            await notify.ClearAllButton.ScreenshotAsync(new()
+            {
+                Path = "NotificationPanelClearAllButton.png"
+            });
 
-
-
-
+            if(CountOfNotifications > 0)
+            {
+                await notify.ClearAllButton.FocusAsync();
+                await Expect(notify.ClearAllButton).ToBeEnabledAsync();
+            }
         }
 
     }

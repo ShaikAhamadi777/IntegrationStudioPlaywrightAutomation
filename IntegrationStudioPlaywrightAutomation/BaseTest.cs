@@ -28,11 +28,18 @@ namespace IntegrationStudioPlaywrightAutomation
             //Navigating to the Integration studio URL
             await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
 
-            await Page.ClickAsync("#submit");
+            await Page.Locator("#email").FillAsync("shaik.ahamadi@aveva.com");
 
+            var emailSignInButton = Page.Locator("#submit");
+
+            if (await emailSignInButton.IsVisibleAsync())
+            {
+                await emailSignInButton.ClickAsync();
+            }
+           
             //Clicking the Tenant name displayed from the list of Connect accounts and tenants
             await Page.ClickAsync("text=AV-Test2 ");
-
+            
             //Waiting for the URL to sync with the integration studio url
             await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");
         }

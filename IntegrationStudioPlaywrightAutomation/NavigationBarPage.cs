@@ -22,15 +22,22 @@ namespace IntegrationStudioPlaywrightAutomation
            Page = page;
         }
 
-        public ILocator AppBar => Page.Locator(".uilab-top-app-bar__title");
-        public ILocator NotificationPanel => Page.Locator("//uilab-icon-button[@aria-label='Notifications']");
-        public ILocator AVEVAHelpIcon => Page.Locator("//uilab-icon-button[@aria-label='Help']");
-        //public ILocator UserProfileIcon => Page.Locator("");
+        //Navigation Bar Elements locators
+        public ILocator AppBar => Page.Locator("section#app-bar");
+        public ILocator NotificationBellIcon => Page.Locator("uilab-icon-button[aria-label='Notifications']");
+        public ILocator AVEVAHelpIcon => Page.Locator("[aria-label='Help']");
+        public ILocator UserProfileIcon => Page.Locator("[aria-label='Open menu']").Filter(new LocatorFilterOptions { Has = Page.Locator(":visible") });
+
+        //Notification Panel Elements locators
+        public ILocator NotificationPanel => Page.Locator("#notifyContainer");
+        public ILocator NumberOfNotifications => Page.Locator("div#notifyHeader");
+        public ILocator NumberOfNotificationsInBellIcon => Page.Locator(".uilab-badge on-icon-btn--");
+        public ILocator ClearAllButton => Page.Locator("#notifySubHeader");
         //private ILocator UserProfilePopup => Page.Locator("");
         //private ILocator NetworkSpeedTest => Page.Locator("");
         //private ILocator LogOutButton => Page.Locator("");
         //private ILocator LegalLink => Page.Locator("");
-       
+
 
     }
 }
