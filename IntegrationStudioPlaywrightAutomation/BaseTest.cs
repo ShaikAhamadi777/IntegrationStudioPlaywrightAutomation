@@ -33,7 +33,7 @@ namespace IntegrationStudioPlaywrightAutomation
         {
 
             //Navigating to the Integration studio URL
-            await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
+            await Page.GotoAsync("https://verify.integrationstudio.dev-connect.aveva.com/");
 
             if (Page.Url.Contains("https://signin.dev-connect.aveva.com/login?state"))
             {
@@ -43,10 +43,10 @@ namespace IntegrationStudioPlaywrightAutomation
             }
                 await Page.WaitForURLAsync("https://profile.capdev-connect.aveva.com/solutions?state**");
                 //Clicking the Tenant name displayed from the list of Connect accounts and tenants
-                await Page.ClickAsync("text=QA_Snapshot_Test");
+                await Page.ClickAsync("text=Gowri-instudio-systemsuite");
             
             //Waiting for the URL to sync with the integration studio url
-            await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");
+            await Page.WaitForURLAsync("https://verify.integrationstudio.dev-connect.aveva.com/projects");
         }
 
     }

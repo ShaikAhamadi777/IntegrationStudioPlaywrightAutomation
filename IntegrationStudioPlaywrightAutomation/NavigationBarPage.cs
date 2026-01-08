@@ -27,6 +27,7 @@ namespace IntegrationStudioPlaywrightAutomation
         public ILocator NotificationBellIcon => Page.Locator("uilab-icon-button[aria-label='Notifications']");
         public ILocator AVEVAHelpIcon => Page.Locator("[aria-label='Help']");
         public ILocator UserProfileIcon => Page.Locator("[aria-label='Open menu']").Filter(new LocatorFilterOptions { Has = Page.Locator(":visible") });
+        public ILocator AVEVAHelpSignInButton => Page.Locator("button[aria-label='AVEVA Employee']");
 
         //Notification Panel Elements locators
         public ILocator NotificationPanel => Page.Locator("#notifyContainer");
@@ -34,6 +35,7 @@ namespace IntegrationStudioPlaywrightAutomation
         public ILocator NumberOfNotificationsInBellIcon => Page.Locator(".uilab-badge on-icon-btn--");
         public ILocator NotificationClearAllButton => Page.Locator("//button[text()='Clear all']");
         public ILocator NotificationCloseButton => Page.GetByTestId("CloseIcon");
+        public ILocator NotificationsAvailable => Page.Locator("[data-testid='ErrorOutlineIcon']");
         
         //private ILocator UserProfilePopup => Page.Locator("");
         //private ILocator NetworkSpeedTest => Page.Locator("");

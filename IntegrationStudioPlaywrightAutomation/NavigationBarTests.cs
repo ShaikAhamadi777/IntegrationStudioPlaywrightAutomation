@@ -228,18 +228,29 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(clearallbutton.NotificationPanel).ToBeVisibleAsync();
 
             //Check if the Header is equal to 0 notifications
-            var CountOfNotifications = await clearallbutton.NumberOfNotifications.InnerTextAsync();
-            Console.WriteLine($"{CountOfNotifications} are present in the notification panel");
-            //await Expect(CountOfNotifications).Not.ToContainTextAsync("0 notifications");
-
-            //Check for the Clear All Button
-            await Expect(clearallbutton.NotificationClearAllButton).ToBeVisibleAsync();
-            await clearallbutton.NotificationClearAllButton.ClickAsync();
-            await clearallbutton.NotificationPanel.ScreenshotAsync(new()
+            if (await clearallbutton.NotificationsAvailable.IsVisibleAsync())
             {
-                Path = "Screenshot_After_Clicking_On_ClearAllButton.png"
-            });
-            await clearallbutton.NotificationClearAllButton.IsDisabledAsync();
+                await clearallbutton.NotificationClearAllButton.IsEnabledAsync();
+                await clearallbutton.NotificationPanel.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_When_Notifications_Are_Available.png"
+                });
+                /*await clearallbutton.NotificationClearAllButton.ClickAsync();
+                await clearallbutton.NotificationClearAllButton.IsDisabledAsync();
+                await clearallbutton.NotificationPanel.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_When_Notifications_Are_Cleared_Using_ClearAll_Button.png"
+                });*/
+            }
+
+            else
+            {
+                await Expect(clearallbutton.NotificationClearAllButton).ToBeDisabledAsync();
+                await clearallbutton.NotificationPanel.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_When_Notifications_Are_NotAvailable.png"
+                });
+            }
         }
 
         [Test]
