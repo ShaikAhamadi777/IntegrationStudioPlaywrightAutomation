@@ -18,10 +18,14 @@ namespace IntegrationStudioPlaywrightAutomation
                                 new BrowserTypeLaunchOptions
                                 {
                                     Headless = false
+                                    
                                 });
 
             //Creating a browser context or browser profile
-            var context = await browser.NewContextAsync();
+            var context = await browser.NewContextAsync(new BrowserNewContextOptions
+            {
+                ViewportSize = null
+            });
 
             //Creating a page object which is similar to browser tab
             var page = await context.NewPageAsync();
