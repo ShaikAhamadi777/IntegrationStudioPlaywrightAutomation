@@ -36,7 +36,8 @@ namespace IntegrationStudioPlaywrightAutomation
         public ILocator NotificationClearAllButton => Page.Locator("//button[text()='Clear all']");
         public ILocator NotificationCloseButton => Page.GetByTestId("CloseIcon");
         public ILocator NotificationsAvailable => Page.Locator(".notifyInfo");
-        
+        public ILocator NumberOnBellIcon => Page.Locator("//span[contains(@class,'uilab-badge on-icon-btn')]");
+
         //private ILocator UserProfilePopup => Page.Locator("");
         //private ILocator NetworkSpeedTest => Page.Locator("");
         //private ILocator LogOutButton => Page.Locator("");

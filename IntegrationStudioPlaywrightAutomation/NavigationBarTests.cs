@@ -197,6 +197,7 @@ namespace IntegrationStudioPlaywrightAutomation
                 var item = notif.Nth(i);
 
                 var text = await item.InnerTextAsync();
+                Console.WriteLine(text);
 
                 // Check expiry text
                 if (text.Contains("about to expire", StringComparison.OrdinalIgnoreCase))
@@ -253,7 +254,72 @@ namespace IntegrationStudioPlaywrightAutomation
         [Test]
         public async Task Verify_NumberNearBellIcon_Equals_NumberOfMessages()
         {
+            
+            
+            var number = new NavigationBarPage(Page);
+            if (await number.NumberOnBellIcon.IsVisibleAsync())
+            {
 
+
+                //Check if the Notification Bell Icon is visible
+                await number.NumberOnBellIcon.IsVisibleAsync();
+                await number.NumberOnBellIcon.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_NumberOnBellIcon.png"
+                });
+
+                //Extract the number of notifications from the bell icon and convert into int
+                var numberonbellicon = await number.NumberOnBellIcon.InnerTextAsync();
+                Console.WriteLine(numberonbellicon);
+                int numberinint = Convert.ToInt32(numberonbellicon);
+
+
+                //Click on the Notification Bell Icon and click
+                await Expect(number.NotificationBellIcon).ToBeVisibleAsync();
+                await number.NotificationBellIcon.ClickAsync();
+
+                //To check if the number of notifications are not 0
+                await Expect(number.NumberOfNotifications).ToBeVisibleAsync();
+                await Expect(number.NumberOfNotifications).Not.ToContainTextAsync("0 notifications");
+
+                //Extracting the text from the notification panel content
+                var numberonpanel = await number.NumberOfNotifications.InnerTextAsync();
+                Console.WriteLine($"{numberonpanel} are present in the notification panel");
+
+                await number.NumberOfNotifications.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_Notifications_Inside_Panel.png"
+                });
+
+                //Extracting the number for the panel notification content and convert into int
+                string[] extractstring = numberonpanel.Split(' ');
+                int numberextracted = Convert.ToInt32(extractstring[0]);
+
+                //To Check if the number from the panel is same as the number on the bell icon
+                if (numberextracted == numberinint)
+                {
+                    Console.WriteLine($"The Number {numberinint} on the BellIcon is equal to the Number {numberextracted} on the Notification panel");
+                }
+                else
+                {
+                    Console.WriteLine($"The Number {numberinint} on the BellIcon is not equal to the Number{numberextracted} on the Notification panel");
+                }
+            }
+            else
+            {
+                await Expect(number.NotificationBellIcon).ToBeVisibleAsync();
+                await number.NotificationBellIcon.ClickAsync();
+
+                await number.NumberOfNotifications.IsVisibleAsync();
+                var numberonpanel = await number.NumberOfNotifications.InnerTextAsync();
+                Console.WriteLine($"{numberonpanel} Notifications are present");
+
+                await Page.ScreenshotAsync(new()
+                {
+                    Path="Screenshot_If_No_Notifications_are_available.png"
+
+                });
+            }
         }
 
         [Test]
