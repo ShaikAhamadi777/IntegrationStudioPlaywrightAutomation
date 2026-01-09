@@ -24,7 +24,7 @@ namespace IntegrationStudioPlaywrightAutomation
             await nav.AppBar.FocusAsync();
             await nav.AppBar.ScreenshotAsync(new()
             {
-                Path = "NavigationBar.png"
+                Path = "Screenshot_Of_NavigationBar.png"
             });
             await Expect(nav.AppBar).ToBeVisibleAsync();
             string title = await Page.TitleAsync();
@@ -35,21 +35,21 @@ namespace IntegrationStudioPlaywrightAutomation
             await nav.NotificationBellIcon.FocusAsync();
             await nav.NotificationBellIcon.ScreenshotAsync(new()
             {
-                Path = "NotificationBellIcon.png"
+                Path = "Screeshot_Of_NotificationBellIcon.png"
             });
             await Expect(nav.NotificationBellIcon).ToBeVisibleAsync();
 
             //Verify if the AVEVA Help Icon is Visible
             await nav.AVEVAHelpIcon.ScreenshotAsync(new()
             {
-                Path = "AVEVAHelpIcon.png"
+                Path = "Screenshot_Of_AVEVAHelpIcon.png"
             });
             await Expect(nav.AVEVAHelpIcon).ToBeVisibleAsync();
 
             //Verify if the User Profile Icon is Visible
             await nav.UserProfileIcon.ScreenshotAsync(new()
             {
-               Path = "UserProfile.png"
+               Path = "Screenshot_Of_UserProfileIcon.png"
             });
             await Expect(nav.UserProfileIcon).ToBeVisibleAsync();
         }
@@ -83,7 +83,7 @@ namespace IntegrationStudioPlaywrightAutomation
             { 
                 await helppage.ScreenshotAsync(new()
                 {
-                    Path = "HelpPageAfterClickingHelpIcon.png"
+                    Path = "Screenshot_Of_HelpPage_AfterClickingHelpIcon.png"
                 });
                 await helppage.Locator("button[aria-label='AVEVA Employee']").ClickAsync();
 
@@ -102,7 +102,7 @@ namespace IntegrationStudioPlaywrightAutomation
             }
             await helppage.ScreenshotAsync(new()
             {
-                Path = "AVEVAHelpPage.png"
+                Path = "Screenshot_Of_AVEVAHelpPage.png"
             });
         }
 
@@ -116,7 +116,7 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(notify.NotificationPanel).ToBeVisibleAsync();
             await notify.NotificationPanel.ScreenshotAsync(new()
             {
-                Path = "NotificationPanelPage.png"
+                Path = "Screenshot_Of_NotificationPanelPage.png"
             });
 
             //Fetch the number of Notifications in the Header
@@ -128,7 +128,7 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(notify.NotificationClearAllButton).ToBeVisibleAsync();
             await notify.NotificationClearAllButton.ScreenshotAsync(new()
             {
-                Path = "NotificationPanelClearAllButton.png"
+                Path = "Screenshot_Of_NotificationPanelClearAllButton.png"
             });
 
             //Check the Close button
@@ -136,7 +136,7 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(notify.NotificationCloseButton).ToBeVisibleAsync();
             await notify.NotificationCloseButton.ScreenshotAsync(new()
             {
-                Path = "NotificationCloseButton.png"
+                Path = "Screenshot_Of_NotificationCloseButton.png"
             });            
         }
 
@@ -157,19 +157,75 @@ namespace IntegrationStudioPlaywrightAutomation
 
             //Check if the Header is equal to 0 notifications
             var CountOfNotifications = await notification.NumberOfNotifications.InnerTextAsync();
-            Console.WriteLine($"{CountOfNotifications} Notifications are present in the notification panel");
+            Console.WriteLine($"{CountOfNotifications} are present in the notification panel");
             await Expect(notification.NumberOfNotifications).ToContainTextAsync("0 notifications");
 
             //Screenshot of 0 notifications 
             await notification.NotificationPanel.ScreenshotAsync(new()
             {
-                Path = "NoNotificationsAvailablePanelScreenshot.png"
+                Path = "Screenshot_Of_NoNotificationsAvailablePanel.png"
             });
             
         }
         [Test]
         public async Task Verify_NotificationPanel_When_Notifications_Available()
         {
+            var notificationsavail = new NavigationBarPage(Page);
+            
+            //Click on the notification bell icon
+            await Expect(notificationsavail.NotificationBellIcon).ToBeVisibleAsync();
+            await notificationsavail.NotificationBellIcon.ClickAsync();
+
+
+            //Number of Notifications - Example 2 
+            var CountOfNotifications = await notificationsavail.NumberOfNotifications.InnerTextAsync();
+            Console.WriteLine($"{CountOfNotifications} are present in the notification panel");
+
+            //Close Button
+            await notificationsavail.NotificationCloseButton.IsVisibleAsync();
+            await Expect(notificationsavail.NotificationCloseButton).ToBeVisibleAsync();
+
+            //Instance Deletion Notification
+            var notif = notificationsavail.NotificationsAvailable;
+            ILocator expiryWarning = null;
+
+            int total = await notif.CountAsync();
+            Console.WriteLine(total);
+
+            for (int i = 0; i < total; i++)
+            {
+                var item = notif.Nth(i);
+
+                var text = await item.InnerTextAsync();
+
+                // Check expiry text
+                if (text.Contains("about to expire", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Check presence of Change button
+                    if (await item.Locator("button:has-text('Change')").CountAsync() > 0)
+                    {
+                        expiryWarning = item;
+                        break;
+                    }
+                }
+            }
+
+            //Instance Expiry Warning Notification
+
+
+            //Check if the ClearAll Button Enabled
+            await Expect(notificationsavail.NotificationClearAllButton).ToBeEnabledAsync();
+
+            //Check the Close Button for Instance Expriy Deletion Notification
+
+
+
+            //Check the Close button for the Instance Expiry Warning Notification
+
+
+
+            //Check the Change button for the Instance Deletion Notification
+
 
         }
 
@@ -190,7 +246,7 @@ namespace IntegrationStudioPlaywrightAutomation
 
             await Page.ScreenshotAsync(new()
             {
-                Path = "ScreenshotAfterNotificationClosed.png"
+                Path = "Screenshot_Of_Page_AfterNotificationClosed.png"
             });
         }
 
@@ -227,30 +283,34 @@ namespace IntegrationStudioPlaywrightAutomation
             await clearallbutton.NotificationBellIcon.ClickAsync();
             await Expect(clearallbutton.NotificationPanel).ToBeVisibleAsync();
 
-            //Check if the Header is equal to 0 notifications
-            if (await clearallbutton.NotificationsAvailable.IsVisibleAsync())
-            {
-                await clearallbutton.NotificationClearAllButton.IsEnabledAsync();
-                await clearallbutton.NotificationPanel.ScreenshotAsync(new()
-                {
-                    Path = "Screenshot_When_Notifications_Are_Available.png"
-                });
-                /*await clearallbutton.NotificationClearAllButton.ClickAsync();
-                await clearallbutton.NotificationClearAllButton.IsDisabledAsync();
-                await clearallbutton.NotificationPanel.ScreenshotAsync(new()
-                {
-                    Path = "Screenshot_When_Notifications_Are_Cleared_Using_ClearAll_Button.png"
-                });*/
-            }
+            //To check if the Clear all button is enabled
+            await Expect(clearallbutton.NotificationClearAllButton).ToBeEnabledAsync();
 
-            else
+            await Page.ScreenshotAsync(new()
             {
-                await Expect(clearallbutton.NotificationClearAllButton).ToBeDisabledAsync();
-                await clearallbutton.NotificationPanel.ScreenshotAsync(new()
-                {
-                    Path = "Screenshot_When_Notifications_Are_NotAvailable.png"
-                });
-            }
+               Path = "Screenshot_to_Check_ClearAll_Button_Enabled.png"
+            });
+
+            //Check and print the number of notifications available
+            var NotificationsBeforeClicking = await clearallbutton.NumberOfNotifications.InnerTextAsync();
+            Console.WriteLine($"{NotificationsBeforeClicking} are present in the notification panel");
+
+            //Click on the clearall button
+            await clearallbutton.NotificationClearAllButton.ClickAsync();
+
+            
+            await Expect(clearallbutton.NumberOfNotifications).ToHaveTextAsync("0 notifications");
+
+            //Check and print the number of notifications available
+            var NotificationsAfterClicking = await clearallbutton.NumberOfNotifications.InnerTextAsync();
+            Console.WriteLine($"{NotificationsAfterClicking} are present in the notification panel");
+
+
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_to_Check_After_Clicking_Clearall_Button.png"
+            });
+            
         }
 
         [Test]
