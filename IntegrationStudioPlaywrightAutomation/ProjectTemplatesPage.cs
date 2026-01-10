@@ -30,11 +30,24 @@ namespace IntegrationStudioPlaywrightAutomation
         //private ILocator LogOutButton => Page.Locator("");
         //private ILocator LegalLink => Page.Locator("");
 
+        //LHS Menu Locators
         public ILocator ProjectTemplatePage => Page.Locator("#app-layout-container");
-        public ILocator LHSMenu => Page.Locator("//li[@class='uilab-nav-rail__item add-border-- selected--']");
-        public ILocator ProjectTemplates => Page.Locator("//a[@class='mdc-list-item uilab-nav-rail__link top-level-padding--']//span[text()='Project templates']");
-        public ILocator SystemSuites => Page.Locator("//span[@class='mdc-list-item__text uilab-nav-rail__text' and text()='System suites']");
+        public ILocator LHSMenu => Page.Locator(".uilab-layout-nav");
+        public ILocator ProjectTemplates => Page.Locator("[aria-label='Project templates']");
+        public ILocator SystemSuites => Page.Locator("[aria-label='System suites']");
         public ILocator GlobalRDPRules => Page.Locator("[aria-label='Global RDP rules']");
         public ILocator General => Page.Locator("[aria-label='General']");
+        public ILocator CollapseButtonContent => Page.Locator("//span[text()='Collapse']");
+        public ILocator CollapseButtonIcon => Page.Locator(".uilab-nav-rail__footer");
+
+        //System suites Locators
+        public ILocator SystemsuitesSubMenu => Page.Locator("//uilab-sidesheet[@class='uilab-nav-rail__sidesheet open--']");
+        public ILocator SystemsuitesSubMenuTitle => Page.Locator("//div[@class='uilab-sidesheet__title' and text()='System suites']");
+        public ILocator SystemsuitesSubMenuClose => Page.Locator("[aria-label='Close']");
+        public ILocator ManageSystemsuites => Page.Locator("[aria-label='Manage system suites']");
+        public ILocator GlobalParameters => Page.Locator("[aria-label='Global parameters']");
+
+
+
     }
 }

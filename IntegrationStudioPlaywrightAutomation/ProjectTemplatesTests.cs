@@ -113,10 +113,47 @@ namespace IntegrationStudioPlaywrightAutomation
             await Expect(projectadminlhsmenu.SystemSuites).ToBeVisibleAsync();
             await Expect(projectadminlhsmenu.GlobalRDPRules).ToBeVisibleAsync();
             await Expect(projectadminlhsmenu.General).ToBeVisibleAsync();
+            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeVisibleAsync();
+            await projectadminlhsmenu.LHSMenu.WaitForAsync();
             await projectadminlhsmenu.LHSMenu.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_LHSMenu.png"
             });
+
+            //Click on the collapse button and check for the functionality
+            await projectadminlhsmenu.CollapseButtonIcon.ClickAsync();
+            await projectadminlhsmenu.CollapseButtonIcon.WaitForAsync();
+            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeHiddenAsync();
+            await projectadminlhsmenu.LHSMenu.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_Collapsed_LHSMenu.png"
+            });
+
+            //Click on the expand button
+            await projectadminlhsmenu.CollapseButtonIcon.ClickAsync();
+            await projectadminlhsmenu.LHSMenu.WaitForAsync();
+            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeVisibleAsync();
+
+            //Click on the System suites button
+            await projectadminlhsmenu.SystemSuites.WaitForAsync();
+            await projectadminlhsmenu.SystemSuites.ClickAsync();
+           
+            //Check and verify the system suites sub menu
+            await Expect(projectadminlhsmenu.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(projectadminlhsmenu.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(projectadminlhsmenu.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(projectadminlhsmenu.ManageSystemsuites).ToBeVisibleAsync();
+            await Expect(projectadminlhsmenu.GlobalParameters).ToBeVisibleAsync();
+
+            await projectadminlhsmenu.SystemsuitesSubMenu.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_Systemsuites_Submenu.png"
+            });
+
+
+
+
+
         }
 
     }
