@@ -22,11 +22,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseTest.cs",
+              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
+              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC0AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-11T15:20:09.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             },
             {
               "$type": "Document",
@@ -36,7 +53,7 @@
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ProjectTemplatesTests.cs",
               "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ProjectTemplatesTests.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ProjectTemplatesTests.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAIwJUAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAALoBAAAAAAAAAAAIwNABAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-10T15:54:00.008Z",
               "EditorCaption": ""
@@ -49,26 +66,10 @@
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ProjectTemplatesPage.cs",
               "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ProjectTemplatesPage.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ProjectTemplatesPage.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAAC8AAABaAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAIwFUAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-10T15:50:52.083Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BaseTest.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\BaseTest.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC0AAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-10T08:41:15.672Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             }
           ]
         }
