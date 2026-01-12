@@ -8,11 +8,12 @@ using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
+using IntegrationStudioPlaywrightAutomation.Locators;
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
     [TestFixture]
-    public class NotificationHubTests : BaseTest
+    public class NotificationHub_UI_Tests : BaseTest
     {
         
         [Test]

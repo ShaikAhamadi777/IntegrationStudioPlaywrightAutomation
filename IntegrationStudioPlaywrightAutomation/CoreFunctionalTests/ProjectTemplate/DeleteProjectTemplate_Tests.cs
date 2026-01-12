@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.ProjectTemplate
 {
-    internal class GeneralSettingsTests
+    internal class DeleteProjectTemplate_Tests
     {
     }
 }

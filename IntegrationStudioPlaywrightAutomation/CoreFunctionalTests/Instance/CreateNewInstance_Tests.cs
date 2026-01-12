@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Instance
 {
-    internal class SystemSuitesPage
+    internal class CreateNewInstance_Tests
     {
     }
 }

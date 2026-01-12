@@ -7,10 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using IntegrationStudioPlaywrightAutomation.Locators;
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
-    public class ProjectTemplatesTests : BaseTest
+    public class ProjectTemplates_UI_Tests : BaseTest
     {
 
         [Test]

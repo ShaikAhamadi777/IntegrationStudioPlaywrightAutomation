@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.Locators
 {
-    internal class GlobalRDPRulesTests
+    internal class SystemSuitesPage
     {
     }
 }

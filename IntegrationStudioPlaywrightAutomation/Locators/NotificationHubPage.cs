@@ -9,7 +9,8 @@ using NUnit.Framework;
 using System.Text.RegularExpressions;
 
 
-namespace IntegrationStudioPlaywrightAutomation
+
+namespace IntegrationStudioPlaywrightAutomation.Locators
 {
     public class NotificationHubPage
     {
