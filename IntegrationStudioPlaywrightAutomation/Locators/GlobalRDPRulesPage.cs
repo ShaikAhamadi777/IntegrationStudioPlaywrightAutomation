@@ -32,12 +32,13 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
 
 
         public ILocator FirewallTableHeading => Page.Locator("//tr[contains(@class,'firewall-table-columns css-axz6ke')]");
+        public ILocator FirewallRuleRows => Page.Locator("//tr[@class='MuiTableRow-root firewall-table-row css-axz6ke']");
         public ILocator FirewallRuleNameTitle => Page.Locator("//th[text()='Firewall rule name']");
         public ILocator GlobalRDPRuleNames => Page.Locator("text=GlobalRDPRule_");
         public ILocator GlobalRDPRulesTable => Page.Locator("//table[contains(@class,'MuiTable-root firewall-table css-28cyes')]");
 
         public ILocator FirewallIPAddressTitle => Page.Locator("//th[text()='IP address/range']");
-        
+        public ILocator FirewallRuleDeleteOptions => Page.Locator("//uilab-button[@class='firewall-item-delete-btn hydrated']");
 
     }
 }

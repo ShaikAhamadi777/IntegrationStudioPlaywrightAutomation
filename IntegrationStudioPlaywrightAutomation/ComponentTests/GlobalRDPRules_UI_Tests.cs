@@ -145,12 +145,48 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             {
                 Path = "Screenshot_of_IPPresent_InTable.png"
             });
+        }
+
+        [Test]
+        public async Task OpenGlobalRDPRulesPage_ShouldContain_DeleteRuleOption()
+        {
+            var globalrdpruledelete = new GlobalRDPRulesPage(Page);
+            await Expect(globalrdpruledelete.LHSMenu).ToBeVisibleAsync();
+            await Expect(globalrdpruledelete.GlobalRDPRules).ToBeVisibleAsync();
+            await globalrdpruledelete.GlobalRDPRules.ClickAsync();
+            await globalrdpruledelete.GlobalRDPRulePage.WaitForAsync();
+            await Expect(globalrdpruledelete.GlobalRDPRulePage).ToBeVisibleAsync();
+
+            await globalrdpruledelete.FirewallRuleDeleteOptions.First.WaitForAsync();
+            await Expect(globalrdpruledelete.FirewallRuleDeleteOptions.First).ToBeVisibleAsync();
+            await globalrdpruledelete.FirewallRuleDeleteOptions.First.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_DeleteOption.png"
+            });
+        }
+
+        [Test]
+        public async Task OpenGlobalRDPRulesPage_ShouldContain_FirewallRuleNamesRows()
+        {
+            var rows = new GlobalRDPRulesPage(Page);
+            await Expect(rows.LHSMenu).ToBeVisibleAsync();
+            await Expect(rows.GlobalRDPRules).ToBeVisibleAsync();
+            await rows.GlobalRDPRules.ClickAsync();
+            await rows.GlobalRDPRulePage.WaitForAsync();
+            await Expect(rows.GlobalRDPRulePage).ToBeVisibleAsync();
+
+            await rows.FirewallRuleRows.First.WaitForAsync();
+            await Expect(rows.FirewallRuleRows.First).ToContainTextAsync("GlobalRDPRule_");
+            await Expect(rows.FirewallRuleRows.First).ToBeVisibleAsync();
+            await rows.FirewallRuleRows.First.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_FirewallRuleName_Row.png"
+            });
 
 
 
 
         }
-
 
 
 

@@ -7,7 +7,17 @@ using IntegrationStudioPlaywrightAutomation.Locators;
 
 namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
-    internal class GlobalParameters_UI_Tests
+    [TestFixture]
+    public class GlobalParameters_UI_Tests : BaseTest
     {
+
+        [Test]
+        public async Task OpenGlobalParametersPage()
+        {
+            var gpparameters = new GlobalParametersPage(Page);
+
+
+        }
+
     }
 }
