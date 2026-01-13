@@ -1,22 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
+  "WorkspaceRootPath": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\globalrdprulespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\projecttemplatespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\projecttemplatespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\globalrdprulespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\globalrdprulespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\globalrdprules_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\globalrdprules_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\globalrdprules_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\generalsettingspage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\generalsettingspage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\generalsettings_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\generalsettings_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Shaik.Ahamadi\\Downloads\\2023 (2).json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,12 +25,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -46,15 +41,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GeneralSettings_UI_Tests.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\GeneralSettings_UI_Tests.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\GeneralSettings_UI_Tests.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\GeneralSettings_UI_Tests.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\GeneralSettings_UI_Tests.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ProjectTemplatesPage.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAE4AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T16:46:27.685Z",
+              "WhenOpened": "2026-01-13T12:50:08.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "2023 (2).json",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\Downloads\\2023 (2).json",
+              "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\2023 (2).json",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\Downloads\\2023 (2).json",
+              "RelativeToolTip": "..\\..\\..\\Downloads\\2023 (2).json",
+              "ViewState": "AgIAANEBAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-13T10:35:32.139Z",
               "EditorCaption": ""
             },
             {
@@ -63,41 +71,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GeneralSettingsPage.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\GeneralSettingsPage.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\GeneralSettingsPage.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\GeneralSettingsPage.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\GeneralSettingsPage.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T16:41:50.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GlobalRDPRulesPage.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T14:55:34.381Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GlobalRDPRules_UI_Tests.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAIwDYAAAASAAAAAAAAAA==",
+              "Title": "GlobalRDPRulesPage.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\GlobalRDPRulesPage.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T16:36:26.373Z",
+              "WhenOpened": "2026-01-13T09:35:50.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GlobalRDPRules_UI_Tests.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\GlobalRDPRules_UI_Tests.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAJEAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T04:52:55.039Z",
               "EditorCaption": ""
             }
           ]

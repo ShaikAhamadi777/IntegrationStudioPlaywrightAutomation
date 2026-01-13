@@ -24,5 +24,20 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator ClientPublicIP => Page.Locator("//div[text()='Client public IP: ']");
         public ILocator IPAddress => Page.Locator("text=/\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b/");
         public ILocator IPAddressTextField => Page.Locator("#text-field-ip");
+        public ILocator IPAddressTextFiledText => Page.Locator(".mdc-floating-label");
+        public ILocator IPAddButton => Page.Locator("//uilab-button[text()='Add']");
+        public ILocator IPHelperText => Page.Locator("#firewall-tips");
+        public ILocator IPPart => Page.Locator("#firewall-form");
+        public ILocator IPInUse => Page.Locator("text=in use");
+
+
+        public ILocator FirewallTableHeading => Page.Locator("//tr[contains(@class,'firewall-table-columns css-axz6ke')]");
+        public ILocator FirewallRuleNameTitle => Page.Locator("//th[text()='Firewall rule name']");
+        public ILocator GlobalRDPRuleNames => Page.Locator("text=GlobalRDPRule_");
+        public ILocator GlobalRDPRulesTable => Page.Locator("//table[contains(@class,'MuiTable-root firewall-table css-28cyes')]");
+
+        public ILocator FirewallIPAddressTitle => Page.Locator("//th[text()='IP address/range']");
+        
+
     }
 }
