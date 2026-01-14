@@ -21,14 +21,17 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator LHSMenu => Page.Locator(".uilab-layout-nav");
         public ILocator SystemSuites => Page.Locator("//a[@aria-label='System suites' and @href='/systemSuiteRoot']");
         public ILocator SystemsuitesSubMenu => Page.Locator("//uilab-sidesheet[@class='uilab-nav-rail__sidesheet open--']");
+        public ILocator SystemsuitesSubMenuTitle => Page.Locator("//div[@class='uilab-sidesheet__title' and text()='System suites']");
+        public ILocator SystemsuitesSubMenuClose => Page.Locator("[aria-label='Close']");
         public ILocator GlobalParameters => Page.Locator("[aria-label='Global parameters']");
         public ILocator GlobalParameterPage => Page.Locator("#app-main-container");
 
         public ILocator GlobalParameterTitle => Page.Locator("#systemsuite-page-toolbar");
-        public ILocator GlobalParameterHeadText => Page.Locator("#systemsuite-page-subtitle");
+        public ILocator GlobalParameterSubTitle => Page.Locator("#systemsuite-page-subtitle");
+        public ILocator GlobalParametersToolBar => Page.Locator("#page-toolbar");
         public ILocator SPFamilyGroupHeading => Page.Locator("//p[text()='AVEVA System Platform']");
-        public ILocator SPUsernameField => Page.Locator("//uilab-textfield[@id='text-field-globel-parameter' and @label='Archestra user name']");
-        public ILocator SPPasswordFiled => Page.Locator("//uilab-textfield[@id='text-field-globel-parameter' and @label='Archestra password']");
+        public ILocator SPUsernameField => Page.Locator("#uilab-textfield-0");
+        public ILocator SPPasswordFiled => Page.Locator("#uilab-textfield-1");
         public ILocator ArchestraUsernameText => Page.Locator("");
         public ILocator ArchestraPasswordText => Page.Locator("");
         public ILocator ArchestraUsernameValue => Page.Locator("");
