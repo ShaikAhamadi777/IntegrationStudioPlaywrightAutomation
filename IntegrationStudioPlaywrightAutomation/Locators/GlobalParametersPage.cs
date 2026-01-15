@@ -32,18 +32,15 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator SPFamilyGroupHeading => Page.Locator("//p[text()='AVEVA System Platform']");
         public ILocator SPUsernameField => Page.Locator("#uilab-textfield-0");
         public ILocator SPPasswordFiled => Page.Locator("#uilab-textfield-1");
-        public ILocator ArchestraUsernameText => Page.Locator("");
-        public ILocator ArchestraPasswordText => Page.Locator("");
-        public ILocator ArchestraUsernameValue => Page.Locator("");
-        public ILocator ArchestraUsernamePasswordValue => Page.Locator("");
         public ILocator EyeIcon => Page.Locator("//uilab-icon[@icon='view--show']");
 
         public ILocator EdgeFamilyGroupHeading => Page.Locator("//p[text()='AVEVA Edge']");
         public ILocator EdgeValue => Page.Locator("text=No parameters available");
         public ILocator PlantSCADAGroupHeading => Page.Locator("//p[text()='AVEVA Plant SCADA']");
-        public ILocator PlantSCADAValue => Page.Locator("");
+        public ILocator PlantSCADAValue => Page.Locator("text=No parameters available");
         public ILocator GPCancelButton => Page.Locator("#instancelaunch-cancel-btn");
         public ILocator GPSaveButton => Page.Locator("#submit-launch-btn");
+        public ILocator Buttons => Page.Locator("//div[@style='text-align: right;']");
 
 
 

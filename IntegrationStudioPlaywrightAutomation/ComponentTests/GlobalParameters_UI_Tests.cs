@@ -98,14 +98,105 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(sp.SPUsernameField).ToBeVisibleAsync();
             await Expect(sp.SPPasswordFiled).ToBeVisibleAsync();
 
+            //Check if the AVEVA System Platform fields are editable
             await Expect(sp.SPUsernameField).ToBeEditableAsync();
             await Expect(sp.SPPasswordFiled).ToBeEditableAsync();
 
+            //Check the Eye icon
             await Expect(sp.EyeIcon).ToBeVisibleAsync();
             await Expect(sp.EyeIcon).ToBeEnabledAsync();
 
+            //Check if the fields are not empty
             await Expect(sp.SPUsernameField).Not.ToBeEmptyAsync();
             await Expect(sp.SPPasswordFiled).Not.ToBeEmptyAsync();
+        }
+
+        [Test]
+        public async Task OpenGlobalParametersPage_ShouldContain_AVEVAEdgeFields()
+        {
+            var edge = new GlobalParametersPage(Page);
+            await Expect(edge.LHSMenu).ToBeVisibleAsync();
+            await Expect(edge.SystemSuites).ToBeVisibleAsync();
+
+            //Click on the System suites button
+            await edge.SystemSuites.WaitForAsync();
+            await edge.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(edge.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(edge.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(edge.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(edge.GlobalParameters).ToBeVisibleAsync();
+            await edge.GlobalParameters.ClickAsync();
+            await edge.GlobalParameterPage.WaitForAsync();
+            await Expect(edge.GlobalParameterPage).ToBeVisibleAsync();
+
+            await edge.EdgeFamilyGroupHeading.WaitForAsync();
+            await Expect(edge.EdgeFamilyGroupHeading).ToBeVisibleAsync();
+            await Expect(edge.EdgeValue.First).ToBeVisibleAsync();
+            await edge.EdgeValue.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_AVEVAEdge_Value.png"
+            });
+        }
+
+        [Test]
+        public async Task OpenGlobalParametersPage_ShouldContain_PlantSCADAFields()
+        {
+            var plantscada = new GlobalParametersPage(Page);
+            await Expect(plantscada.SystemSuites).ToBeVisibleAsync();
+
+            //Click on the System suites button
+            await plantscada.SystemSuites.WaitForAsync();
+            await plantscada.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(plantscada.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(plantscada.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(plantscada.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(plantscada.GlobalParameters).ToBeVisibleAsync();
+            await plantscada.GlobalParameters.ClickAsync();
+            await plantscada.GlobalParameterPage.WaitForAsync();
+            await Expect(plantscada.GlobalParameterPage).ToBeVisibleAsync();
+
+            await plantscada.PlantSCADAGroupHeading.WaitForAsync();
+            await Expect(plantscada.PlantSCADAGroupHeading).ToBeVisibleAsync();
+            await Expect(plantscada.PlantSCADAValue.Last).ToBeVisibleAsync();
+            await plantscada.PlantSCADAValue.Last.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_PlantSCADA_Value.png"
+            });
+        }
+
+        [Test]
+        public async Task OpeOpenGlobalParametersPage_ShouldContain_CancelSaveButton()
+        {
+            var button = new GlobalParametersPage(Page);
+
+            await Expect(button.SystemSuites).ToBeVisibleAsync();
+            await button.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(button.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(button.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(button.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(button.GlobalParameters).ToBeVisibleAsync();
+            await button.GlobalParameters.ClickAsync();
+            await button.GlobalParameterPage.WaitForAsync();
+            await Expect(button.GlobalParameterPage).ToBeVisibleAsync();
+
+            //Check for the Save and the Cancel button
+            await Expect(button.GPCancelButton).ToBeVisibleAsync();
+            await Expect(button.GPCancelButton).ToBeEnabledAsync();
+
+            await Expect(button.GPSaveButton).ToBeVisibleAsync();
+            await Expect(button.GPSaveButton).ToBeEnabledAsync();
+
+            await button.Buttons.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_CancelSaveButtons.png"
+            });
+
         }
 
     }
