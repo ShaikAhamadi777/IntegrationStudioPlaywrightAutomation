@@ -24,6 +24,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator SystemsuitesSubMenuClose => Page.Locator("[aria-label='Close']");
         public ILocator ManageSystemsuites => Page.Locator("[aria-label='Manage system suites']");
         public ILocator ManageSystemSuitesPage => Page.Locator("#app-main-container");
+        public ILocator SystemSuiteTitle => Page.Locator("#systemsuite-page-toolbar");
         public ILocator SystemSuitesSubTitle => Page.Locator("#systemsuite-page-subtitle");
         public ILocator SystemSuitesInUse => Page.Locator(".chp-body-1");
         public ILocator UploadFileButton => Page.GetByTestId("FileUploadIcon");

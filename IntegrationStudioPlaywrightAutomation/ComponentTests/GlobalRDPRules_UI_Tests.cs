@@ -17,16 +17,29 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             //Click on the Global RDP rules button and check the page
             await Expect(gprules.LHSMenu).ToBeVisibleAsync();
-            await Expect(gprules.GlobalRDPRules).ToBeVisibleAsync();
-            await gprules.GlobalRDPRules.ClickAsync();
-            await gprules.GlobalRDPRulePage.WaitForAsync();
-            await Expect(gprules.GlobalRDPRulePage).ToBeVisibleAsync();
 
-            //Check the Global RDP rules title
-            await Page.ScreenshotAsync(new()
+            if(await gprules.GlobalRDPRules.IsVisibleAsync())
             {
-                Path = "Screenshot_Of_GlobalRDPRulesPage.png"
-            });
+                await Expect(gprules.GlobalRDPRules).ToBeVisibleAsync();
+                await gprules.GlobalRDPRules.ClickAsync();
+                await gprules.GlobalRDPRulePage.WaitForAsync();
+                await Expect(gprules.GlobalRDPRulePage).ToBeVisibleAsync();
+
+                //Check the Global RDP rules title
+                await Page.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_GlobalRDPRulesPage.png"
+                });
+            }
+            else
+            {
+                Console.WriteLine("The Logged in User is a project user.Hence Global RDP Rules option is not present");
+                await Expect(gprules.GlobalRDPRules).ToBeHiddenAsync();
+                await Page.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_GlobalRDPRulesPage.png"
+                });
+            }
         }
 
         [Test]
