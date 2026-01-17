@@ -34,11 +34,11 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator SystemSuitesColumnNameHeading => Page.Locator("//th[text()='Name']");
         public ILocator SystemSuitesColumnSSType => Page.Locator("//th[text()='System suite type']");
         public ILocator SystemSuitesColumnEdited => Page.Locator("//th[text()='Edited']");
-        public ILocator SystemSuiteTablePublicIcon => Page.GetByLabel("Public");
-        public ILocator SystemSuiteTablePrivateIcon => Page.GetByLabel("Private");
-        public ILocator SystemSuiteTypeGlobal => Page.Locator("text=Global");
-        public ILocator SystemSuiteTypeCustom => Page.Locator("text=Custom");
-        public ILocator SystemSuiteTypeTenant => Page.Locator("text=Tenant");
+        public ILocator SystemSuiteTablePublicIcon => Page.Locator("[aria-label='Public']");
+        public ILocator SystemSuiteTablePrivateIcon => Page.Locator("[aria-label='Private']");
+        public ILocator SystemSuiteTypeGlobal => Page.Locator("//td[text()='Global']");
+        public ILocator SystemSuiteTypeCustom => Page.Locator("//td[text()='Custom']");
+        public ILocator SystemSuiteTypeTenant => Page.Locator("//td[text()='Tenant']");
         public ILocator SystemSuiteEditedTime => Page.Locator("text=ago by");
         public ILocator SystemSuiteInUseTickIcon => Page.GetByTestId("CheckCircleOutlineIcon");
         public ILocator SystemSuite3DotMenu => Page.Locator("//span[@class='MuiTouchRipple-root css-w0pj6f']");
