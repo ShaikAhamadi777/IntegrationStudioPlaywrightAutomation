@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\systemsuites_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\systemsuites_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\navigationbar_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\navigationbar_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\systemsuitespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\systemsuitespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\navigationbarpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\navigationbarpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\createprojecttemplate_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\createprojecttemplate_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\projecttemplatespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\projecttemplatespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\projecttemplates_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\projecttemplates_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,15 +46,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreateProjectTemplate_UI_Tests.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ProjectTemplates_UI_Tests.cs",
+              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAAABAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-18T11:19:38.594Z",
+              "WhenOpened": "2026-01-18T15:06:18.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectTemplatesPage.cs",
+              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-18T15:03:36.582Z",
               "EditorCaption": ""
             },
             {
@@ -59,28 +76,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SystemSuitesPage.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\SystemSuitesPage.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\SystemSuitesPage.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\SystemSuitesPage.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\SystemSuitesPage.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAIwC8AAAAvAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "NavigationBar_UI_Tests.cs",
+              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\NavigationBar_UI_Tests.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\NavigationBar_UI_Tests.cs",
+              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\NavigationBar_UI_Tests.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\NavigationBar_UI_Tests.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAIwHQAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T18:59:45.252Z",
+              "WhenOpened": "2026-01-18T14:58:18.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SystemSuites_UI_Tests.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\SystemSuites_UI_Tests.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\SystemSuites_UI_Tests.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\SystemSuites_UI_Tests.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\SystemSuites_UI_Tests.cs",
-              "ViewState": "AgIAAG8CAAAAAAAAAAAIwJECAABaAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "NavigationBarPage.cs",
+              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\NavigationBarPage.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\NavigationBarPage.cs",
+              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\NavigationBarPage.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\NavigationBarPage.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAIwB8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T16:02:48.279Z",
+              "WhenOpened": "2026-01-18T15:04:36.062Z",
               "EditorCaption": ""
             }
           ]

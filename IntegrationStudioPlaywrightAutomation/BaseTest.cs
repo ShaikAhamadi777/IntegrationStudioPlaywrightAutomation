@@ -43,7 +43,7 @@ namespace IntegrationStudioPlaywrightAutomation
             }
                 await Page.WaitForURLAsync("https://profile.capdev-connect.aveva.com/solutions?state**");
                 //Clicking the Tenant name displayed from the list of Connect accounts and tenants
-                await Page.ClickAsync("text=OwnerTest");
+                await Page.ClickAsync("text=Gowri-test-systemsuite");
             
             //Waiting for the URL to sync with the integration studio url
             await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");

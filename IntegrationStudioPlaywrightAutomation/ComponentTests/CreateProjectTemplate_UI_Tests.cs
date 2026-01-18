@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IntegrationStudioPlaywrightAutomation.Locators;
+
 
 namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
-    internal class CreateProjectTemplate_UI_Tests
+    public class CreateProjectTemplate_UI_Tests : BaseTest
     {
+
     }
 }

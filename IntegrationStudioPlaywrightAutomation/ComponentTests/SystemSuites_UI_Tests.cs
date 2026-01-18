@@ -582,22 +582,25 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                     if (text.Contains("Global", StringComparison.OrdinalIgnoreCase))
                     {
                         globalRow = row;
+                        Assert.IsNotNull(globalRow, "Global system suite not found");
+                        var threedotrow = globalRow.Locator("button").Last;
+                        await Expect(threedotrow).ToBeVisibleAsync();
+                        await threedotrow.ClickAsync();
+                        await threedot.SystemSuite3DotMenuList.ScreenshotAsync(new()
+                        {
+                            Path = "ScreenShot_Of_3Dotmenu_Global.png"
+                        });
+                        await Expect(threedot.SystemSuite3DotMenuList).ToBeVisibleAsync();
+                        await Expect(threedot.SystemSuiteDownloadFile).ToBeVisibleAsync();
+                        await Expect(threedot.SystemSuiteDownloadFile).ToBeEnabledAsync();
+                        await threedot.SystemSuiteDownloadFile.ClickAsync();
                         break;
-
                     }
-                }
-                Assert.IsNotNull(globalRow, "Global system suite not found");
-                var threedotrow = globalRow.Locator("button").Last;
-                await Expect(threedotrow).ToBeVisibleAsync();
-                await threedotrow.ClickAsync();
-                await threedot.SystemSuite3DotMenuList.ScreenshotAsync(new()
-                {
-                    Path = "ScreenShot_Of_3Dotmenu_Global.png"
-                });
-                await Expect(threedot.SystemSuite3DotMenuList).ToBeVisibleAsync();
-                await Expect(threedot.SystemSuiteDownloadFile).ToBeVisibleAsync();
-                await Expect(threedot.SystemSuiteDownloadFile).ToBeEnabledAsync();
-                await threedot.SystemSuiteDownloadFile.ClickAsync();
+                    else
+                    {
+                        Console.WriteLine("The Global level system suite is not present.");
+                    }
+                }   
             }
             else
             {
@@ -655,7 +658,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                     }
                     else
                     {
-                        Console.WriteLine("The tenant level system suite is not present");
+                        Console.WriteLine("The Tenat level system suite is not present");
                     }
                 }
                 
@@ -664,6 +667,77 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             {
                 Console.WriteLine("The User is project user , hence system suites option is not visible");
                 await Expect(threedotTenant.SystemSuites).ToBeHiddenAsync();
+            }
+        }
+
+        [Test]
+        public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_ForCustomSystemSuite()
+        {
+            var threedotCustom = new SystemSuitesPage(Page);
+
+            await Expect(threedotCustom.LHSMenu).ToBeVisibleAsync();
+
+            if (await threedotCustom.SystemSuites.IsVisibleAsync())
+            {
+                await threedotCustom.SystemSuites.WaitForAsync();
+                await threedotCustom.SystemSuites.ClickAsync();
+
+                //Check and verify the system suites sub menu
+                await Expect(threedotCustom.SystemsuitesSubMenu).ToBeVisibleAsync();
+                await Expect(threedotCustom.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+                await Expect(threedotCustom.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+                await Expect(threedotCustom.ManageSystemsuites).ToBeVisibleAsync();
+                await threedotCustom.ManageSystemsuites.ClickAsync();
+
+                //Check if the Manage system suite page is visible
+                await threedotCustom.ManageSystemSuitesPage.WaitForAsync();
+                await Expect(threedotCustom.ManageSystemSuitesPage).ToBeVisibleAsync();
+                await Expect(threedotCustom.SystemSuitesTable).ToBeVisibleAsync();
+                await Expect(threedotCustom.SystemSuitesTableRows.First).ToBeVisibleAsync();
+                if (await threedotCustom.UploadFileButton.IsVisibleAsync())
+                {
+                    ILocator CustomRow = null;
+                    for (int i = 0; i < await threedotCustom.SystemSuitesTableRows.CountAsync(); i++)
+                    {
+                        var crow = threedotCustom.SystemSuitesTableRows.Nth(i);
+                        string text = await crow.InnerTextAsync();
+                        if (text.Contains("Custom", StringComparison.OrdinalIgnoreCase))
+                        {
+                            CustomRow = crow;
+                            Assert.IsNotNull(CustomRow, "Tenant system suite not found");
+                            var threedotrow = CustomRow.Locator("button").Last;
+                            await Expect(threedotrow).ToBeVisibleAsync();
+                            await threedotrow.ClickAsync();
+                            await threedotCustom.SystemSuite3DotMenuList.ScreenshotAsync(new()
+                            {
+                                Path = "Screenshot_Of_3dotmenu_Custom.png"
+                            });
+                            await Expect(threedotCustom.SystemSuite3DotMenuList).ToBeVisibleAsync();
+                            await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeVisibleAsync();
+                            await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("The Custom system suite is not present");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("The user is an  external admin.Hence the custom word will not be present");
+                    await threedotCustom.SystemSuite3DotMenu.Last.WaitForAsync();
+                    await Expect(threedotCustom.SystemSuite3DotMenu.Last).ToBeVisibleAsync();
+                    await threedotCustom.SystemSuite3DotMenu.Last.ClickAsync();
+                    await Expect(threedotCustom.SystemSuite3DotMenuList.Last).ToBeVisibleAsync();
+                    await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeVisibleAsync();
+                    await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+                }
+            }
+            else
+            {
+                Console.WriteLine("The User is project user , hence system suites option is not visible");
+                await Expect(threedotCustom.SystemSuites).ToBeHiddenAsync();
             }
         }
 

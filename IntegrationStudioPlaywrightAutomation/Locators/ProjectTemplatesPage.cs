@@ -26,11 +26,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator UserProfileIcon => Page.Locator("[aria-label='Open menu']").Filter(new LocatorFilterOptions { Has = Page.Locator(":visible") });
         public ILocator AVEVAHelpSignInButton => Page.Locator("button[aria-label='AVEVA Employee']");
 
-        //private ILocator UserProfilePopup => Page.Locator("");
-        //private ILocator NetworkSpeedTest => Page.Locator("");
-        //private ILocator LogOutButton => Page.Locator("");
-        //private ILocator LegalLink => Page.Locator("");
-
+        
         //LHS Menu Locators
         public ILocator ProjectTemplatePage => Page.Locator("#app-layout-container");
         public ILocator LHSMenu => Page.Locator(".uilab-layout-nav");
