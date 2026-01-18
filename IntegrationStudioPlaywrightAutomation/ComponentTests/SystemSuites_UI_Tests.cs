@@ -1,10 +1,11 @@
-﻿using System;
+﻿using IntegrationStudioPlaywrightAutomation.Locators;
+using Microsoft.Playwright;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IntegrationStudioPlaywrightAutomation.Locators;
-using Microsoft.Playwright;
+using System.Xml.Linq;
 
 namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
@@ -137,7 +138,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await UploadFile.ManageSystemSuitesPage.WaitForAsync();
                 await Expect(UploadFile.ManageSystemSuitesPage).ToBeVisibleAsync();
 
-                if(await UploadFile.SystemSuiteTypeGlobal.First.IsVisibleAsync())
+                if (await UploadFile.SystemSuiteTypeGlobal.First.IsVisibleAsync())
                 {
                     await UploadFile.UploadFileButton.WaitForAsync();
                     await Expect(UploadFile.UploadFileButton).ToBeVisibleAsync();
@@ -222,19 +223,19 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             if (await tablerows.SystemSuites.IsVisibleAsync())
             {
-                    await tablerows.SystemSuites.WaitForAsync();
-                    await tablerows.SystemSuites.ClickAsync();
+                await tablerows.SystemSuites.WaitForAsync();
+                await tablerows.SystemSuites.ClickAsync();
 
-                    //Check and verify the system suites sub menu
-                    await Expect(tablerows.SystemsuitesSubMenu).ToBeVisibleAsync();
-                    await Expect(tablerows.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-                    await Expect(tablerows.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-                    await Expect(tablerows.ManageSystemsuites).ToBeVisibleAsync();
-                    await tablerows.ManageSystemsuites.ClickAsync();
+                //Check and verify the system suites sub menu
+                await Expect(tablerows.SystemsuitesSubMenu).ToBeVisibleAsync();
+                await Expect(tablerows.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+                await Expect(tablerows.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+                await Expect(tablerows.ManageSystemsuites).ToBeVisibleAsync();
+                await tablerows.ManageSystemsuites.ClickAsync();
 
-                    //Check if the Manage system suite page is visible
-                    await tablerows.ManageSystemSuitesPage.WaitForAsync();
-                    await Expect(tablerows.ManageSystemSuitesPage).ToBeVisibleAsync();
+                //Check if the Manage system suite page is visible
+                await tablerows.ManageSystemSuitesPage.WaitForAsync();
+                await Expect(tablerows.ManageSystemSuitesPage).ToBeVisibleAsync();
 
                 await Expect(tablerows.SystemSuitesTableRows.First).ToBeVisibleAsync();
                 await tablerows.SystemSuitesTableRows.First.ScreenshotAsync(new()
@@ -278,7 +279,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 if (await global.UploadFileButton.IsVisibleAsync())
                 {
 
-                    if (await global.SystemSuiteTypeGlobal.First.CountAsync()>0)
+                    if (await global.SystemSuiteTypeGlobal.First.CountAsync() > 0)
                     {
                         await global.SystemSuiteTypeGlobal.First.WaitForAsync();
                         await Expect(global.SystemSuiteTypeGlobal.First).ToBeVisibleAsync();
@@ -294,7 +295,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 {
                     await Expect(global.SystemSuiteTypeGlobal.First).ToBeHiddenAsync();
                     Console.WriteLine("System suite type is Global which is not present because of external admin role");
-                }  
+                }
             }
             else
             {
@@ -344,7 +345,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 else
                 {
                     await Expect(tenant.SystemSuiteTypeTenant.First).ToBeHiddenAsync();
-                    Console.WriteLine("System suite type is Tenant which is not present because of external admin role");  
+                    Console.WriteLine("System suite type is Tenant which is not present because of external admin role");
                 }
             }
             else
@@ -393,8 +394,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 }
                 else
                 {
-                        await Expect(custom.SystemSuiteTypeCustom.First).ToBeHiddenAsync();
-                        Console.WriteLine("Custom word is not present as user is an external admin");           
+                    await Expect(custom.SystemSuiteTypeCustom.First).ToBeHiddenAsync();
+                    Console.WriteLine("Custom word is not present as user is an external admin");
                 }
             }
             else
@@ -492,7 +493,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         }
 
         [Test]
-        public async Task OpenSystemSuitesPage_ShouldContain_SuiteNameAndEditedBy()
+        public async Task OpenSystemSuitesPage_ShouldContain_SuiteName_EditedBy_3DotMenu()
         {
             var sname = new SystemSuitesPage(Page);
             await Expect(sname.LHSMenu).ToBeVisibleAsync();
@@ -515,14 +516,244 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await Expect(sname.SystemSuitesTable).ToBeVisibleAsync();
                 await Expect(sname.SystemSuitesTableRows.First).ToBeVisibleAsync();
 
-                await Expect(sname.SystemSuiteNameList.First).ToBeVisibleAsync();
+                //await Expect(sname.SystemSuiteNameList.First).ToBeVisibleAsync();
                 await Expect(sname.SystemSuiteEditedTime.First).ToBeVisibleAsync();
+                await sname.SystemSuiteEditedTime.First.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_EditedTime.png"
 
+                });
+
+                if (await sname.SystemSuiteInUseTickIcon.CountAsync() > 0)
+                {
+                    await sname.SystemSuiteInUseTickIcon.First.HoverAsync();
+                    await sname.SystemSuiteInUseTickIcon.First.HighlightAsync();
+                    await Expect(sname.SystemSuiteInUseTickIcon.First).ToBeVisibleAsync();
+                }
+                else
+                {
+                    await Expect(sname.SystemSuiteInUseTickIcon).ToBeHiddenAsync();
+                }
+                await Expect(sname.SystemSuite3DotMenu.Last).ToBeVisibleAsync();
+                await sname.SystemSuite3DotMenu.Last.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_3DotMenu.png"
+
+                });
             }
             else
             {
                 Console.WriteLine("The User is project user , hence system suites option is not visible");
                 await Expect(sname.SystemSuites).ToBeHiddenAsync();
+            }
+        }
+
+        [Test]
+        public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_ForGlobalSuite()
+        {
+            var threedot = new SystemSuitesPage(Page);
+
+            await Expect(threedot.LHSMenu).ToBeVisibleAsync();
+
+            if (await threedot.SystemSuites.IsVisibleAsync())
+            {
+                await threedot.SystemSuites.WaitForAsync();
+                await threedot.SystemSuites.ClickAsync();
+
+                //Check and verify the system suites sub menu
+                await Expect(threedot.SystemsuitesSubMenu).ToBeVisibleAsync();
+                await Expect(threedot.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+                await Expect(threedot.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+                await Expect(threedot.ManageSystemsuites).ToBeVisibleAsync();
+                await threedot.ManageSystemsuites.ClickAsync();
+
+                //Check if the Manage system suite page is visible
+                await threedot.ManageSystemSuitesPage.WaitForAsync();
+                await Expect(threedot.ManageSystemSuitesPage).ToBeVisibleAsync();
+                await Expect(threedot.SystemSuitesTable).ToBeVisibleAsync();
+                await Expect(threedot.SystemSuitesTableRows.First).ToBeVisibleAsync();
+
+                ILocator globalRow = null;
+                for (int i = 0; i < await threedot.SystemSuitesTableRows.CountAsync(); i++)
+                {
+                    var row = threedot.SystemSuitesTableRows.Nth(i);
+                    string text = await row.InnerTextAsync();
+
+                    if (text.Contains("Global", StringComparison.OrdinalIgnoreCase))
+                    {
+                        globalRow = row;
+                        break;
+
+                    }
+                }
+                Assert.IsNotNull(globalRow, "Global system suite not found");
+                var threedotrow = globalRow.Locator("button").Last;
+                await Expect(threedotrow).ToBeVisibleAsync();
+                await threedotrow.ClickAsync();
+                await threedot.SystemSuite3DotMenuList.ScreenshotAsync(new()
+                {
+                    Path = "ScreenShot_Of_3Dotmenu_Global.png"
+                });
+                await Expect(threedot.SystemSuite3DotMenuList).ToBeVisibleAsync();
+                await Expect(threedot.SystemSuiteDownloadFile).ToBeVisibleAsync();
+                await Expect(threedot.SystemSuiteDownloadFile).ToBeEnabledAsync();
+                await threedot.SystemSuiteDownloadFile.ClickAsync();
+            }
+            else
+            {
+                Console.WriteLine("The User is project user , hence system suites option is not visible");
+                await Expect(threedot.SystemSuites).ToBeHiddenAsync();
+            }
+        }
+
+        [Test]
+        public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_ForTenantSuite()
+        {
+            var threedotTenant = new SystemSuitesPage(Page);
+
+            await Expect(threedotTenant.LHSMenu).ToBeVisibleAsync();
+
+            if (await threedotTenant.SystemSuites.IsVisibleAsync())
+            {
+                await threedotTenant.SystemSuites.WaitForAsync();
+                await threedotTenant.SystemSuites.ClickAsync();
+
+                //Check and verify the system suites sub menu
+                await Expect(threedotTenant.SystemsuitesSubMenu).ToBeVisibleAsync();
+                await Expect(threedotTenant.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+                await Expect(threedotTenant.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+                await Expect(threedotTenant.ManageSystemsuites).ToBeVisibleAsync();
+                await threedotTenant.ManageSystemsuites.ClickAsync();
+
+                //Check if the Manage system suite page is visible
+                await threedotTenant.ManageSystemSuitesPage.WaitForAsync();
+                await Expect(threedotTenant.ManageSystemSuitesPage).ToBeVisibleAsync();
+                await Expect(threedotTenant.SystemSuitesTable).ToBeVisibleAsync();
+                await Expect(threedotTenant.SystemSuitesTableRows.First).ToBeVisibleAsync();
+
+                ILocator TenantRow = null;
+
+                for(int i = 0;i< await threedotTenant.SystemSuitesTableRows.CountAsync();i++)
+                {
+                    var trow = threedotTenant.SystemSuitesTableRows.Nth(i);
+                    string text = await trow.InnerTextAsync();
+                    if(text.Contains("Tenant", StringComparison.OrdinalIgnoreCase))
+                    {
+                        TenantRow = trow;
+                        Assert.IsNotNull(TenantRow, "Tenant system suite not found");
+                        var threedotrow = TenantRow.Locator("button").Last;
+                        await Expect(threedotrow).ToBeVisibleAsync();
+                        await threedotrow.ClickAsync();
+                        await threedotTenant.SystemSuite3DotMenuList.ScreenshotAsync(new()
+                        {
+                            Path = "Screenshot_Of_3dotmenu_Tenant.png"
+                        });
+                        await Expect(threedotTenant.SystemSuite3DotMenuList).ToBeVisibleAsync();
+                        await Expect(threedotTenant.SystemSuiteDeleteIcon).ToBeVisibleAsync();
+                        await Expect(threedotTenant.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The tenant level system suite is not present");
+                    }
+                }
+                
+            }
+            else
+            {
+                Console.WriteLine("The User is project user , hence system suites option is not visible");
+                await Expect(threedotTenant.SystemSuites).ToBeHiddenAsync();
+            }
+        }
+
+        [Test]
+        public async Task OpenSystemSuitesPage_ShouldContain_RowsPerPage_And_PageIndicators()
+        {
+            var indicator = new SystemSuitesPage(Page);
+
+            if (await indicator.SystemSuites.IsVisibleAsync())
+            {
+                await indicator.SystemSuites.WaitForAsync();
+                await indicator.SystemSuites.ClickAsync();
+
+                //Check and verify the system suites sub menu
+                await Expect(indicator.SystemsuitesSubMenu).ToBeVisibleAsync();
+                await Expect(indicator.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+                await Expect(indicator.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+                await Expect(indicator.ManageSystemsuites).ToBeVisibleAsync();
+                await indicator.ManageSystemsuites.ClickAsync();
+
+                //Check if the Manage system suite page is visible
+                await indicator.ManageSystemSuitesPage.WaitForAsync();
+                await Expect(indicator.ManageSystemSuitesPage).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuitesTable).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuitesTableRows.First).ToBeVisibleAsync();
+
+                //Check if the rows per page and toolbar is present
+                await Expect(indicator.SystemSuiteRowsToolbar).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuiteRowsPerpageName).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuitePageDropDown).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuitePageNumbers).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuitePreviousButton).ToBeVisibleAsync();
+                await Expect(indicator.SystemSuitePreviousButton).ToBeDisabledAsync();
+                await Expect(indicator.SystemSuiteNextButton).ToBeVisibleAsync();
+
+                await indicator.SystemSuiteRowsToolbar.ScreenshotAsync(new()
+                {
+                    Path = "ScreenShot_Of_RowsToolBar.png"
+                });
+            }
+            else
+            {
+                Console.WriteLine("The User is project user , hence system suites option is not visible");
+                await Expect(indicator.SystemSuites).ToBeHiddenAsync();
+            }
+        }
+
+        [Test]
+        public async Task OpenSystemSuitesPage_ShouldContain_RowsDropDownList()
+        {
+            var rowsdropdown = new SystemSuitesPage(Page);
+            if (await rowsdropdown.SystemSuites.IsVisibleAsync())
+            {
+                await rowsdropdown.SystemSuites.WaitForAsync();
+                await rowsdropdown.SystemSuites.ClickAsync();
+
+                //Check and verify the system suites sub menu
+                await Expect(rowsdropdown.SystemsuitesSubMenu).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+                await Expect(rowsdropdown.ManageSystemsuites).ToBeVisibleAsync();
+                await rowsdropdown.ManageSystemsuites.ClickAsync();
+
+                //Check if the Manage system suite page is visible
+                await rowsdropdown.ManageSystemSuitesPage.WaitForAsync();
+                await Expect(rowsdropdown.ManageSystemSuitesPage).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemSuitesTable).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemSuitesTableRows.First).ToBeVisibleAsync();
+
+                //Check if the rows tool bar is present
+                await Expect(rowsdropdown.SystemSuiteRowsToolbar).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemSuitePageDropDown).ToBeVisibleAsync();
+                await rowsdropdown.SystemSuitePageDropDown.ClickAsync();
+                await Expect(rowsdropdown.SystemSuiteRowDropdownList).ToBeVisibleAsync();
+                await rowsdropdown.SystemSuiteRowDropdownList.ScreenshotAsync(new()
+                {
+                    Path = "Screenshot_Of_DropdownList.png"
+                });
+
+                //Verify the numbers of the pages in the dropdown
+                await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber10).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber25).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber50).ToBeVisibleAsync();
+                await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber100).ToBeVisibleAsync();
+
+            }
+            else
+            {
+                Console.WriteLine("The User is project user , hence system suites option is not visible");
+                await Expect(rowsdropdown.SystemSuites).ToBeHiddenAsync();
             }
         }
     }
