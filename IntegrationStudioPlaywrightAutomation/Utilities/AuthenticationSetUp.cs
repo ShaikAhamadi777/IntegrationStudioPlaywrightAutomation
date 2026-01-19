@@ -1,14 +1,15 @@
 using Microsoft.Playwright;
 using NUnit.Framework;
+using IntegrationStudioPlaywrightAutomation.Utilities;
 
 
 
-namespace IntegrationStudioPlaywrightAutomation
+namespace IntegrationStudioPlaywrightAutomation.Utilities
 {
-    public class Authentication 
+    public class AuthenticationSetUp
     {
-        [Test]
-        public async Task AuthenticationSetUp()
+        
+        public static async Task GenerateAuthState(string role, string Authentication_Email, string Authentication_Password, string outputFile)
         {
             //Creating a playwright controller
             var playwright = await Playwright.CreateAsync();
@@ -34,16 +35,33 @@ namespace IntegrationStudioPlaywrightAutomation
             await page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
 
             //Creating an environment variable for the email 
-            var email = Environment.GetEnvironmentVariable("Authentication_Email");
+            string email = Environment.GetEnvironmentVariable(Authentication_Email);
+            string password = Environment.GetEnvironmentVariable(Authentication_Password);
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                throw new Exception(
+                    $"Missing environment variables for role: {role}");
+            }
+
+
+            /*string tenantName = Environment.GetEnvironmentVariable(Tenant);
+
+            if (string.IsNullOrEmpty(tenantName))
+            {
+                throw new Exception($"Missing tenant env var for {role}");
+            }
+
+            //await page.GetByText(tenantName, new() { Exact = true }).ClickAsync();
+
+
+            await page.Locator("text=" + tenantName).First.ClickAsync();*/
 
             //Entering the email
             await page.FillAsync("#email", email);
 
             //Clicking on the sign in button 
             await page.ClickAsync("#submit");
-
-            //Creating an environment variable for the email password
-            var password = Environment.GetEnvironmentVariable("Authentication_Password");
 
             //Entering the password in the textbox
             await page.FillAsync("#i0118", password);
@@ -57,18 +75,17 @@ namespace IntegrationStudioPlaywrightAutomation
             //Waiting for the URL to be displayed - the CONNECT Page 
             await page.WaitForURLAsync("**/solutions**");
 
+
             //Creating a auth.json file to store the authentication state. Auth.json gets created in the bin directory
             await context.StorageStateAsync(new()
             {
-                Path = "auth.json"
+                Path = outputFile
             });
 
-            //Printing the directory 
-            Console.WriteLine("Saved auth.json at: " + Directory.GetCurrentDirectory());
+            Console.WriteLine($"Auth state saved for {role}: {outputFile}");
 
             //Closing the browser 
             await browser.CloseAsync();
         }
     }
-
 }

@@ -31,7 +31,12 @@ namespace IntegrationStudioPlaywrightAutomation
             if (categories == null || categories.Count == 0)
                 throw new Exception("No Category found. Role is required.");
 
-            string role = categories[0].ToString();
+            //string role = categories[0].ToString();
+            string role =  categories.Contains("SystemAdmin") ? "SystemAdmin" :
+                           categories.Contains("ExternalAdmin") ? "ExternalAdmin" :
+                           categories.Contains("ProjectUser") ? "ProjectUser" :
+                           throw new Exception("No valid role category found");
+
 
             options.StorageStatePath = role switch
             {
@@ -50,6 +55,10 @@ namespace IntegrationStudioPlaywrightAutomation
 
             //Navigating to the Integration studio URL
             await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
+            //await Page.ClickAsync("text=M-AVEVACHPQA");
+
+            //await Expect(Page).ToHaveURLAsync("**/projects**");
+
 
             if (Page.Url.Contains("https://signin.dev-connect.aveva.com/login?state"))
             {
