@@ -7,25 +7,41 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace IntegrationStudioPlaywrightAutomation
 {
     public class BaseTest : PageTest
     {
 
-        
+
         public override BrowserNewContextOptions ContextOptions()
         {
-            return new BrowserNewContextOptions
+            var options = new BrowserNewContextOptions
             {
                 ViewportSize = new ViewportSize
                 {
                     Width = 1510,
                     Height = 820
-                },
-                StorageStatePath = "auth.json"
-                
+                }
             };
+
+            var categories = TestContext.CurrentContext.Test.Properties["Category"] as IList;
+
+            if (categories == null || categories.Count == 0)
+                throw new Exception("No Category found. Role is required.");
+
+            string role = categories[0].ToString();
+
+            options.StorageStatePath = role switch
+            {
+                "SystemAdmin" => "auth-systemadmin.json",
+                "ProjectUser" => "auth-projectuser.json",
+                "ExternalAdmin" => "auth-externaladmin.json",
+                _ => throw new Exception($"Unknown role: {role}")
+            };
+
+            return options;
         }
 
         [SetUp] //Runs before every test
@@ -43,7 +59,7 @@ namespace IntegrationStudioPlaywrightAutomation
             }
                 await Page.WaitForURLAsync("https://profile.capdev-connect.aveva.com/solutions?state**");
                 //Clicking the Tenant name displayed from the list of Connect accounts and tenants
-                await Page.ClickAsync("text=Gowri-test-systemsuite");
+                await Page.ClickAsync("text=M-AVEVACHPQA");
             
             //Waiting for the URL to sync with the integration studio url
             await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");

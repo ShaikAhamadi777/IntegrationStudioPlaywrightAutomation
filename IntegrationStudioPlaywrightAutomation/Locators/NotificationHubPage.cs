@@ -24,6 +24,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         }
 
         //NotificationHub Elements locators
+        public ILocator AppBar => Page.Locator("//div[@class='MuiBox-root css-i9gxme']");
         public ILocator NotificationBellIcon => Page.Locator("uilab-icon-button[aria-label='Notifications']");
        
         //Notification Panel Elements locators

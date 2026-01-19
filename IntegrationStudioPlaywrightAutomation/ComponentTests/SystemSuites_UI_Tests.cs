@@ -12,111 +12,112 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
     public class SystemSuites_UI_Tests : BaseTest
     {
         [Test]
-        public async Task OpenSystemSuitesPage()
+        [Category("SystemAdmin")]
+        [Category("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldBeVisible_ForAdmins()
         {
             var systemsuites = new SystemSuitesPage(Page);
 
             await Expect(systemsuites.LHSMenu).ToBeVisibleAsync();
+            await Expect(systemsuites.SystemSuites).ToBeVisibleAsync();
 
-            if (await systemsuites.SystemSuites.IsVisibleAsync())
-            {
-                await Expect(systemsuites.SystemSuites).ToBeVisibleAsync();
+            //Click on the System suites button
+            await systemsuites.SystemSuites.WaitForAsync();
+            await systemsuites.SystemSuites.ClickAsync();
 
-                //Click on the System suites button
-                await systemsuites.SystemSuites.WaitForAsync();
-                await systemsuites.SystemSuites.ClickAsync();
+            //Check and verify the system suites sub menu
+            await Expect(systemsuites.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(systemsuites.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(systemsuites.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(systemsuites.ManageSystemsuites).ToBeVisibleAsync();
+            await systemsuites.ManageSystemsuites.ClickAsync();
 
-                //Check and verify the system suites sub menu
-                await Expect(systemsuites.SystemsuitesSubMenu).ToBeVisibleAsync();
-                await Expect(systemsuites.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-                await Expect(systemsuites.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-                await Expect(systemsuites.ManageSystemsuites).ToBeVisibleAsync();
-                await systemsuites.ManageSystemsuites.ClickAsync();
-
-                await systemsuites.ManageSystemSuitesPage.WaitForAsync();
-                await Expect(systemsuites.ManageSystemSuitesPage).ToBeVisibleAsync();
-            }
-            else
-            {
-                await Expect(systemsuites.SystemSuites).ToBeHiddenAsync();
-            }
+            await systemsuites.ManageSystemSuitesPage.WaitForAsync();
+            await Expect(systemsuites.ManageSystemSuitesPage).ToBeVisibleAsync();
         }
 
         [Test]
-        public async Task OpenSystemSuitesPage_ShouldContain_TitleSubTitle()
+        [Category("ProjectUser")]
+        public async Task OpenSystemSuitesPage_ShouldNot_BeVisible_ForProjectUser()
+        {
+            var psystemsuites = new SystemSuitesPage(Page);
+
+            await psystemsuites.LHSMenu.WaitForAsync();
+            await Expect(psystemsuites.LHSMenu).ToBeVisibleAsync();
+            await Expect(psystemsuites.SystemSuites).ToBeHiddenAsync();
+            Console.WriteLine("ProjectUser: System Suites option is not visible as expected");
+
+        }
+
+        [Test]
+        [Category("SystemAdmin")]
+        [Category("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldContain_TitleSubTitle_ForAdmins()
         {
             var title = new SystemSuitesPage(Page);
             await Expect(title.LHSMenu).ToBeVisibleAsync();
 
-            if (await title.SystemSuites.IsVisibleAsync())
-            {
-                //Click on the System suites button
-                await title.SystemSuites.WaitForAsync();
-                await title.SystemSuites.ClickAsync();
+            //Click on the System suites button
+            await title.SystemSuites.WaitForAsync();
+            await title.SystemSuites.ClickAsync();
 
-                //Check and verify the system suites sub menu
-                await Expect(title.SystemsuitesSubMenu).ToBeVisibleAsync();
-                await Expect(title.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-                await Expect(title.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-                await Expect(title.ManageSystemsuites).ToBeVisibleAsync();
-                await title.ManageSystemsuites.ClickAsync();
+            //Check and verify the system suites sub menu
+            await Expect(title.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(title.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(title.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(title.ManageSystemsuites).ToBeVisibleAsync();
+            await title.ManageSystemsuites.ClickAsync();
 
-                //Check if the Manage system suite page is visible
-                await title.ManageSystemSuitesPage.WaitForAsync();
-                await Expect(title.ManageSystemSuitesPage).ToBeVisibleAsync();
+            //Check if the Manage system suite page is visible
+            await title.ManageSystemSuitesPage.WaitForAsync();
+            await Expect(title.ManageSystemSuitesPage).ToBeVisibleAsync();
 
-                //Check for the System suite title 
-                await Expect(title.SystemSuiteTitle).ToBeVisibleAsync();
-                title.SystemSuiteTitle.Equals("System suites");
+            //Check for the System suite title 
+            await Expect(title.SystemSuiteTitle).ToBeVisibleAsync();
+            title.SystemSuiteTitle.Equals("System suites");
 
-                //Check for the system suites sub title
-                await Expect(title.SystemSuitesSubTitle).ToBeVisibleAsync();
-                title.SystemSuitesSubTitle.Equals("Create and manage system suites used by your project templates.");
-            }
-            else
-            {
-                await Expect(title.SystemSuites).ToBeHiddenAsync();
-            }
+            //Check for the system suites sub title
+            await Expect(title.SystemSuitesSubTitle).ToBeVisibleAsync();
+            title.SystemSuitesSubTitle.Equals("Create and manage system suites used by your project templates.");
+                       
         }
 
         [Test]
-        public async Task OpenSystemSuitesPage_ShouldContain_SystemSuitesInUse()
+        [Category("SystemAdmin")]
+        [Category("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldContain_SystemSuitesInUse_ForAdmins()
         {
             var InUse = new SystemSuitesPage(Page);
 
             await Expect(InUse.LHSMenu).ToBeVisibleAsync();
 
-            if (await InUse.SystemSuites.IsVisibleAsync())
+            //Click on the System suites button
+            await InUse.SystemSuites.WaitForAsync();
+            await InUse.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(InUse.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(InUse.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(InUse.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(InUse.ManageSystemsuites).ToBeVisibleAsync();
+            await InUse.ManageSystemsuites.ClickAsync();
+
+            //Check if the Manage system suite page is visible
+            await InUse.ManageSystemSuitesPage.WaitForAsync();
+            await Expect(InUse.ManageSystemSuitesPage).ToBeVisibleAsync();
+
+            //Check for the System suites words in use
+            await Expect(InUse.SystemSuitesInUse).ToBeVisibleAsync();
+            await InUse.SystemSuitesInUse.ScreenshotAsync(new()
             {
-                //Click on the System suites button
-                await InUse.SystemSuites.WaitForAsync();
-                await InUse.SystemSuites.ClickAsync();
-
-                //Check and verify the system suites sub menu
-                await Expect(InUse.SystemsuitesSubMenu).ToBeVisibleAsync();
-                await Expect(InUse.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-                await Expect(InUse.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-                await Expect(InUse.ManageSystemsuites).ToBeVisibleAsync();
-                await InUse.ManageSystemsuites.ClickAsync();
-
-                //Check if the Manage system suite page is visible
-                await InUse.ManageSystemSuitesPage.WaitForAsync();
-                await Expect(InUse.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-                //Check for the System suites words in use
-                await Expect(InUse.SystemSuitesInUse).ToBeVisibleAsync();
-                await InUse.SystemSuitesInUse.ScreenshotAsync(new()
-                {
-                    Path = "ScreenShot_Of_SystemSuitesInUse_Wordings.png"
-                });
-            }
-            else
-            {
-                await Expect(InUse.SystemSuites).ToBeHiddenAsync();
-            }
+                Path = "ScreenShot_Of_SystemSuitesInUse_Wordings.png"
+            });               
         }
 
         [Test]
+        [Category("Common")]
+        [Category("SystemAdmin")]
+        [Category("ExternalAdmin")]
         public async Task OpenSystemSuitesPage_ShouldContain_UploadFileButton()
         {
             var UploadFile = new SystemSuitesPage(Page);
@@ -138,7 +139,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await UploadFile.ManageSystemSuitesPage.WaitForAsync();
                 await Expect(UploadFile.ManageSystemSuitesPage).ToBeVisibleAsync();
 
-                if (await UploadFile.SystemSuiteTypeGlobal.First.IsVisibleAsync())
+                //if (await UploadFile.SystemSuiteTypeGlobal.First.IsVisibleAsync())
+                if (RoleHelper.IsSystemAdmin())
                 {
                     await UploadFile.UploadFileButton.WaitForAsync();
                     await Expect(UploadFile.UploadFileButton).ToBeVisibleAsync();
@@ -150,6 +152,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 else
                 {
                     await Expect(UploadFile.UploadFileButton).ToBeHiddenAsync();
+                    Console.WriteLine("The User is logged in as an external admin, hence the user should not see the upload file button");
                 }
             }
             else
