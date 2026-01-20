@@ -17,7 +17,7 @@ namespace IntegrationStudioPlaywrightAutomation
 
         public override BrowserNewContextOptions ContextOptions()
         {
-            var options = new BrowserNewContextOptions
+            /*var options = new BrowserNewContextOptions
             {
                 ViewportSize = new ViewportSize
                 {
@@ -25,7 +25,7 @@ namespace IntegrationStudioPlaywrightAutomation
                     Height = 820
                 }
             };
-
+            string role = RoleContext.Get();
             var categories = TestContext.CurrentContext.Test.Properties["Category"] as IList;
 
             if (categories == null || categories.Count == 0)
@@ -44,35 +44,56 @@ namespace IntegrationStudioPlaywrightAutomation
                 "ProjectUser" => "auth-projectuser.json",
                 "ExternalAdmin" => "auth-externaladmin.json",
                 _ => throw new Exception($"Unknown role: {role}")
-            };
+            };*/
 
-            return options;
+            //string role = RoleContext.Get();
+            var args = TestContext.CurrentContext.Test.Arguments;
+
+            if (args == null || args.Length == 0)
+            {
+                throw new Exception(
+                    "Role not provided. Tests must use [TestCase(\"Role\")]"
+                );
+            }
+
+            string role = args[0].ToString();
+
+            TestContext.WriteLine($"[ContextOptions] Running as role: {role}");
+
+
+            return new BrowserNewContextOptions
+            {
+                StorageStatePath = role switch
+                {
+                    "SystemAdmin" => "auth-systemadmin.json",
+                    "ExternalAdmin" => "auth-externaladmin.json",
+                    "ProjectUser" => "auth-projectuser.json",
+                    _ => throw new Exception($"Unknown role: {role}")
+                },
+                ViewportSize = new ViewportSize
+                {
+                    Width = 1510,
+                    Height = 820
+                }
+            };  
         }
 
         [SetUp] //Runs before every test
         public async Task SetUp()
         {
-
             //Navigating to the Integration studio URL
             await Page.GotoAsync("https://internal.integrationstudio.capdev-connect.aveva.com/");
-            //await Page.ClickAsync("text=M-AVEVACHPQA");
 
-            //await Expect(Page).ToHaveURLAsync("**/projects**");
-
-
-            if (Page.Url.Contains("https://signin.dev-connect.aveva.com/login?state"))
+            if (Page.Url.Contains("login") || Page.Url.Contains("signin") || Page.Url.Contains("solutions"))
             {
-                var emailSignInButton = Page.Locator("#submit");
-                await Expect(emailSignInButton).ToBeVisibleAsync();
-                await emailSignInButton.ClickAsync();
+                throw new Exception(
+                    "Authentication or tenant selection not completed. " +
+                    "Regenerate auth JSON."
+                );
             }
-                await Page.WaitForURLAsync("https://profile.capdev-connect.aveva.com/solutions?state**");
-                //Clicking the Tenant name displayed from the list of Connect accounts and tenants
-                await Page.ClickAsync("text=M-AVEVACHPQA");
-            
+
             //Waiting for the URL to sync with the integration studio url
             await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");
         }
-
     }
 }

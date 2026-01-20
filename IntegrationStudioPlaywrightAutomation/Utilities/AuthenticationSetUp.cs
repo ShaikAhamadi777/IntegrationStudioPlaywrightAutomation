@@ -9,7 +9,7 @@ namespace IntegrationStudioPlaywrightAutomation.Utilities
     public class AuthenticationSetUp
     {
         
-        public static async Task GenerateAuthState(string role, string Authentication_Email, string Authentication_Password, string outputFile)
+        public static async Task GenerateAuthState(string role, string Authentication_Email, string Authentication_Password, string tenantEnvVar, string outputFile)
         {
             //Creating a playwright controller
             var playwright = await Playwright.CreateAsync();
@@ -43,37 +43,67 @@ namespace IntegrationStudioPlaywrightAutomation.Utilities
                 throw new Exception(
                     $"Missing environment variables for role: {role}");
             }
-
-
-            /*string tenantName = Environment.GetEnvironmentVariable(Tenant);
-
-            if (string.IsNullOrEmpty(tenantName))
-            {
-                throw new Exception($"Missing tenant env var for {role}");
-            }
-
-            //await page.GetByText(tenantName, new() { Exact = true }).ClickAsync();
-
-
-            await page.Locator("text=" + tenantName).First.ClickAsync();*/
-
+    
             //Entering the email
             await page.FillAsync("#email", email);
+            //await page.ClickAsync("#email");
+            await page.WaitForSelectorAsync("#submit");
 
-            //Clicking on the sign in button 
-            await page.ClickAsync("#submit");
+            await page.WaitForLoadStateAsync(LoadState.DOMContentLoaded);
 
-            //Entering the password in the textbox
-            await page.FillAsync("#i0118", password);
+            bool isAvevaUser = email.EndsWith("@aveva.com", StringComparison.OrdinalIgnoreCase);
 
-            //Clicking the submit button
-            await page.ClickAsync("#idSIButton9");
+            if (isAvevaUser)
+            { 
+                // ===== AVEVA / Azure AD flow =====
+                await page.Locator("#submit").IsVisibleAsync();
+                await page.ClickAsync("#submit"); // Next
+                await page.WaitForURLAsync("https://login.microsoftonline.com/aveva.onmicrosoft.com/**");
 
-            //Clicking the yes button in the popup after authentication
-            await page.ClickAsync("#idSIButton9");
+                //await page.Locator("#bannerLogo").IsVisibleAsync();
+                await page.WaitForSelectorAsync("//div[text()='Enter password']");
+                await page.Locator("//div[text()='Enter password']").IsVisibleAsync();
+                await page.Locator("#i0118").IsVisibleAsync();
+                await page.Locator("#i0118").IsEditableAsync();
+                await page.FillAsync("#i0118", password);
 
-            //Waiting for the URL to be displayed - the CONNECT Page 
-            await page.WaitForURLAsync("**/solutions**");
+                await page.WaitForSelectorAsync("#idSIButton9");
+                await page.ClickAsync("#idSIButton9");
+
+                //var mfaPrompt = page.Locator("text=Approve sign in request");
+                //await mfaPrompt.IsVisibleAsync();
+
+                await page.Locator("#idDiv_SAOTCAS_Title").IsVisibleAsync();
+
+                await page.Locator("#idSIButton9").IsVisibleAsync();
+
+                await page.Locator("//div[@class='row text-title']").IsVisibleAsync();
+                await page.ClickAsync("#idSIButton9");
+                await page.WaitForURLAsync("**/solutions**");
+            }
+            else
+            {
+                // ===== External user flow (Gmail / .tech) =====
+                await page.ClickAsync("input[type='password']");
+                await page.FillAsync("input[type='password']", password);
+                await page.Locator("button[type='submit']").IsVisibleAsync();
+                await page.Locator("button[type='submit']").IsEnabledAsync();
+                await page.ClickAsync("button[type='submit']");
+                await page.WaitForURLAsync("**/solutions**");
+            }
+            // Read tenant name from env var
+            string tenantName = Environment.GetEnvironmentVariable(tenantEnvVar);
+
+            if (string.IsNullOrWhiteSpace(tenantName))
+            {
+                throw new Exception($"Tenant env var missing for role {role}");
+            }
+
+            // Select tenant
+            await page.GetByText(tenantName, new() { Exact = true }).ClickAsync();
+
+            // Confirm we are inside tenant
+            await page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");
 
 
             //Creating a auth.json file to store the authentication state. Auth.json gets created in the bin directory

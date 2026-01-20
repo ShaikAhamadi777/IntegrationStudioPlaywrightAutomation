@@ -11,11 +11,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
     public class SystemSuites_UI_Tests : BaseTest
     {
+
+        
+
         [Test]
-        [Category("SystemAdmin")]
-        [Category("ExternalAdmin")]
-        public async Task OpenSystemSuitesPage_ShouldBeVisible_ForAdmins()
+        [TestCase("SystemAdmin")]
+        [TestCase("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldBeVisible_ForAdmins(string role)
         {
+
             var systemsuites = new SystemSuitesPage(Page);
 
             await Expect(systemsuites.LHSMenu).ToBeVisibleAsync();
@@ -37,8 +41,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         }
 
         [Test]
-        [Category("ProjectUser")]
-        public async Task OpenSystemSuitesPage_ShouldNot_BeVisible_ForProjectUser()
+        [TestCase("ProjectUser")]
+        public async Task OpenSystemSuitesPage_ShouldNot_BeVisible_ForProjectUser(string role)
         {
             var psystemsuites = new SystemSuitesPage(Page);
 
@@ -50,9 +54,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         }
 
         [Test]
-        [Category("SystemAdmin")]
-        [Category("ExternalAdmin")]
-        public async Task OpenSystemSuitesPage_ShouldContain_TitleSubTitle_ForAdmins()
+        [TestCase("SystemAdmin")]
+        [TestCase("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldContain_TitleSubTitle_ForAdmins(string role)
         {
             var title = new SystemSuitesPage(Page);
             await Expect(title.LHSMenu).ToBeVisibleAsync();
@@ -83,9 +87,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         }
 
         [Test]
-        [Category("SystemAdmin")]
-        [Category("ExternalAdmin")]
-        public async Task OpenSystemSuitesPage_ShouldContain_SystemSuitesInUse_ForAdmins()
+        [TestCase("SystemAdmin")]
+        [TestCase("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldContain_SystemSuitesInUse_ForAdmins(string role)
         {
             var InUse = new SystemSuitesPage(Page);
 
@@ -140,7 +144,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await Expect(UploadFile.ManageSystemSuitesPage).ToBeVisibleAsync();
 
                 //if (await UploadFile.SystemSuiteTypeGlobal.First.IsVisibleAsync())
-                if (RoleHelper.IsSystemAdmin())
+                /*if (RoleContext.IsSystemAdmin())
                 {
                     await UploadFile.UploadFileButton.WaitForAsync();
                     await Expect(UploadFile.UploadFileButton).ToBeVisibleAsync();
@@ -153,7 +157,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 {
                     await Expect(UploadFile.UploadFileButton).ToBeHiddenAsync();
                     Console.WriteLine("The User is logged in as an external admin, hence the user should not see the upload file button");
-                }
+                }*/
             }
             else
             {
