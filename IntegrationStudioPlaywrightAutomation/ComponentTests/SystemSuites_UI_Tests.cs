@@ -12,11 +12,10 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
     public class SystemSuites_UI_Tests : BaseTest
     {
 
-        
-
         [Test]
         [TestCase("SystemAdmin")]
         [TestCase("ExternalAdmin")]
+        [Category("Admin")]
         public async Task OpenSystemSuitesPage_ShouldBeVisible_ForAdmins(string role)
         {
 
@@ -42,6 +41,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
         [Test]
         [TestCase("ProjectUser")]
+        [Category("ProjectUser")]
         public async Task OpenSystemSuitesPage_ShouldNot_BeVisible_ForProjectUser(string role)
         {
             var psystemsuites = new SystemSuitesPage(Page);
@@ -56,6 +56,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Test]
         [TestCase("SystemAdmin")]
         [TestCase("ExternalAdmin")]
+        [Category("Admin")]
         public async Task OpenSystemSuitesPage_ShouldContain_TitleSubTitle_ForAdmins(string role)
         {
             var title = new SystemSuitesPage(Page);
@@ -89,6 +90,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Test]
         [TestCase("SystemAdmin")]
         [TestCase("ExternalAdmin")]
+        [Category("Admin")]
         public async Task OpenSystemSuitesPage_ShouldContain_SystemSuitesInUse_ForAdmins(string role)
         {
             var InUse = new SystemSuitesPage(Page);
@@ -119,16 +121,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         }
 
         [Test]
-        [Category("Common")]
+        [TestCase("SystemAdmin")]
         [Category("SystemAdmin")]
-        [Category("ExternalAdmin")]
-        public async Task OpenSystemSuitesPage_ShouldContain_UploadFileButton()
+        public async Task OpenSystemSuitesPage_ShouldContain_UploadFileButton_ForSystemAdmin(string role)
         {
             var UploadFile = new SystemSuitesPage(Page);
 
             await Expect(UploadFile.LHSMenu).ToBeVisibleAsync();
-            if (await UploadFile.SystemSuites.IsVisibleAsync())
-            {
                 await UploadFile.SystemSuites.WaitForAsync();
                 await UploadFile.SystemSuites.ClickAsync();
 
@@ -143,93 +142,113 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await UploadFile.ManageSystemSuitesPage.WaitForAsync();
                 await Expect(UploadFile.ManageSystemSuitesPage).ToBeVisibleAsync();
 
-                //if (await UploadFile.SystemSuiteTypeGlobal.First.IsVisibleAsync())
-                /*if (RoleContext.IsSystemAdmin())
+                
+                await UploadFile.UploadFileButton.WaitForAsync();
+                await Expect(UploadFile.UploadFileButton).ToBeVisibleAsync();
+                await UploadFile.UploadFileButton.ScreenshotAsync(new()
                 {
-                    await UploadFile.UploadFileButton.WaitForAsync();
-                    await Expect(UploadFile.UploadFileButton).ToBeVisibleAsync();
-                    await UploadFile.UploadFileButton.ScreenshotAsync(new()
-                    {
-                        Path = "ScreenShot_Of_UploadFileButton.png"
-                    });
-                }
-                else
-                {
-                    await Expect(UploadFile.UploadFileButton).ToBeHiddenAsync();
-                    Console.WriteLine("The User is logged in as an external admin, hence the user should not see the upload file button");
-                }*/
-            }
-            else
-            {
-                Console.WriteLine("The User is project user , hence system suites option is not visible");
-                await Expect(UploadFile.SystemSuites).ToBeHiddenAsync();
-            }
+                    Path = "ScreenShot_Of_UploadFileButton.png"
+                });
+        }
+
+
+        [Test]
+        [TestCase("ExternalAdmin")]
+        [Category("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldNotContain_UploadFileButton_ForExternalAdmin(string role)
+        {
+            var ExtUploadFile = new SystemSuitesPage(Page);
+
+            await Expect(ExtUploadFile.LHSMenu).ToBeVisibleAsync();
+            await ExtUploadFile.SystemSuites.WaitForAsync();
+            await ExtUploadFile.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(ExtUploadFile.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(ExtUploadFile.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(ExtUploadFile.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(ExtUploadFile.ManageSystemsuites).ToBeVisibleAsync();
+            await ExtUploadFile.ManageSystemsuites.ClickAsync();
+            await ExtUploadFile.ManageSystemSuitesPage.WaitForAsync();
+
+            await Expect(ExtUploadFile.UploadFileButton).ToBeHiddenAsync();
+            Console.WriteLine("The User is logged in as an external admin, hence the user should not see the upload file button");
         }
 
         [Test]
-        public async Task OpenSystemSuitesPage_ShouldContain_SystemSuiteTable_AndTableHeading()
+        [TestCase("SystemAdmin")]
+        [Category("SystemAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldContain_AllColumnHeadings_ForSystemAdmin(string role)
         {
             var table = new SystemSuitesPage(Page);
 
             await Expect(table.LHSMenu).ToBeVisibleAsync();
+            await table.SystemSuites.WaitForAsync();
+            await table.SystemSuites.ClickAsync();
 
-            if (await table.SystemSuites.IsVisibleAsync())
+            //Check and verify the system suites sub menu
+            await Expect(table.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(table.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(table.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(table.ManageSystemsuites).ToBeVisibleAsync();
+            await table.ManageSystemsuites.ClickAsync();
+
+            //Check if the Manage system suite page is visible
+            await table.ManageSystemSuitesPage.WaitForAsync();
+            await Expect(table.ManageSystemSuitesPage).ToBeVisibleAsync();
+
+            await Expect(table.SystemSuitesTable).ToBeVisibleAsync();
+            await Expect(table.SystemSuitesTableColumns).ToBeVisibleAsync();
+            await Expect(table.SystemSuitesColumnNameHeading).ToBeVisibleAsync();
+            await Expect(table.SystemSuitesColumnSSType).ToBeVisibleAsync();
+            await Expect(table.SystemSuitesColumnEdited).ToBeVisibleAsync();
+            await table.SystemSuitesTableColumns.ScreenshotAsync(new()
             {
-                await table.SystemSuites.WaitForAsync();
-                await table.SystemSuites.ClickAsync();
-
-                //Check and verify the system suites sub menu
-                await Expect(table.SystemsuitesSubMenu).ToBeVisibleAsync();
-                await Expect(table.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-                await Expect(table.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-                await Expect(table.ManageSystemsuites).ToBeVisibleAsync();
-                await table.ManageSystemsuites.ClickAsync();
-
-                //Check if the Manage system suite page is visible
-                await table.ManageSystemSuitesPage.WaitForAsync();
-                await Expect(table.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-                if (await table.UploadFileButton.IsVisibleAsync())
-                {
-                    await Expect(table.SystemSuitesTable).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesTableColumns).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesColumnNameHeading).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesColumnSSType).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesColumnEdited).ToBeVisibleAsync();
-                    await table.SystemSuitesTableColumns.ScreenshotAsync(new()
-                    {
-                        Path = "Screenshot_Of_SystemSuiteTableColumns.png"
-                    });
-                }
-                else
-                {
-                    await Expect(table.SystemSuitesTable).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesTableColumns).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesColumnNameHeading).ToBeVisibleAsync();
-                    await Expect(table.SystemSuitesColumnSSType).ToBeHiddenAsync();
-                    await Expect(table.SystemSuitesColumnEdited).ToBeVisibleAsync();
-                    await table.SystemSuitesTableColumns.ScreenshotAsync(new()
-                    {
-                        Path = "Screenshot_Of_SystemSuiteTableColumns.png"
-                    });
-                }
-            }
-            else
-            {
-                Console.WriteLine("The User is project user , hence system suites option is not visible");
-                await Expect(table.SystemSuites).ToBeHiddenAsync();
-            }
+                Path = "Screenshot_Of_SystemSuiteTableColumns_ForSystemAdmin.png"
+            });
         }
 
         [Test]
-        public async Task OpenSystemSuitesPage_ShouldContain_SystemSuiteTableRows()
+        [TestCase("ExternalAdmin")]
+        [Category("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldNotContain_SystemSuiteTypeColumnHeading_ForExternalAdmin(string role)
+        {
+            var Exttable = new SystemSuitesPage(Page);
+
+            await Expect(Exttable.LHSMenu).ToBeVisibleAsync();
+            await Exttable.SystemSuites.WaitForAsync();
+            await Exttable.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(Exttable.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(Exttable.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(Exttable.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(Exttable.ManageSystemsuites).ToBeVisibleAsync();
+            await Exttable.ManageSystemsuites.ClickAsync();
+
+            //Check if the Manage system suite page is visible
+            await Exttable.ManageSystemSuitesPage.WaitForAsync();
+            await Expect(Exttable.ManageSystemSuitesPage).ToBeVisibleAsync();
+            await Expect(Exttable.SystemSuitesTable).ToBeVisibleAsync();
+            await Expect(Exttable.SystemSuitesTableColumns).ToBeVisibleAsync();
+            await Expect(Exttable.SystemSuitesColumnNameHeading).ToBeVisibleAsync();
+            await Expect(Exttable.SystemSuitesColumnSSType).ToBeHiddenAsync();
+            await Expect(Exttable.SystemSuitesColumnEdited).ToBeVisibleAsync();
+            await Exttable.SystemSuitesTableColumns.ScreenshotAsync(new()
+            {
+               Path = "Screenshot_Of_SystemSuiteTableColumns_ForExternalAdmin.png"
+            });
+        }
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("SystemAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldContain_AllColumnsRows_ForSystemAdmin(string role)
         {
             var tablerows = new SystemSuitesPage(Page);
 
             await Expect(tablerows.LHSMenu).ToBeVisibleAsync();
 
-            if (await tablerows.SystemSuites.IsVisibleAsync())
-            {
                 await tablerows.SystemSuites.WaitForAsync();
                 await tablerows.SystemSuites.ClickAsync();
 
@@ -247,15 +266,38 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await Expect(tablerows.SystemSuitesTableRows.First).ToBeVisibleAsync();
                 await tablerows.SystemSuitesTableRows.First.ScreenshotAsync(new()
                 {
-                    Path = "Screenshot_Of_SystemSuiteTable_Row.png"
+                    Path = "Screenshot_Of_SystemSuiteTableRow_ForSystemAdmin.png"
                 });
-            }
-            else
-            {
-                Console.WriteLine("The User is project user , hence system suites option is not visible");
-                await Expect(tablerows.SystemSuites).ToBeHiddenAsync();
-            }
+        }
 
+        [Test]
+        [TestCase("ExternalAdmin")]
+        [Category("ExternalAdmin")]
+        public async Task OpenSystemSuitesPage_ShouldNotContain_SystemSuiteTypeColumnRows_ForExternalAdmin(string role)
+        {
+            var tablerows = new SystemSuitesPage(Page);
+
+            await Expect(tablerows.LHSMenu).ToBeVisibleAsync();
+
+            await tablerows.SystemSuites.WaitForAsync();
+            await tablerows.SystemSuites.ClickAsync();
+
+            //Check and verify the system suites sub menu
+            await Expect(tablerows.SystemsuitesSubMenu).ToBeVisibleAsync();
+            await Expect(tablerows.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
+            await Expect(tablerows.SystemsuitesSubMenuClose).ToBeVisibleAsync();
+            await Expect(tablerows.ManageSystemsuites).ToBeVisibleAsync();
+            await tablerows.ManageSystemsuites.ClickAsync();
+
+            //Check if the Manage system suite page is visible
+            await tablerows.ManageSystemSuitesPage.WaitForAsync();
+            await Expect(tablerows.ManageSystemSuitesPage).ToBeVisibleAsync();
+
+            await Expect(tablerows.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await tablerows.SystemSuitesTableRows.First.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_SystemSuiteTableRow_ForSystemAdmin.png"
+            });
         }
 
         [Test]
@@ -265,8 +307,6 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             await Expect(global.LHSMenu).ToBeVisibleAsync();
 
-            if (await global.SystemSuites.IsVisibleAsync())
-            {
                 await global.SystemSuites.WaitForAsync();
                 await global.SystemSuites.ClickAsync();
 
@@ -303,12 +343,6 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                     await Expect(global.SystemSuiteTypeGlobal.First).ToBeHiddenAsync();
                     Console.WriteLine("System suite type is Global which is not present because of external admin role");
                 }
-            }
-            else
-            {
-                Console.WriteLine("The User is project user , hence system suites option is not visible");
-                await Expect(global.SystemSuites).ToBeHiddenAsync();
-            }
         }
 
         [Test]

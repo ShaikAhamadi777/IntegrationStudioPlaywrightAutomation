@@ -1669,23 +1669,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Shaik.Ahamadi\\.nuget\\packages\\": {},
+    "C:\\Users\\dell\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj",
+      "projectUniqueName": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj",
       "projectName": "IntegrationStudioPlaywrightAutomation",
-      "projectPath": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj",
-      "packagesPath": "C:\\Users\\Shaik.Ahamadi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\obj\\",
+      "projectPath": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj",
+      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Shaik.Ahamadi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
