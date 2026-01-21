@@ -47,7 +47,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator SystemSuite3DotMenu => Page.Locator("//span[@class='MuiTouchRipple-root css-w0pj6f']");
         public ILocator SystemSuite3DotMenuList => Page.Locator("//ul[contains(@class,'MuiMenu-list css-r8u8y9')]");
         public ILocator SystemSuiteDownloadFile => Page.Locator("//span[text()='Download system suite']");
-        public ILocator SystemSuiteDeleteIcon => Page.Locator("//li[contains(@class,'MuiMenuItem-gutters css-174zwlc')]");
+        public ILocator SystemSuiteDeleteIcon => Page.Locator("//span[text()='Delete']");
 
         //RowsPerPage ToolBar locators
         public ILocator SystemSuiteNameList => Page.Locator("text=/^[A-Za-z0-9_]+$/");
