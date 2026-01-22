@@ -12,7 +12,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
     public class GeneralSettings_UI_Tests : BaseTest
     {
         [Test]
-        public async Task OpenGeneralSettingsPage()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenGeneralSettingsPage(string role)
         {
             var general = new GeneralSettingsPage(Page);
 
@@ -27,12 +29,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(general.GeneralSettingPage).ToBeVisibleAsync();
             await general.GeneralPage.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_GeneralSettings_page.png"
+                Path = "Screenshot_Of_GeneralSettings_page_ForAllRoles.png"
             });
         }
 
         [Test]
-        public async Task OpenGeneralSettings_ShouldContain_NumberOfVMsandSnapshots_InUse()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenGeneralSettings_ShouldContain_NumberOfVMsandSnapshots_InUse(string role)
         {
 
             var numberofvms = new GeneralSettingsPage(Page);
@@ -51,7 +55,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(numberofvms.NumberOfSnapshotsInUse).ToBeVisibleAsync();
             await Page.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_NumberOfVMandSnapshots_page.png"
+                Path = "Screenshot_Of_NumberOfVMandSnapshots_page_ForAllRoles.png"
             });
         }
     }

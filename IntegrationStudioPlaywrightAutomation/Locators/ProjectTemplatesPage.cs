@@ -71,6 +71,14 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator NoProjectTemplates => Page.Locator("//td[text()='No project templates defined']");
 
         //Project templates
+
+        public ILocator ProjectTemplateTitle => Page.Locator("#project-page-toolbar");
+        public ILocator CreateProjectTemplateButton => Page.Locator("#project-add-btn");
+        public ILocator ProjectTemplateTable => Page.Locator("#project-table");
+        public ILocator InstanceColumnHeading => Page.Locator("//th[text()='Instances']");
+        public ILocator NameColumnHeading => Page.Locator("//th[text()='Name']");
+        public ILocator DescColumnHeading => Page.Locator("//th[text()='Description']");
+        public ILocator LastUpdatedColumnHeading => Page.Locator("//th[text()='Last updated']");
         public ILocator projectrows => Page.Locator("//tr[contains(@class,'MuiTableRow-root project')]");
         public ILocator firstprojectrow => projectrows.First;
         public ILocator ThreeDot => firstprojectrow.Locator("//div[@class='project-row-actions']//button").Last;

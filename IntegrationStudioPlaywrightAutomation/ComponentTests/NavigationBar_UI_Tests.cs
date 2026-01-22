@@ -10,7 +10,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
     public class NavigationBar_UI_Tests : BaseTest
     {
         [Test]
-        public async Task LoginIntegrationStudio_ShouldContain_NavigationBar()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task LoginIntegrationStudio_ShouldContain_NavigationBar(string role)
         {
             var nav = new ProjectTemplatesPage(Page);
 
@@ -18,13 +20,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await nav.AppBar.FocusAsync();
             await nav.AppBar.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_NavigationBar.png"
+                Path = "Screenshot_Of_NavigationBar_ForAllRoles.png"
             });
             await Expect(nav.AppBar).ToBeVisibleAsync();
         }
 
         [Test]
-        public async Task LoginIntegrationStudio_ShouldContain_NavigationBarTitle()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task LoginIntegrationStudio_ShouldContain_NavigationBarTitle(string role)
         {
             var AppBartitle = new ProjectTemplatesPage(Page);
 
@@ -32,7 +36,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await AppBartitle.AppBar.FocusAsync();
             await AppBartitle.AppBar.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_NavigationBarTitle.png"
+                Path = "Screenshot_Of_NavigationBarTitle_ForAllRoles.png"
             });
             await Expect(AppBartitle.AppBar).ToBeVisibleAsync();
             string title = await Page.TitleAsync();
@@ -41,7 +45,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         }
 
         [Test]
-        public async Task LoginIntegrationStudio_ShouldContain_NotificationIcon()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task LoginIntegrationStudio_ShouldContain_NotificationIcon(string role)
         {
 
             var NotifyIcon = new ProjectTemplatesPage(Page);
@@ -52,13 +58,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await NotifyIcon.NotificationBellIcon.FocusAsync();
             await NotifyIcon.NotificationBellIcon.ScreenshotAsync(new()
             {
-                Path = "Screeshot_Of_NotificationBellIcon.png"
+                Path = "Screeshot_Of_NotificationBellIcon_ForAllRoles.png"
             });
             await Expect(NotifyIcon.NotificationBellIcon).ToBeVisibleAsync();
         }
 
         [Test]
-        public async Task LoginIntegrationStudio_ShouldContain_HelpIcon()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task LoginIntegrationStudio_ShouldContain_HelpIcon(string role)
         {
             var helpicon = new ProjectTemplatesPage(Page);
 
@@ -71,12 +79,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(helpicon.AVEVAHelpIcon).ToBeVisibleAsync();
             await helpicon.AVEVAHelpIcon.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_AVEVAHelpIcon.png"
+                Path = "Screenshot_Of_AVEVAHelpIcon_ForAllRoles.png"
             });
         }
 
         [Test]
-        public async Task LoginIntegrationStudio_ShouldContain_UserProfileIcon()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task LoginIntegrationStudio_ShouldContain_UserProfileIcon(string role)
         {
             var profileicon = new ProjectTemplatesPage(Page);
 
@@ -88,12 +98,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(profileicon.UserProfileIcon).ToBeVisibleAsync();
             await profileicon.UserProfileIcon.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_UserProfileIcon.png"
+                Path = "Screenshot_Of_UserProfileIcon_ForAllRoles.png"
             });
         }
 
         [Test]
-        public async Task OpenUserProfileIcon_ShouldContain_Elements()
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenUserProfileIcon_ShouldContain_Elements(string role)
         {
             var userprofileicon = new ProjectTemplatesPage(Page);
 
@@ -127,7 +139,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await userprofileicon.UserProfilePopUp.HighlightAsync();
             await userprofileicon.UserProfilePopUp.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_UserProfile_Popup.png"
+                Path = "Screenshot_Of_UserProfile_Popup_ForAllRoles.png"
             });
         }
     }
