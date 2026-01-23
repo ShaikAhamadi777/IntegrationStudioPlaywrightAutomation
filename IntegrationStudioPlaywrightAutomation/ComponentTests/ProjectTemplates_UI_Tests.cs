@@ -122,5 +122,64 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             var table = new ProjectTemplatesPage(Page);
             await Expect(table.ProjectTemplatePage).ToBeVisibleAsync();
             await Expect(table.ProjectTemplateTable).ToBeVisibleAsync();
-        }   
+            await Expect(table.ProjectTableHead).ToBeVisibleAsync();
+            await Expect(table.ProjectTableColumns).ToBeVisibleAsync();
+            await Expect(table.InstanceColumnHeading).ToBeVisibleAsync();
+            await Expect(table.NameColumnHeading).ToBeVisibleAsync();
+            await Expect(table.LastUpdatedColumnHeading).ToBeVisibleAsync();
+            await Expect(table.DescColumnHeading).ToBeVisibleAsync();
+
+            await table.ProjectTableColumns.ScreenshotAsync(new()
+            {
+                Path = "ScreenShot_Of_PTTableAndColumns_ForAll.png"
+            });
+        }
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenProjectTemplatePage_ShouldContain_RowToolBar_PageIndicators(string role)
+        {
+            var ptrowtoolbar = new ProjectTemplatesPage(Page);
+
+            await ptrowtoolbar.ProjectTemplateRowToolBar.WaitForAsync();
+            await Expect(ptrowtoolbar.ProjectTemplateRowToolBar).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplateRowsPerPageText).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplatePageDropDown).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplatePageNumberRange).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplatePageGoToFirstPageArrow).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplatePageGoToPreviousPageArrow).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplatePageGoToNextPageArrow).ToBeVisibleAsync();
+            await Expect(ptrowtoolbar.ProjectTemplatePageLastPageArrow).ToBeVisibleAsync();
+
+            await ptrowtoolbar.ProjectTemplateRowToolBar.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_RowToolBar.png"
+            });
+        }
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenProjectTemplatePage_ShouldContain_PageNumberDropDownList(string role)
+        {
+            var pageind = new ProjectTemplatesPage(Page);
+            await pageind.ProjectTemplateRowToolBar.WaitForAsync();
+            await Expect(pageind.ProjectTemplateRowToolBar).ToBeVisibleAsync();
+            await Expect(pageind.ProjectTemplatePageDropDown).ToBeVisibleAsync();
+            await pageind.ProjectTemplatePageDropDown.ClickAsync();
+            await pageind.ProjectTemplatePageDropdownList.WaitForAsync();
+            await Expect(pageind.ProjectTemplatePageDropdownList).ToBeVisibleAsync();
+            await Expect(pageind.ProjectTemplatePageDropdownListNumber10).ToBeVisibleAsync();
+            await Expect(pageind.ProjectTemplatePageDropdownListNumber25).ToBeVisibleAsync();
+            await Expect(pageind.ProjectTemplatePageDropdownListNumber50).ToBeVisibleAsync();
+            await Expect(pageind.ProjectTemplatePageDropdownListNumber100).ToBeVisibleAsync();
+
+            await pageind.ProjectTemplatePageDropdownList.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_PageNumberDropDownList.png"
+            });
+
+        }
+    }
 }

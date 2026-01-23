@@ -70,15 +70,35 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
 
         public ILocator NoProjectTemplates => Page.Locator("//td[text()='No project templates defined']");
 
-        //Project templates
-
+        //Project templates Page Locators
         public ILocator ProjectTemplateTitle => Page.Locator("#project-page-toolbar");
         public ILocator CreateProjectTemplateButton => Page.Locator("#project-add-btn");
         public ILocator ProjectTemplateTable => Page.Locator("#project-table");
+        public ILocator ProjectTableHead => Page.Locator("#project-table-head");
+        public ILocator ProjectTableColumns => Page.Locator("#project-table-colunms");
         public ILocator InstanceColumnHeading => Page.Locator("//th[text()='Instances']");
         public ILocator NameColumnHeading => Page.Locator("//th[text()='Name']");
         public ILocator DescColumnHeading => Page.Locator("//th[text()='Description']");
         public ILocator LastUpdatedColumnHeading => Page.Locator("//th[text()='Last updated']");
+        public ILocator ProjectTemplateRowToolBar => Page.Locator("//div[contains(@class,'MuiTablePagination-toolbar css-8nphli')]");
+        public ILocator ProjectTemplateRowsPerPageText => Page.Locator("//p[text()='Rows per page:']");
+
+        //Row Tool Bar Locators
+        public ILocator ProjectTemplatePageDropDown => Page.Locator("[aria-haspopup='listbox']");
+        public ILocator ProjectTemplatePageDropdownList => Page.Locator("//ul[contains(@class,'MuiMenu-list css-r8u8y9')]");
+        public ILocator ProjectTemplatePageDropdownListNumber10 => Page.Locator("//li[@data-value='10']");
+        public ILocator ProjectTemplatePageDropdownListNumber25 => Page.Locator("//li[@data-value='25']");
+        public ILocator ProjectTemplatePageDropdownListNumber50 => Page.Locator("//li[@data-value='50']");
+        public ILocator ProjectTemplatePageDropdownListNumber100 => Page.Locator("//li[@data-value='100']");
+        public ILocator ProjectTemplatePageNumberRange => Page.Locator("//p[@class='MuiTablePagination-displayedRows css-14j95jv']");
+        public ILocator ProjectTemplatePageArrows => Page.Locator(".MuiTablePagination-actions");
+        public ILocator ProjectTemplatePageGoToFirstPageArrow => Page.Locator("[aria-label='Go to first page']");
+        public ILocator ProjectTemplatePageGoToPreviousPageArrow => Page.Locator("[aria-label='Go to previous page']");
+        public ILocator ProjectTemplatePageGoToNextPageArrow => Page.Locator("[aria-label='Go to next page']");
+        public ILocator ProjectTemplatePageLastPageArrow => Page.Locator("[data-testid='LastPageIcon']");
+
+
+
         public ILocator projectrows => Page.Locator("//tr[contains(@class,'MuiTableRow-root project')]");
         public ILocator firstprojectrow => projectrows.First;
         public ILocator ThreeDot => firstprojectrow.Locator("//div[@class='project-row-actions']//button").Last;
@@ -86,7 +106,6 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator ThreeDotMenuNewinstance => Page.Locator("//span[contains(text(),'New instance')]");
         public ILocator ThreeDotMenuEdit => Page.Locator("//span[contains(text(),'Edit')]");
         public ILocator ThreeDotMenuDelete => Page.Locator("//span[contains(text(),'Delete')]");
-
         public ILocator ProjectTemplateEdit => Page.Locator("//div[text()='Edit project template']");
 
 
