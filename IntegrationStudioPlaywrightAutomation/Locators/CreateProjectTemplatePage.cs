@@ -54,14 +54,29 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator AVEVASystemSuiteHeader => Page.Locator("//div[text()='AVEVA system suites']");
         public ILocator SS2023 => Page.Locator("//div[text()='2023 Global']");
         public ILocator SS2023Selected => Page.Locator("//div[@class='usc-suite-item usc-suite-item-seleted']");
-        public ILocator SSOkButton => Page.Locator("#suite-select-ok");
+        public ILocator SSOkButton => Page.Locator("//uilab-button[text()='OK']");
+        public ILocator SSCancelButton => Page.Locator("//uilab-button[text()='Cancel']").Last;
+
+        public ILocator CustomSystemSuiteHeaer => Page.Locator("//div[text()='Custom system suites']");
 
         public ILocator HostingRegionListBox => Page.Locator("//ul[contains(@class,'MuiMenu-list css-r8u8y9')]");
         public ILocator HostingRegions => Page.Locator("[role='option']").First;
 
+        public ILocator NodeConfigSubTitle => Page.Locator("//div[contains(text(),'button to add nodes')]");
+        public ILocator NodeConfigText => Page.Locator("//div[text()='Node configuration']");
+        public ILocator AddNodeButton => Page.Locator("#add-another-node");
+        public ILocator NodeConfigPageTableHeader => Page.Locator("#node-configure-table-head");
+        public ILocator NodeConfigPageTableRows => Page.Locator("//td[text()='You have no nodes.']");
+        public ILocator NodeConfigPagePreviousButton => Page.Locator("#wizard-form-previous-btn");
+        public ILocator NodeConfigPageCancelButton => Page.Locator("#wizard-form-cancel-btn");
+        public ILocator NodeConfigPageNextButton => Page.Locator("#wizard-form-next-btn");
 
-
-
+        public ILocator NodeConfigPageTableNameColumn => Page.Locator("//th[text()='Name']");
+        public ILocator NodeConfigPageTableTypeColumn => Page.Locator("//th[text()='Type']");
+        public ILocator NodeConfigPageTableMachineTypeColumn => Page.Locator("//th[text()='Machine type']");
+        public ILocator NodeConfigPageTableMachineConfigColumn => Page.Locator("//th[text()='Machine configuration']");
+        public ILocator NodeConfigPageTableCreditsColumn => Page.Locator("//th[text()='Credits/hr']");
+        public ILocator NodeConfigPageTableEnableMultiNICsColumn => Page.Locator("//th[text()='Enable multiple NICs']");
 
 
 
