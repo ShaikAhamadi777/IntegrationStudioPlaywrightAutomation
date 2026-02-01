@@ -264,5 +264,380 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             });
 
         }
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenNodeConfigurationPage_ShouldContain_AddNodePopup(string role)
+        {
+            var addnode = new CreateProjectTemplatePage(Page);
+            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
+            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
+            await addnode.CreateProjectTemplateButton.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+
+            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
+            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+
+            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
+            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
+            await Expect(addnode.SS2023).ToBeVisibleAsync();
+            await addnode.SS2023.ClickAsync();
+            await addnode.SS2023Selected.IsVisibleAsync();
+            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
+            await addnode.SSOkButton.ClickAsync();
+
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
+            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
+            await addnode.DefaultHostingRegionTextBox.ClickAsync();
+            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
+            await addnode.HostingRegions.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
+            await addnode.PTInfoNextButton.ClickAsync();
+
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeButton.ClickAsync();
+            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
+
+            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeText).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeText).ToBeEditableAsync();
+
+            await Expect(addnode.MachineTypeToolTip).ToBeVisibleAsync();
+            await addnode.MachineTypeToolTip.HoverAsync();
+            await addnode.MachineTypeToolTip.WaitForAsync();
+            await addnode.MachineTypeToolTipBox.WaitForAsync();
+            await Expect(addnode.MachineTypeToolTipBox).ToBeVisibleAsync();
+
+            await Expect(addnode.MachineTypeTextBox).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeText).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeSize).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeDropDown).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeDropDown).ToBeEnabledAsync();
+
+            await Expect(addnode.AddNodeNICsCheckBox).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeNICsCheckBox).ToBeCheckedAsync();
+            await Expect(addnode.EnableMultiNICsText).ToBeVisibleAsync();
+
+            await Expect(addnode.AddNodeCancelButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeCancelButton).ToBeEnabledAsync();
+            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeAddButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeDialog.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_AddNodeDialog.png"
+            });
+        }
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenAddNodePopup_ShouldContain_NodeTypeDropdownList(string role)
+        {
+            var addnode = new CreateProjectTemplatePage(Page);
+            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
+            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
+            await addnode.CreateProjectTemplateButton.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+
+            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
+            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+
+            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
+            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
+            await Expect(addnode.SS2023).ToBeVisibleAsync();
+            await addnode.SS2023.ClickAsync();
+            await addnode.SS2023Selected.IsVisibleAsync();
+            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
+            await addnode.SSOkButton.ClickAsync();
+
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
+            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
+            await addnode.DefaultHostingRegionTextBox.ClickAsync();
+            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
+            await addnode.HostingRegions.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
+            await addnode.PTInfoNextButton.ClickAsync();
+
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeButton.ClickAsync();
+            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
+            await addnode.NodeTypeTextBox.ClickAsync();
+            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+
+            await addnode.NodeTypeDropDownList.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_NodeTypeList.png"
+            });
+
+        }
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenAddNodePopup_ShouldContain_MachineTypeDropDownlist(string role)
+        {
+            var addnode = new CreateProjectTemplatePage(Page);
+            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
+            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
+            await addnode.CreateProjectTemplateButton.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+
+            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
+            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+
+            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
+            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
+            await Expect(addnode.SS2023).ToBeVisibleAsync();
+            await addnode.SS2023.ClickAsync();
+            await addnode.SS2023Selected.IsVisibleAsync();
+            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
+            await addnode.SSOkButton.ClickAsync();
+
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
+            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
+            await addnode.DefaultHostingRegionTextBox.ClickAsync();
+            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
+            await addnode.HostingRegions.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
+            await addnode.PTInfoNextButton.ClickAsync();
+
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeButton.ClickAsync();
+            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
+
+            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeText).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeText).ToBeEditableAsync();
+
+            await Expect(addnode.MachineTypeToolTip).ToBeVisibleAsync();
+
+            await Expect(addnode.MachineTypeTextBox).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeText).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeSize).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeDropDown).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeDropDown).ToBeEnabledAsync();
+
+            var machinerecsize = await addnode.MachineTypeSize.InnerTextAsync();
+            Console.WriteLine(machinerecsize);
+            Assert.That(machinerecsize, Is.EqualTo("HighPerformance - Standard_DS3_v2"));
+
+            await addnode.MachineTypeTextBox.ClickAsync();
+            await addnode.MachineTypeDropDownList.WaitForAsync();
+            await Expect(addnode.MachineTypeDropDownList).ToBeVisibleAsync();
+
+            await addnode.MachineTypeDropDownList.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_MachineTypeList.png"
+            });
+        }
+
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenAddNodePopup_ShouldContain_MachineToolTipList(string role)
+        {
+            var addnode = new CreateProjectTemplatePage(Page);
+            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
+            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
+            await addnode.CreateProjectTemplateButton.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+
+            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
+            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+
+            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
+            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
+            await Expect(addnode.SS2023).ToBeVisibleAsync();
+            await addnode.SS2023.ClickAsync();
+            await addnode.SS2023Selected.IsVisibleAsync();
+            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
+            await addnode.SSOkButton.ClickAsync();
+
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
+            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
+            await addnode.DefaultHostingRegionTextBox.ClickAsync();
+            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
+            await addnode.HostingRegions.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
+            await addnode.PTInfoNextButton.ClickAsync();
+
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeButton.ClickAsync();
+            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
+
+            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeText).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeText).ToBeEditableAsync();
+
+            await Expect(addnode.MachineTypeToolTip).ToBeVisibleAsync();
+            await addnode.MachineTypeToolTip.HoverAsync();
+            await addnode.MachineTypeToolTip.WaitForAsync();
+            await addnode.MachineTypeToolTipBox.WaitForAsync();
+            await Expect(addnode.MachineTypeToolTipBox).ToBeVisibleAsync();
+
+            await Expect(addnode.MachineTypeToolTipCores).ToBeVisibleAsync();
+            await Expect(addnode.MachineTypeToolTipRam).ToBeVisibleAsync();
+
+            await addnode.MachineTypeToolTipBox.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_MachineToolTipBox" +
+                ".png"
+            });
+
+        }
+
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenNodeConfigPage_ShouldContain_NodeDetails_AfterAdding_A_Node(string role)
+        {
+            var addnode = new CreateProjectTemplatePage(Page);
+            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
+            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
+            await addnode.CreateProjectTemplateButton.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+
+            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
+            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
+            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+
+            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
+            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
+            await Expect(addnode.SS2023).ToBeVisibleAsync();
+            await addnode.SS2023.ClickAsync();
+            await addnode.SS2023Selected.IsVisibleAsync();
+            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
+            await addnode.SSOkButton.ClickAsync();
+
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
+            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
+            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
+            await addnode.DefaultHostingRegionTextBox.ClickAsync();
+            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
+            await addnode.HostingRegions.ClickAsync();
+
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
+            await addnode.PTInfoNextButton.ClickAsync();
+
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeButton.ClickAsync();
+            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
+            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
+
+            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
+            await addnode.NodeTypeTextBox.FillAsync("TestNode");
+            await addnode.AddNodeAddButton.ClickAsync();
+
+            await Expect(addnode.AddNodeRows).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeRowNodeName).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeRowNodeType).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeRowMachineType).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeEnableMultiNIcs).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeRowDeleteButton).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeRowDeleteButton).ToBeEnabledAsync();
+
+            await addnode.AddNodeRows.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_AddedRows.png"
+            });
+
+        }
     }
 }

@@ -78,7 +78,37 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator NodeConfigPageTableCreditsColumn => Page.Locator("//th[text()='Credits/hr']");
         public ILocator NodeConfigPageTableEnableMultiNICsColumn => Page.Locator("//th[text()='Enable multiple NICs']");
 
+        public ILocator AddNodeDialog => Page.Locator("//div[contains(@class,'paperWidthSm css-uhb5lp')]");
+        public ILocator AddNodeTitle => Page.Locator("//h2[text()='Add a node']");
+        public ILocator AddNodeDialogContent => Page.Locator("#alert-dialog-content");
+        public ILocator NodeNameTextBox => Page.Locator("#node-name-field");
+        //public ILocator NodeNameText => Page.Locator("");
+        public ILocator NodeTypeTextBox => Page.Locator("#grid-tree-area");
+        public ILocator NodeTypeText => Page.Locator("//span[text()='Node type']");
+        public ILocator NodeTypeDropDownIcon => Page.Locator("[data-testid='ArrowDropDownIcon']").First;
+        public ILocator NodeTypeDropDownList => Page.Locator("//ul[@class='MuiTreeView-root css-1fk0lbh']");
+        public ILocator MachineTypeTextBox => Page.Locator(".chp-select-field");
+        public ILocator MachineTypeText => Page.Locator("#demo-simple-select-standard-label");
+        public ILocator MachineTypeSize => Page.Locator("#vm-size-field");
+        public ILocator MachineTypeDropDown => Page.Locator("[data-testid='ArrowDropDownIcon']").Last;
+        public ILocator MachineTypeDropDownList => Page.Locator("//ul[contains(@class,'MuiMenu-list css-r8u8y9')]");
+        public ILocator AddNodeNICsCheckBox => Page.Locator(".mdc-checkbox__native-control");
+        public ILocator EnableMultiNICsText => Page.Locator("//label[text()='Enable multiple NICs']");
+        public ILocator MachineTypeToolTip => Page.Locator(".icon-opacity06");
+        public ILocator MachineTypeToolTipBox => Page.Locator("//div[contains(@class,'MuiPopover-paper css-1dmzujt')]");
 
+        public ILocator MachineTypeToolTipCores => Page.Locator("//div[contains(text(),'Cores')]");
+        public ILocator MachineTypeToolTipRam => Page.Locator("//div[contains(text(),'Ram:')]");
+
+        public ILocator AddNodeCancelButton => Page.Locator("#cancel-add-btn");
+        public ILocator AddNodeAddButton => Page.Locator("#add-form-btn");
+
+        public ILocator AddNodeRows => Page.Locator("//tr[@class='MuiTableRow-root node-table-row css-axz6ke']");
+        public ILocator AddNodeRowNodeName => Page.Locator(".mdc-text-field__input");
+        public ILocator AddNodeRowNodeType => Page.Locator(".nodeType");
+        public ILocator AddNodeRowMachineType => Page.Locator("//div[@role='combobox']");
+        public ILocator AddNodeEnableMultiNIcs => Page.Locator(".mdc-checkbox__native-control");
+        public ILocator AddNodeRowDeleteButton => Page.Locator(".icon-opacity06 ");
 
 
 
