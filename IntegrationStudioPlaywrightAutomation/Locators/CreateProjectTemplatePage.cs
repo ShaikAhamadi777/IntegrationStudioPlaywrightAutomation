@@ -110,6 +110,17 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator AddNodeEnableMultiNIcs => Page.Locator(".mdc-checkbox__native-control");
         public ILocator AddNodeRowDeleteButton => Page.Locator(".icon-opacity06 ");
 
+        public ILocator LaunchParametersSubTitle => Page.Locator("");
+        public ILocator LaunchParametersText => Page.Locator("");
+        public ILocator LaunchParameterPage => Page.Locator("#launch-params-page");
+        public ILocator LaunchParameterNodeName => Page.Locator("text=/^[A-Za-z0-9_]+$/");
+        public ILocator LaunchParameterNodeType => Page.Locator("//div[text()='2023-SystemPlatform']");
+        public ILocator LaunchParameterNodeBlock => Page.Locator(".node-param-node-describe");
+        public ILocator LaunchParameterNodeBody => Page.Locator(".node-param-body");
+        public ILocator CreateGalaxyRepoNameLabel => Page.Locator("//div[text()='Create Galaxy Repository?']");
+        public ILocator CreateGalaxyRepoTextBox => Page.Locator("[value='TestGalaxy']");
+
+
 
 
 

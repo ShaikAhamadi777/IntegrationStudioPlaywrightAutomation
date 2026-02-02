@@ -570,7 +570,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
         [TestCase("SystemAdmin")]
         [Category("Common")]
-        public async Task OpenNodeConfigPage_ShouldContain_NodeDetails_AfterAdding_A_Node(string role)
+        public async Task OpenNodeConfigPage_ShouldContain_NodeDetails_AfterAdding_A_NodeOf_2023SP(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
             await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
@@ -639,5 +639,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             });
 
         }
+
+
     }
 }
