@@ -1,0 +1,336 @@
+{
+  "appSuiteName": "2017",
+  "appSuiteInfo": {
+    "description": "System suite for 2017",
+    "iconUrl": "/icons/wsp_icon.png",
+    "hide": false,
+    "group": true
+  },
+  "region": "West US",
+  "allowTerminateDelete": false,
+  "OwnerWorkflowEnabled": true,
+  "roles": [
+    {
+      "machineImage": "ARM-WSP2017Update3SP1",
+      "nodeTypeDescription": "2017Update3SP1WSP",
+      "nodeType": "2017-Update3SP1-WSP",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "2017Update3SP1WSP",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "2017Update3SP1WSPRDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "WSP2017Update3SP1.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {WSP2017Update3SP1galaxyname} -DevelopmentServer {WSP2017Update3SP1DevelopmentServer} -DevelopmentWorkstation {WSP2017Update3SP1DevelopmentWorkstation} -HistorianServer {WSP2017Update3SP1HistorianServer} -RuntimeClient {WSP2017Update3SP1RuntimeClient} -InTouchAccessAnywhereSecureGateway {WSP2017Update3SP1InTouchAccessAnywhereSecureGateway}"
+      },
+      "parameters": [
+        {
+          "name": "{WSP2017Update3SP1galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{WSP2017Update3SP1DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3SP1DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3SP1RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3SP1HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3SP1InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "ARM-WSP2017Update3SP1",
+      "nodeTypeDescription": "2017Update3SP1InTouch",
+      "nodeType": "2017-Update3SP1-InTouch",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "2017Update3SP1InTouch",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "2017Update3SP1InTouchRDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "WSP2017Update3SP1InTouch.ps1",
+        "version": "1.0",
+        "commandArgument": "-InTouchDevelopment {InTouch2017Update3SP1InTouchDevelopment} -InTouchRuntime {InTouch2017Update3SP1InTouchRuntime} -Historian {InTouch2017Update3SP1Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{InTouch2017Update3SP1InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"InTouch Development\":\"\",\"PDF Documentation\":\"\"}",
+          "value": "true"
+        },
+        {
+          "name": "{InTouch2017Update3SP1InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "true"
+        },
+        {
+          "name": "{InTouch2017Update3SP1Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian Server",
+          "value": "true"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "ARM-WSP2017Update3",
+      "nodeTypeDescription": "2017Update3WSP",
+      "nodeType": "2017-Update3-WSP",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "2017Update3WSP",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "2017Update3WSPRDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "WSP2017Update3.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {WSP2017Update3galaxyname} -DevelopmentServer {WSP2017Update3DevelopmentServer} -DevelopmentWorkstation {WSP2017Update3DevelopmentWorkstation} -HistorianServer {WSP2017Update3HistorianServer} -RuntimeClient {WSP2017Update3RuntimeClient} -InTouchAccessAnywhereSecureGateway {WSP2017Update3InTouchAccessAnywhereSecureGateway}"
+      },
+      "parameters": [
+        {
+          "name": "{WSP2017Update3galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{WSP2017Update3DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{WSP2017Update3InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "ARM-WSP2017Update3",
+      "nodeTypeDescription": "2017Update3InTouch",
+      "nodeType": "2017-Update3-InTouch",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "2017Update3InTouch",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "2017Update3InTouchRDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "WSP2017Update3InTouch.ps1",
+        "version": "1.0",
+        "commandArgument": "-InTouchDevelopment {InTouch2017Update3InTouchDevelopment} -InTouchRuntime {InTouch2017Update3InTouchRuntime} -Historian {InTouch2017Update3Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{InTouch2017Update3InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"InTouch Development\":\"\",\"PDF Documentation\":\"\"}",
+          "value": "true"
+        },
+        {
+          "name": "{InTouch2017Update3InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "true"
+        },
+        {
+          "name": "{InTouch2017Update3Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian Server",
+          "value": "true"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    }
+  ]
+}

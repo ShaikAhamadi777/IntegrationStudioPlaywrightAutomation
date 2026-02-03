@@ -1,0 +1,585 @@
+{
+  "appSuiteName": "2023 image update",
+  "appSuiteInfo": {
+    "description": "System suite for 2023",
+    "iconUrl": "/icons/wsp_icon.png",
+    "hide": false,
+    "group": true
+  },
+  "region": "West US",
+  "allowTerminateDelete": false,
+  "OwnerWorkflowEnabled": true,
+  "roles": [
+    {
+      "machineImage": "imginstudio202505062238564026",
+      "nodeTypeDescription": "SP2023",
+      "nodeType": "2023-SystemPlatform",
+      "familyGroup": "SystemPlatform",
+      "nics": {
+        "nicNum": "2",
+        "multiNicSubnetStart": "10.0.1.0",
+        "nsgNatForAllNics": true
+      },
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "instudioTemplateScript20230925072313.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2023galaxyname} -DevelopmentServer {SP2023DevelopmentServer} -DevelopmentWorkstation {SP2023DevelopmentWorkstation} -HistorianServer {SP2023HistorianServer} -RuntimeClient {SP2023RuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2023InTouchAccessAnywhereSecureGateway} -InTouchDevelopment {SP2023InTouchDevelopment} -InTouchRuntime {SP2023InTouchRuntime} -Historian {SP2023Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2023galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2023DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Development",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS1_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "imginstudio20230421103231",
+      "nodeTypeDescription": "SP2023Enterprise",
+      "nodeType": "2023-SystemPlatformEnterprise",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "SP2023Enterprise.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2023Enterprisegalaxyname} -DevelopmentServer {SP2023EnterpriseDevelopmentServer} -DevelopmentWorkstation {SP2023EnterpriseDevelopmentWorkstation} -HistorianServer {SP2023EnterpriseHistorianServer} -RuntimeClient {SP2023EnterpriseRuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2023EnterpriseInTouchAccessAnywhereSecureGateway} -InTouchDevelopment {SP2023EnterpriseInTouchDevelopment} -InTouchRuntime {SP2023EnterpriseInTouchRuntime} -Historian {SP2023EnterpriseHistorian} -OmiWebserver {SP2023EnterpriseOmiWebserver}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2023Enterprisegalaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2023EnterpriseDevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseDevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseRuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseHistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseInTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseInTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Development",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseInTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseHistorian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023EnterpriseOmiWebserver}",
+          "label": "OmiWebserver",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "OmiWebserver",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS1_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "imginstudio202505090225107527",
+      "nodeTypeDescription": "SP2023R2",
+      "nodeType": "2023-SystemPlatformR2",
+      "familyGroup": "SystemPlatform",
+      "nics": {
+        "nicNum": "2",
+        "multiNicSubnetStart": "10.0.1.0",
+        "nsgNatForAllNics": true
+      },
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "instudioTemplateScript20240313075707.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2023R2galaxyname} -DevelopmentServer {SP2023R2DevelopmentServer} -DevelopmentWorkstation {SP2023R2DevelopmentWorkstation} -HistorianServer {SP2023R2HistorianServer} -RuntimeClient {SP2023R2RuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2023R2InTouchAccessAnywhereSecureGateway} -InTouchDevelopment {SP2023R2InTouchDevelopment} -InTouchRuntime {SP2023R2InTouchRuntime} -Historian {SP2023R2Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2023R2galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2023R2DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Development",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS1_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "imginstudio202601270741484284",
+      "nodeTypeDescription": "SP2023R2SP1",
+      "nodeType": "2023-SystemPlatformR2SP1",
+      "familyGroup": "SystemPlatform",
+      "nics": {
+        "nicNum": "2",
+        "multiNicSubnetStart": "10.0.1.0",
+        "nsgNatForAllNics": true
+      },
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "instudioTemplateScript202601270741484284.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2023R2SP1galaxyname} -DevelopmentServer {SP2023R2SP1DevelopmentServer} -DevelopmentWorkstation {SP2023R2SP1DevelopmentWorkstation} -HistorianServer {SP2023R2SP1HistorianServer} -RuntimeClient {SP2023R2SP1RuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2023R2SP1InTouchAccessAnywhereSecureGateway} -InTouchDevelopment {SP2023R2SP1InTouchDevelopment} -InTouchRuntime {SP2023R2SP1InTouchRuntime} -Historian {SP2023R2SP1Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2023R2SP1galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2023R2SP1DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Development",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "false"
+        },
+        {
+          "name": "{SP2023R2SP1Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS1_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "imginstudio20240528021704",
+      "nodeTypeDescription": "PlantSCADA2023R2",
+      "nodeType": "2023-PlantSCADAR2",
+      "familyGroup": "PlantSCADA",
+      "nics": {
+        "nicNum": "2",
+        "multiNicSubnetStart": "10.0.1.0",
+        "nsgNatForAllNics": true
+      },
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "instudioTemplateScript20240528021704.ps1",
+        "version": "1.0",
+        "commandArgument": "-DevelopmentWorkstation {PS2023R2DevelopmentWorkstation} -RuntimeClient {PS2023R2RuntimeClient}"
+      },
+      "parameters": [
+        {
+          "name": "{PS2023R2DevelopmentWorkstation}",
+          "label": "Development Workstation",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"AVEVA Common Components\":[\"Platform Common Services\"],\"AVEVA Plant SCADA\":[\"Configuration\",\"Runtime\",\"Deployment Server\",\"OPC UA Server\",\"Industrial Graphics Web Server\",\"Drivers\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{PS2023R2RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"AVEVA Common Components\":[\"Platform Common Services\"],\"AVEVA Plant SCADA\":[\"Runtime\"]}",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS1_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    }
+  ]
+}

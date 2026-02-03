@@ -87,6 +87,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator NodeTypeText => Page.Locator("//span[text()='Node type']");
         public ILocator NodeTypeDropDownIcon => Page.Locator("[data-testid='ArrowDropDownIcon']").First;
         public ILocator NodeTypeDropDownList => Page.Locator("//ul[@class='MuiTreeView-root css-1fk0lbh']");
+        
         public ILocator MachineTypeTextBox => Page.Locator(".chp-select-field");
         public ILocator MachineTypeText => Page.Locator("#demo-simple-select-standard-label");
         public ILocator MachineTypeSize => Page.Locator("#vm-size-field");
@@ -120,11 +121,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator CreateGalaxyRepoNameLabel => Page.Locator("//div[text()='Create Galaxy Repository?']");
         public ILocator CreateGalaxyRepoTextBox => Page.Locator("[value='TestGalaxy']");
 
-
-
-
-
-
+        public ILocator NodeTypeSP2023 => Page.Locator("//div[@class='MuiTreeItem-label' and text()='SystemPlatform']");
 
 
     }

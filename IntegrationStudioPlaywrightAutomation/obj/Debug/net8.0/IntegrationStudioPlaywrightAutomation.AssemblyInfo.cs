@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IntegrationStudioPlaywrightAutomation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d30d6ada8cbdf57de2725f1aa05da80e4f2c4c6e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff764d772335c1f0b08c8b92cf1162bb5f9e011a")]
 [assembly: System.Reflection.AssemblyProductAttribute("IntegrationStudioPlaywrightAutomation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IntegrationStudioPlaywrightAutomation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

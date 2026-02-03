@@ -1,0 +1,350 @@
+{
+  "appSuiteName": "2020withnewpreall",
+  "appSuiteInfo": {
+    "description": "my test System suite for 2020",
+    "iconUrl": "/icons/wsp_icon.png",
+    "hide": false,
+    "group": true
+  },
+  "region": "West US",
+  "allowTerminateDelete": false,
+  "OwnerWorkflowEnabled": true,
+  "roles": [
+    {
+      "machineImage": "imginstudio202504290931105297",
+      "nodeTypeDescription": "SystemPlatform2020R2SP1",
+      "nodeType": "2020-R2SP1-SP",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "SP2020R2SP1.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2020R2SP1galaxyname} -DevelopmentServer {SP2020R2SP1DevelopmentServer} -DevelopmentWorkstation {SP2020R2SP1DevelopmentWorkstation} -HistorianServer {SP2020R2SP1HistorianServer} -RuntimeClient {SP2020R2SP1RuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2020R2SP1InTouchAccessAnywhereSecureGateway} -InTouchDevelopment {SP2020R2SP1InTouchDevelopment} -InTouchRuntime {SP2020R2SP1InTouchRuntime} -Historian {SP2020R2SP1Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2020R2SP1galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2020R2SP1DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Development",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2SP1Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": "50",
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "imginstudio202504291147026089",
+      "nodeTypeDescription": "SystemPlatform2020R2",
+      "nodeType": "2020-R2-SP",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "SP2020R2.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2020R2galaxyname} -DevelopmentServer {SP2020R2DevelopmentServer} -DevelopmentWorkstation {SP2020R2DevelopmentWorkstation} -HistorianServer {SP2020R2HistorianServer} -RuntimeClient {SP2020R2RuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2020R2InTouchAccessAnywhereSecureGateway} -InTouchDevelopment {SP2020R2InTouchDevelopment} -InTouchRuntime {SP2020R2InTouchRuntime} -Historian {SP2020R2Historian}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2020R2galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2020R2DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "true"
+        },
+        {
+          "name": "{SP2020R2HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2InTouchDevelopment}",
+          "label": "InTouch Development",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"InTouch Development\":\"\",\"PDF Documentation\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2InTouchRuntime}",
+          "label": "InTouch Runtime",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Runtime",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020R2Historian}",
+          "label": "Historian",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "Historian Server",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    },
+    {
+      "machineImage": "imginstudio202504291541274905",
+      "nodeTypeDescription": "System Platform 2020",
+      "nodeType": "2020-SP",
+      "familyGroup": "SystemPlatform",
+      "appLinks": [
+        {
+          "name": "Browser",
+          "type": "common",
+          "resolution": "fittobrowser",
+          "sound": "on"
+        },
+        {
+          "name": "RDP",
+          "type": "rdp"
+        }
+      ],
+      "nodeLaunchScript": {
+        "name": "SP2020.ps1",
+        "version": "1.0",
+        "commandArgument": "-GalaxyName {SP2020galaxyname} -DevelopmentServer {SP2020DevelopmentServer} -DevelopmentWorkstation {SP2020DevelopmentWorkstation} -HistorianServer {SP2020HistorianServer} -RuntimeClient {SP2020RuntimeClient} -InTouchAccessAnywhereSecureGateway {SP2020InTouchAccessAnywhereSecureGateway}"
+      },
+      "parameters": [
+        {
+          "name": "{SP2020galaxyname}",
+          "label": "Create Galaxy Repository?",
+          "default": "false",
+          "userDefined": "optional",
+          "parameterType": "String",
+          "description": "\"System Platform Development Server\" or \"Remote System Platform Development Client\" is needed.",
+          "value": "TestGalaxy"
+        },
+        {
+          "name": "{SP2020DevelopmentServer}",
+          "label": "System Platform Development Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"Galaxy Repository\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020DevelopmentWorkstation}",
+          "label": "Remote Development Workstation",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\",\"IDE\",\"PDF Documentation\"],\"InTouch\":[\"InTouch Development\",\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020RuntimeClient}",
+          "label": "Runtime Client",
+          "default": "true",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"InTouch\":[\"InTouch Runtime\"]}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020HistorianServer}",
+          "label": "Historian Server",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "{\"Application Server\":[\"Bootstrap\"],\"Historian Server\":\"\"}",
+          "value": "false"
+        },
+        {
+          "name": "{SP2020InTouchAccessAnywhereSecureGateway}",
+          "label": "InTouch Access Anywhere Secure Gateway",
+          "default": "false",
+          "userDefined": "required",
+          "parameterType": "Boolean",
+          "description": "InTouch Access Anywhere Secure Gateway",
+          "value": "false"
+        }
+      ],
+      "rules": {
+        "minNodes": 0,
+        "maxNodes": 50,
+        "minSize": "HighPerformance:Standard_DS2_v2",
+        "maxSize": "HighPerformance:Standard_DS5_v2",
+        "recoSize": "HighPerformance:Standard_DS3_v2"
+      },
+      "automationPackages": [
+        {
+          "name": "Start",
+          "type": "auto",
+          "parameters": [],
+          "phases": {}
+        }
+      ]
+    }
+  ]
+}
