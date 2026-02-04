@@ -768,7 +768,29 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
 
             var suite = SystemSuiteLoader.Load("2023.json");
-            var expectedNodeTypes = suite.nodes.Select(n => n.nodeType).ToList();
+            var expectedNodeTypes = suite.roles.Select(n => n.nodeType).ToList();
+            //Console.WriteLine(expectedNodeTypes);
+
+            var normalizeexpectedNodeTypes = expectedNodeTypes.Select(t => t.Replace("2023-", "").Trim()).ToList();
+            Console.WriteLine("The Nodetypes expected from the Json file are:");
+            Console.WriteLine(normalizeexpectedNodeTypes);
+            Console.WriteLine(string.Join(", ", normalizeexpectedNodeTypes));
+
+            await addnode.NodeTypeTextBox.ClickAsync();
+            await addnode.NodeTypeDropDownList.WaitForAsync();
+            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+
+
+            var actualNodeTypes = await addnode.NodeTypeDropDownList.AllInnerTextsAsync();
+
+            actualNodeTypes = actualNodeTypes.Select(t=>t.Replace("2023","")).
+                                              Where(t=> !string.IsNullOrEmpty(t)).ToList();
+            Console.WriteLine("The Nodetypes expected from the UI are:");
+            Console.WriteLine(actualNodeTypes);
+            Console.WriteLine(string.Join(", ", actualNodeTypes));
+
+            CollectionAssert.AreEquivalent(normalizeexpectedNodeTypes, actualNodeTypes,"Node type dropdown values do not match system suite JSON");
 
 
         }

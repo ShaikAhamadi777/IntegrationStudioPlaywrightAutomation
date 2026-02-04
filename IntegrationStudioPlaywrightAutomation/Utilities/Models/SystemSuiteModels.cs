@@ -8,12 +8,12 @@ namespace IntegrationStudioPlaywrightAutomation.Utilities.Models
 {
     public class SystemSuite
     {
-        public List<NodeDefinition> nodes { get; set; }
+        public List<NodeDefinition> roles { get; set; }
     }
 
     public class NodeDefinition
     {
-        public string nodetype { get; set; }
+        public string nodeType { get; set; }
         public List<LaunchParameter> launchParameters { get; set; }
     }
 
