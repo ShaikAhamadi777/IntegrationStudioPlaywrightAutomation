@@ -111,7 +111,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator AddNodeRowDeleteButton => Page.Locator(".icon-opacity06 ");
 
         public ILocator LaunchParametersSubTitle => Page.Locator("");
-        public ILocator LaunchParametersText => Page.Locator("");
+        public ILocator LaunchParametersText => Page.Locator("//div[text()='Launch parameters']");
         public ILocator LaunchParameterPage => Page.Locator("#launch-params-page");
         public ILocator LaunchParameterNodeName => Page.Locator("text=/^[A-Za-z0-9_]+$/");
         public ILocator LaunchParameterNodeType => Page.Locator("//div[text()='2023-SystemPlatform']");
