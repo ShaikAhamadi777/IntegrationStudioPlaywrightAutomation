@@ -1,9 +1,12 @@
 ﻿using IntegrationStudioPlaywrightAutomation.Locators;
 using IntegrationStudioPlaywrightAutomation.Utilities;
 using IntegrationStudioPlaywrightAutomation.Utilities.Models;
+using Microsoft.Playwright;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -233,6 +236,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await nodeconfigfields.PTInfoNextButton.ClickAsync();
             await Expect(nodeconfigfields.CreaterProjectTemplatePage).ToBeVisibleAsync();
 
+            await nodeconfigfields.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(nodeconfigfields.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(nodeconfigfields.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(nodeconfigfields.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(nodeconfigfields.AddNodeButton).ToBeVisibleAsync();
@@ -270,7 +275,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Test]
         [TestCase("SystemAdmin")]
         [Category("Common")]
-        public async Task OpenNodeConfigurationPage_ShouldContain_AddNodePopup(string role)
+        public async Task OpenAddNodeButton_ShouldValidate_AddNodePopup(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
             await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
@@ -309,6 +314,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
             await addnode.PTInfoNextButton.ClickAsync();
 
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
@@ -395,6 +402,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
             await addnode.PTInfoNextButton.ClickAsync();
 
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
@@ -456,6 +465,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
             await addnode.PTInfoNextButton.ClickAsync();
 
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
@@ -536,6 +547,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
             await addnode.PTInfoNextButton.ClickAsync();
 
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
@@ -573,7 +586,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Test]
         [TestCase("SystemAdmin")]
         [Category("Common")]
-        public async Task OpenNodeConfigPage_ShouldContain_NodeDetails_AfterAdding_A_NodeOf_2023SP(string role)
+        public async Task OpenAddNodePopup_ShouldValidateNodetypes_And_AddANode(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
             await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
@@ -612,6 +625,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
             await addnode.PTInfoNextButton.ClickAsync();
 
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
@@ -622,23 +637,47 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
             await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
+            await addnode.NodeNameTextBox.ClickAsync();
+            
+            await Expect(addnode.NodeNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.NodeNameTextBoxEdit.FillAsync("TestNode");
 
             await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await addnode.NodeTypeTextBox.FillAsync("TestNode");
-            await addnode.AddNodeAddButton.ClickAsync();
-
-            await Expect(addnode.AddNodeRows).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeRowNodeName).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeRowNodeType).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeRowMachineType).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeEnableMultiNIcs).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeRowDeleteButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeRowDeleteButton).ToBeEnabledAsync();
-
-            await addnode.AddNodeRows.ScreenshotAsync(new()
+            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
+            await addnode.NodeTypeTextBox.ClickAsync();
+            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+            await addnode.NodeTypeDropDownList.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_AddedRows.png"
+                Path = "Screenshot_Of_the_NodeTypes.png"
+            });
+
+            var suite = SystemSuiteLoader.Load("2023.json");
+            var expectedNodeTypes = suite.roles.Select(n => n.nodeType).ToList();
+            var normalizeexpectedNodeTypes = expectedNodeTypes.Select(t => t.Replace("2023-", "").Trim()).ToList();
+            Console.WriteLine("The Nodetypes expected from the Json file are:");
+            Console.WriteLine(string.Join(", ", normalizeexpectedNodeTypes));
+
+
+            var actualNodeTypes = await addnode.NodeList.AllInnerTextsAsync();
+            actualNodeTypes = actualNodeTypes.Select(t => t.Replace("2023", "")).
+                                              Select(t => t.Trim()).
+                                              Where(t => !string.IsNullOrEmpty(t)).ToList();
+            Console.WriteLine("The Nodetypes expected from the UI are:");
+            Console.WriteLine(string.Join(", ", actualNodeTypes));
+
+            CollectionAssert.AreEquivalent(normalizeexpectedNodeTypes, actualNodeTypes, "Node type dropdown values do not match system suite JSON");
+
+            await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
+            await addnode.NodeTypeSP2023.ClickAsync();
+            await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
+
+            await addnode.AddNodeAddButton.WaitForAsync();
+            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
+            await addnode.AddNodeAddButton.ClickAsync();
+            
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_NodePage.png"
             });
 
         }
@@ -646,7 +685,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Test]
         [TestCase("SystemAdmin")]
         [Category("Common")]
-        public async Task AddANode(string role)
+        public async Task OpenNodeConfigPage_ShouldContain_NodeDetails_AfterAdding_A_Node(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
             await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
@@ -685,32 +724,77 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
             await addnode.PTInfoNextButton.ClickAsync();
 
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
             await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
 
+            var beforecount = await Page.Locator("tbody tr").CountAsync();
             await addnode.AddNodeButton.ClickAsync();
             await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
             await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
             await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
             await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
+            await addnode.NodeNameTextBox.ClickAsync();
+
+            await Expect(addnode.NodeNameTextBoxEdit).ToBeEditableAsync();
+            await addnode.NodeNameTextBoxEdit.FillAsync("TestNode");
+
+            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
             await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-
-
-            var addnodetypes = new List<string>();
             await addnode.NodeTypeTextBox.ClickAsync();
-            await addnode.NodeTypeDropDownList.IsVisibleAsync();
             await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
-            await addnode.NodeTypeSP2023.ClickAsync();
-
-            await Page.ScreenshotAsync(new()
+            await addnode.NodeTypeDropDownList.ScreenshotAsync(new()
             {
-                Path = "Screenshot_Of_NodePage.png"
+                Path = "Screenshot_Of_the_NodeTypes.png"
             });
 
+            var suite = SystemSuiteLoader.Load("2023.json");
+            var expectedNodeTypes = suite.roles.Select(n => n.nodeType).ToList();
+            var normalizeexpectedNodeTypes = expectedNodeTypes.Select(t => t.Replace("2023-", "").Trim()).ToList();
+            Console.WriteLine("The Nodetypes expected from the Json file are:");
+            Console.WriteLine(string.Join(", ", normalizeexpectedNodeTypes));
+
+
+            var actualNodeTypes = await addnode.NodeList.AllInnerTextsAsync();
+            actualNodeTypes = actualNodeTypes.Select(t => t.Replace("2023", "")).
+                                              Select(t => t.Trim()).
+                                              Where(t => !string.IsNullOrEmpty(t)).ToList();
+            Console.WriteLine("The Nodetypes expected from the UI are:");
+            Console.WriteLine(string.Join(", ", actualNodeTypes));
+
+            CollectionAssert.AreEquivalent(normalizeexpectedNodeTypes, actualNodeTypes, "Node type dropdown values do not match system suite JSON");
+
+            await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
+            await addnode.NodeTypeSP2023.ClickAsync();
             await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
+
+            await addnode.AddNodeAddButton.WaitForAsync();
+            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
+            await addnode.AddNodeAddButton.ClickAsync();
+            await addnode.CreaterProjectTemplatePage.WaitForAsync();
+            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
+            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+
+            int afterCount = await Page.Locator("tbody tr").CountAsync();
+            Assert.That(afterCount, Is.EqualTo(beforecount));
+
+            await Expect(addnode.AddedNodeRow).ToBeVisibleAsync();
+
+            var anode = await addnode.AddedNodeRow.First.AllInnerTextsAsync();
+            anode.Select(t => t.Trim())
+                 .Select(t=>t.Replace("  ","")).ToList();
+            Console.WriteLine(string.Join("," ,anode));
+
+            var values = new List<string> { "You have no nodes." };
+            CollectionAssert.AreNotEquivalent(anode, values, "Values match");
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_NewlyAdded_NodeRows.png"
+            });
+
         }
 
         [Test]
@@ -769,11 +853,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             var suite = SystemSuiteLoader.Load("2023.json");
             var expectedNodeTypes = suite.roles.Select(n => n.nodeType).ToList();
-            //Console.WriteLine(expectedNodeTypes);
-
             var normalizeexpectedNodeTypes = expectedNodeTypes.Select(t => t.Replace("2023-", "").Trim()).ToList();
             Console.WriteLine("The Nodetypes expected from the Json file are:");
-            Console.WriteLine(normalizeexpectedNodeTypes);
             Console.WriteLine(string.Join(", ", normalizeexpectedNodeTypes));
 
             await addnode.NodeTypeTextBox.ClickAsync();
@@ -782,16 +863,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
 
 
-            var actualNodeTypes = await addnode.NodeTypeDropDownList.AllInnerTextsAsync();
-
+            var actualNodeTypes = await addnode.NodeList.AllInnerTextsAsync();
             actualNodeTypes = actualNodeTypes.Select(t=>t.Replace("2023","")).
+                                              Select(t => t.Trim()).
                                               Where(t=> !string.IsNullOrEmpty(t)).ToList();
             Console.WriteLine("The Nodetypes expected from the UI are:");
-            Console.WriteLine(actualNodeTypes);
             Console.WriteLine(string.Join(", ", actualNodeTypes));
 
             CollectionAssert.AreEquivalent(normalizeexpectedNodeTypes, actualNodeTypes,"Node type dropdown values do not match system suite JSON");
-
 
         }
     }

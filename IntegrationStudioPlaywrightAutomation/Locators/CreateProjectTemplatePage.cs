@@ -62,7 +62,7 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator HostingRegionListBox => Page.Locator("//ul[contains(@class,'MuiMenu-list css-r8u8y9')]");
         public ILocator HostingRegions => Page.Locator("[role='option']").First;
 
-        public ILocator NodeConfigSubTitle => Page.Locator("//div[contains(text(),'button to add nodes')]");
+        public ILocator NodeConfigSubTitle => Page.Locator("//div[contains(text(),'Configure a node for each application that runs in this project template')]");
         public ILocator NodeConfigText => Page.Locator("//div[text()='Node configuration']");
         public ILocator AddNodeButton => Page.Locator("#add-another-node");
         public ILocator NodeConfigPageTableHeader => Page.Locator("#node-configure-table-head");
@@ -82,7 +82,8 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator AddNodeTitle => Page.Locator("//h2[text()='Add a node']");
         public ILocator AddNodeDialogContent => Page.Locator("#alert-dialog-content");
         public ILocator NodeNameTextBox => Page.Locator("#node-name-field");
-        //public ILocator NodeNameText => Page.Locator("");
+        public ILocator NodeNameTextBoxEdit => Page.Locator("[aria-labelledby='Node name']");
+
         public ILocator NodeTypeTextBox => Page.Locator("#grid-tree-area");
         public ILocator NodeTypeText => Page.Locator("//span[text()='Node type']");
         public ILocator NodeTypeDropDownIcon => Page.Locator("[data-testid='ArrowDropDownIcon']").First;
@@ -103,12 +104,9 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator MachineTypeToolTipRam => Page.Locator("//div[contains(text(),'Ram:')]");
 
         public ILocator AddNodeCancelButton => Page.Locator("#cancel-add-btn");
-        public ILocator AddNodeAddButton => Page.Locator("#add-form-btn");
+        public ILocator AddNodeAddButton => Page.Locator("//uilab-button[@type='submit']");
 
-        public ILocator AddNodeRows => Page.Locator("//tr[@class='MuiTableRow-root node-table-row css-axz6ke']");
-        public ILocator AddNodeRowNodeName => Page.Locator(".mdc-text-field__input");
-        public ILocator AddNodeRowNodeType => Page.Locator(".nodeType");
-        public ILocator AddNodeRowMachineType => Page.Locator("//div[@role='combobox']");
+        public ILocator AddedNodeRow => Page.Locator("//tr[@class='MuiTableRow-root node-table-row css-axz6ke']");
         public ILocator AddNodeEnableMultiNIcs => Page.Locator(".mdc-checkbox__native-control");
         public ILocator AddNodeRowDeleteButton => Page.Locator(".icon-opacity06 ");
 
@@ -123,8 +121,9 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator CreateGalaxyRepoTextBox => Page.Locator("[value='TestGalaxy']");
 
         public ILocator NodeTypeSP2023 => Page.Locator("//div[@class='MuiTreeItem-label' and text()='SystemPlatform']");
-        public ILocator NodeList => Page.Locator("[role='treeitem']");
+        public ILocator NodeList => Page.Locator("li[role='treeitem']:not([aria-expanded])");
 
+        
 
     }
 }
