@@ -957,8 +957,26 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
 
             await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
-            addnodetypes.Add("2023-SystemPlatform");
+
+            var selectedNodeType = (await addnode.NodeTypeSP2023.InnerTextAsync()).Trim();
+            selectedNodeType = $"2023-{selectedNodeType}";
+
             await addnode.NodeTypeSP2023.ClickAsync();
+            addnodetypes.Add(selectedNodeType);
+
+            Console.WriteLine("Node type added:");
+            foreach (var nt in addnodetypes)
+            {
+                Console.WriteLine($"[{nt}] length={nt.Length}");
+            }
+
+            var suite = SystemSuiteLoader.Load("2023.json");
+            Console.WriteLine("NODE TYPES FROM JSON:");
+            foreach (var r in suite.roles)
+            {
+                Console.WriteLine($"[{r.nodeType}] length={r.nodeType.Length}");
+            }
+
             await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
             await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
             await addnode.AddNodeAddButton.ClickAsync();
@@ -969,12 +987,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.LaunchParameterPage).ToBeVisibleAsync();
             await Expect(addnode.CreateProjectTemplateHeader).ToBeVisibleAsync();
 
-            var suite = SystemSuiteLoader.Load("2023.json");
+            
             var expectedLaunchParamters = suite.roles.Where(r => addnodetypes.Contains(r.nodeType))
                                                .Where(r => r.launchParameters != null)
                                                .SelectMany(r => r.launchParameters)
-                                               .Select(p => p.name)
+                                               .Select(lp => lp.name.Trim())
                                                .Distinct()
+                                               .OrderBy(x=>x)
                                                .ToList();
             Console.WriteLine(string.Join(", ", expectedLaunchParamters));
 
@@ -982,9 +1001,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             actualLaunchParameters = actualLaunchParameters.Select(p => p.Trim()).ToList();
             Console.WriteLine(string.Join(", ", actualLaunchParameters));
 
-            CollectionAssert.IsSubsetOf(expectedLaunchParamters, actualLaunchParameters, "Launch parameters do not match system suite definition");
+            CollectionAssert.AreEquivalent(expectedLaunchParamters, actualLaunchParameters, "Launch parameters do not match system suite definition");
+        
         }
 
-        
     }
 }

@@ -19,7 +19,7 @@ namespace IntegrationStudioPlaywrightAutomation.Utilities.Models
 
     public class LaunchParameter
     {
-        public string name { get; set; }
+        public string parameters { get; set; }
         public bool defaultValue { get; set; }
     }
 }

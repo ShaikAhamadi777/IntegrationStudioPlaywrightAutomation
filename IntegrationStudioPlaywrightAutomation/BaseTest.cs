@@ -17,36 +17,7 @@ namespace IntegrationStudioPlaywrightAutomation
 
         public override BrowserNewContextOptions ContextOptions()
         {
-            /*var options = new BrowserNewContextOptions
-            {
-                ViewportSize = new ViewportSize
-                {
-                    Width = 1510,
-                    Height = 820
-                }
-            };
-            string role = RoleContext.Get();
-            var categories = TestContext.CurrentContext.Test.Properties["Category"] as IList;
-
-            if (categories == null || categories.Count == 0)
-                throw new Exception("No Category found. Role is required.");
-
-            //string role = categories[0].ToString();
-            string role =  categories.Contains("SystemAdmin") ? "SystemAdmin" :
-                           categories.Contains("ExternalAdmin") ? "ExternalAdmin" :
-                           categories.Contains("ProjectUser") ? "ProjectUser" :
-                           throw new Exception("No valid role category found");
-
-
-            options.StorageStatePath = role switch
-            {
-                "SystemAdmin" => "auth-systemadmin.json",
-                "ProjectUser" => "auth-projectuser.json",
-                "ExternalAdmin" => "auth-externaladmin.json",
-                _ => throw new Exception($"Unknown role: {role}")
-            };*/
-
-            //string role = RoleContext.Get();
+            
             var args = TestContext.CurrentContext.Test.Arguments;
 
             if (args == null || args.Length == 0)
