@@ -123,31 +123,43 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator NodeTypeSP2023 => Page.Locator("//div[@class='MuiTreeItem-label' and text()='SystemPlatform']");
         public ILocator NodeList => Page.Locator("li[role='treeitem']:not([aria-expanded])");
 
-        public async Task CompleteProjectTemplateInfoPageAsync(string templateName, string description, string SystemSuite, string hostingRegion)
+        public async Task ClickProjectTemplateButtonAsync()
         {
-            await ProjectTemplateAsync();
-            await ProjectTemplateDescriptionAsync();
-            await SelectSystemSuiteAsync();
-            await SelectDefaultHostingRegionAsync();
-
+            await CreateProjectTemplateButton.ClickAsync();
         }
-        public async Task ProjectTemplateAsync()
+        public async Task ClickSystemSuiteDefinitionDropdownAsync()
         {
-            await Page.CreateProjectTemplateButton.ClickAsync();
-
+            await SystemSuiteDefinitionDropDownIcon.ClickAsync();
         }
-        public async Task ProjectTemplateDescriptionAsync()
+        public async Task FillProjectTemplateNameFieldAsync(string PTName)
         {
-
+            await ProjectTemplateNameTextBoxEdit.FillAsync(PTName);
         }
-        public async Task SelectSystemSuiteAsync()
+        public async Task FillProjectTemplateDecriptionFieldAsync(string description)
         {
-
+            await DescriptionTextBoxEdit.FillAsync(description);
         }
-        public async Task SelectDefaultHostingRegionAsync()
+        public async Task ClickSystemSuiteFromSelectionPopupAsync()
         {
-
+            await SS2023.ClickAsync();
         }
+        public async Task ClickSystemSuiteOKButtonAsync()
+        {
+            await SSOkButton.ClickAsync();
+        }
+        public async Task ClickDefaultHostingRegionDropdownAsync()
+        {
+            await DefaultHostingRegionTextBox.ClickAsync();
+        }
+        public async Task ClickDefaultHostingRegionOptionAsync()
+        {
+            await HostingRegions.ClickAsync();
+        }
+        public async Task ClickProjectTemplateInfoNextBuuttonAsync()
+        {
+            await PTInfoNextButton.ClickAsync();
+        }
+
 
     }
 }
