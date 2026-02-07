@@ -25,7 +25,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(cpttitle.ProjectTemplatePage).ToBeVisibleAsync();
             await Expect(cpttitle.CreateProjectTemplateButton).ToBeVisibleAsync();
             await Expect(cpttitle.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await cpttitle.CreateProjectTemplateButton.ClickAsync();
+            //await cpttitle.CreateProjectTemplateButton.ClickAsync();
             await Expect(cpttitle.CreaterProjectTemplatePage).ToBeVisibleAsync();
             await Expect(cpttitle.CreateProjectTemplatePageTitle).ToHaveTextAsync("Create project template");
             await Expect(cpttitle.CreateprojectTemplateSubTitle).ToBeVisibleAsync();
@@ -988,20 +988,25 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await Expect(addnode.CreateProjectTemplateHeader).ToBeVisibleAsync();
 
             
-            var expectedLaunchParamters = suite.roles.Where(r => addnodetypes.Contains(r.nodeType))
-                                               .Where(r => r.launchParameters != null)
-                                               .SelectMany(r => r.launchParameters)
-                                               .Select(lp => lp.name.Trim())
+            var expectedLaunchParameters = suite.roles.Where(r => addnodetypes.Contains(r.nodeType))
+                                               .Where(r => r.parameters != null)
+                                               .SelectMany(r => r.parameters)
+                                               .Select(p => p.label.Trim())
                                                .Distinct()
                                                .OrderBy(x=>x)
                                                .ToList();
-            Console.WriteLine(string.Join(", ", expectedLaunchParamters));
+
+
+            Console.WriteLine("\nFinal expected launch parameters:");
+            Console.WriteLine(string.Join(", ", expectedLaunchParameters));
 
             var actualLaunchParameters = await Page.Locator(".node-param-field-label").AllInnerTextsAsync();
             actualLaunchParameters = actualLaunchParameters.Select(p => p.Trim()).ToList();
+
+            Console.WriteLine("\nFinal actual launch parameters:");
             Console.WriteLine(string.Join(", ", actualLaunchParameters));
 
-            CollectionAssert.AreEquivalent(expectedLaunchParamters, actualLaunchParameters, "Launch parameters do not match system suite definition");
+            CollectionAssert.AreEquivalent(expectedLaunchParameters, actualLaunchParameters, "Launch parameters do not match system suite definition");
         
         }
 

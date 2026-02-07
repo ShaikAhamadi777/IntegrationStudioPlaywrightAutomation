@@ -123,7 +123,31 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator NodeTypeSP2023 => Page.Locator("//div[@class='MuiTreeItem-label' and text()='SystemPlatform']");
         public ILocator NodeList => Page.Locator("li[role='treeitem']:not([aria-expanded])");
 
-        
+        public async Task CompleteProjectTemplateInfoPageAsync(string templateName, string description, string SystemSuite, string hostingRegion)
+        {
+            await ProjectTemplateAsync();
+            await ProjectTemplateDescriptionAsync();
+            await SelectSystemSuiteAsync();
+            await SelectDefaultHostingRegionAsync();
+
+        }
+        public async Task ProjectTemplateAsync()
+        {
+            await Page.CreateProjectTemplateButton.ClickAsync();
+
+        }
+        public async Task ProjectTemplateDescriptionAsync()
+        {
+
+        }
+        public async Task SelectSystemSuiteAsync()
+        {
+
+        }
+        public async Task SelectDefaultHostingRegionAsync()
+        {
+
+        }
 
     }
 }

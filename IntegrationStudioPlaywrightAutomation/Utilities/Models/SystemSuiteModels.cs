@@ -14,12 +14,18 @@ namespace IntegrationStudioPlaywrightAutomation.Utilities.Models
     public class NodeDefinition
     {
         public string nodeType { get; set; }
-        public List<LaunchParameter> launchParameters { get; set; }
+        public List<LaunchParameter> parameters { get; set; }
     }
 
     public class LaunchParameter
     {
-        public string parameters { get; set; }
-        public bool defaultValue { get; set; }
+        public string name { get; set; }
+        public string label { get; set; }    
+        public string @default { get; set; }
+        public string userDefined { get; set; }
+        public string parameterType { get; set; }
+        public string description { get; set; }
+        public string value { get; set; }
+
     }
 }
