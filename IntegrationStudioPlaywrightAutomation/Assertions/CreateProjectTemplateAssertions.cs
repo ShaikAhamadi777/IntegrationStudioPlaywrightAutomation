@@ -79,6 +79,10 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.SSCancelButton).ToBeVisibleAsync();
             await Expect(page.SSCancelButton).ToBeEnabledAsync();
         }
+        public static async Task VerifySystemSuiteSelectedFromPopUpAsync(CreateProjectTemplatePage page)
+        {
+            await page.SS2023Selected.IsVisibleAsync();
+        }
         public static async Task VerifyDefaultHostingRegionDropdownList(CreateProjectTemplatePage page)
         {
             await Expect(page.HostingRegionListBox).ToBeVisibleAsync();
@@ -117,5 +121,82 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.NodeConfigPageNextButton).ToBeVisibleAsync();
             await Expect(page.NodeConfigPageNextButton).ToBeEnabledAsync();
         }
+        public static async Task VerifyNodeConfigurationPageEmptyNodes(CreateProjectTemplatePage page)
+        {
+            var emptyrows = await page.NodeConfigPageTableRows.InnerTextAsync();
+            Assert.That(emptyrows, Is.EqualTo("You have no nodes."));
+        }
+        public static async Task VerifyAddNodePopupDialogContent(CreateProjectTemplatePage page)
+        {
+            await Expect(page.AddNodeDialog).ToBeVisibleAsync();
+            await Expect(page.AddNodeDialogContent).ToBeVisibleAsync();
+            await Expect(page.AddNodeTitle).ToBeVisibleAsync();
+        }
+        public static async Task VerifyAddNodePopupNodeNameTextBox(CreateProjectTemplatePage page)
+        {
+            await Expect(page.NodeNameTextBox).ToBeVisibleAsync();
+            await Expect(page.NodeNameTextBox).ToBeEnabledAsync();
+            await Expect(page.NodeNameTextBoxEdit).ToBeEditableAsync();
+        }
+        public static async Task VerifyAddNodePopupNodeTypeTextBox(CreateProjectTemplatePage page)
+        {
+            await Expect(page.NodeTypeTextBox).ToBeVisibleAsync();
+            await Expect(page.NodeTypeText).ToBeVisibleAsync();
+            await Expect(page.NodeTypeDropDownIcon).ToBeVisibleAsync();
+            await Expect(page.NodeTypeText).ToBeEditableAsync();
+        }
+        public static async Task VerifyAddNodePopupMachineTypeToolTip(CreateProjectTemplatePage page)
+        {
+            await Expect(page.MachineTypeToolTip).ToBeVisibleAsync();
+            await page.MachineTypeToolTip.HoverAsync();
+            await page.MachineTypeToolTip.WaitForAsync();
+            await page.MachineTypeToolTipBox.WaitForAsync();
+            await Expect(page.MachineTypeToolTipBox).ToBeVisibleAsync();
+        }
+        public static async Task VerifyAddNodePopupMachineTypeTextBox(CreateProjectTemplatePage page)
+        {
+            await Expect(page.MachineTypeTextBox).ToBeVisibleAsync();
+            await Expect(page.MachineTypeText).ToBeVisibleAsync();
+            await Expect(page.MachineTypeSize).ToBeVisibleAsync();
+            await Expect(page.MachineTypeDropDown).ToBeVisibleAsync();
+            await Expect(page.MachineTypeDropDown).ToBeEnabledAsync();
+        }
+        public static async Task VerifyAddNodePopupMachineTypeToolTipBox(CreateProjectTemplatePage page)
+        {
+            await Expect(page.MachineTypeToolTipCores).ToBeVisibleAsync();
+            await Expect(page.MachineTypeToolTipRam).ToBeVisibleAsync();
+        }
+        public static async Task VerifyAddNodePopupNICsCheckBox(CreateProjectTemplatePage page)
+        {
+            await Expect(page.AddNodeNICsCheckBox).ToBeVisibleAsync();
+            await Expect(page.AddNodeNICsCheckBox).ToBeCheckedAsync();
+            await Expect(page.EnableMultiNICsText).ToBeVisibleAsync();
+        }
+        public static async Task VerifyAddNodePopupButtons(CreateProjectTemplatePage page)
+        {
+            await Expect(page.AddNodeCancelButton).ToBeVisibleAsync();
+            await Expect(page.AddNodeCancelButton).ToBeEnabledAsync();
+            await Expect(page.AddNodeAddButton).ToBeVisibleAsync();
+            await Expect(page.AddNodeAddButton).ToBeEnabledAsync();
+        }
+        public static async Task VerifyAddNodePopupNodeTypeList(CreateProjectTemplatePage page)
+        {
+            await Expect(page.NodeTypeDropDownList).ToBeVisibleAsync();
+        }
+        public static async Task VerifyAddNodePopupMachineTypeDropDownList(CreateProjectTemplatePage page)
+        {
+            await page.MachineTypeDropDownList.WaitForAsync();
+            await Expect(page.MachineTypeDropDownList).ToBeVisibleAsync();
+        }
+        public static async Task VerifyLaunchParametersPage(CreateProjectTemplatePage page)
+        {
+            await Expect(page.LaunchParameterPage).ToBeVisibleAsync();
+            await Expect(page.CreateProjectTemplateHeader).ToBeVisibleAsync();
+            await Expect(page.CreateProjectTemplateHeader).ToContainTextAsync("Specify the default values for all runtime parameters for your project template's applications.\r\n");
+            await Expect(page.LaunchParametersText).ToBeVisibleAsync();
+            await Expect(page.LaunchParameterNodeBlock).ToBeVisibleAsync();
+            await Expect(page.LaunchParameterNodeBody).ToBeVisibleAsync();
+        }
+
     }
 }

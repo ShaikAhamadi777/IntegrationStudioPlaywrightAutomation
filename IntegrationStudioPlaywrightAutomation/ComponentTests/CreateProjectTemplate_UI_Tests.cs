@@ -174,11 +174,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await nodeconfigfields.CreaterProjectTemplatePage.WaitForAsync();
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(nodeconfigfields);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(nodeconfigfields);
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(nodeconfigfields);
-
-            var emptyrows = await nodeconfigfields.NodeConfigPageTableRows.InnerTextAsync();
-            Assert.That(emptyrows, Is.EqualTo("You have no nodes."));
-  
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageEmptyNodes(nodeconfigfields);
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(nodeconfigfields);
             await nodeconfigfields.CreaterProjectTemplatePage.ScreenshotAsync(new()
             {
@@ -192,81 +190,48 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenAddNodeButton_ShouldValidate_AddNodePopup(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await Page.WaitForLoadStateAsync();
 
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
 
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeText).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeText).ToBeEditableAsync();
+            await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await Expect(addnode.MachineTypeToolTip).ToBeVisibleAsync();
-            await addnode.MachineTypeToolTip.HoverAsync();
-            await addnode.MachineTypeToolTip.WaitForAsync();
-            await addnode.MachineTypeToolTipBox.WaitForAsync();
-            await Expect(addnode.MachineTypeToolTipBox).ToBeVisibleAsync();
-
-            await Expect(addnode.MachineTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeText).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeSize).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeDropDown).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeDropDown).ToBeEnabledAsync();
-
-            await Expect(addnode.AddNodeNICsCheckBox).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeNICsCheckBox).ToBeCheckedAsync();
-            await Expect(addnode.EnableMultiNICsText).ToBeVisibleAsync();
-
-            await Expect(addnode.AddNodeCancelButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeCancelButton).ToBeEnabledAsync();
-            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeAddButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupMachineTypeToolTip(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupMachineTypeTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNICsCheckBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
 
             await addnode.AddNodeDialog.ScreenshotAsync(new()
             {
@@ -280,61 +245,52 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenAddNodePopup_ShouldContain_NodeTypeDropdownList(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await Page.WaitForLoadStateAsync();
 
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await addnode.NodeTypeTextBox.ClickAsync();
-            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+
+            await addnodeworkflow.OpenAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+
+            await addnodeworkflow.OpenAddNodePopupNodeTypeDropdownAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeList(addnode);
 
             await addnode.NodeTypeDropDownList.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_NodeTypeList.png"
             });
-
         }
 
         [Test]
@@ -343,76 +299,49 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenAddNodePopup_ShouldContain_MachineTypeDropDownlist(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await Page.WaitForLoadStateAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+            await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
-
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeText).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeText).ToBeEditableAsync();
-
-            await Expect(addnode.MachineTypeToolTip).ToBeVisibleAsync();
-
-            await Expect(addnode.MachineTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeText).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeSize).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeDropDown).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeDropDown).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupMachineTypeTextBox(addnode);
 
             var machinerecsize = await addnode.MachineTypeSize.InnerTextAsync();
             Console.WriteLine(machinerecsize);
             Assert.That(machinerecsize, Is.EqualTo("HighPerformance - Standard_DS3_v2"));
 
-            await addnode.MachineTypeTextBox.ClickAsync();
-            await addnode.MachineTypeDropDownList.WaitForAsync();
-            await Expect(addnode.MachineTypeDropDownList).ToBeVisibleAsync();
+            await addnodeworkflow.OpenAddNodePopupMachineTypeDropdownAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupMachineTypeDropDownList(addnode);
 
             await addnode.MachineTypeDropDownList.ScreenshotAsync(new()
             {
@@ -425,76 +354,48 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenAddNodePopup_ShouldContain_MachineToolTipList(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await Page.WaitForLoadStateAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+            await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeEnabledAsync();
-
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeText).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeText).ToBeEditableAsync();
-
-            await Expect(addnode.MachineTypeToolTip).ToBeVisibleAsync();
-            await addnode.MachineTypeToolTip.HoverAsync();
-            await addnode.MachineTypeToolTip.WaitForAsync();
-            await addnode.MachineTypeToolTipBox.WaitForAsync();
-            await Expect(addnode.MachineTypeToolTipBox).ToBeVisibleAsync();
-
-            await Expect(addnode.MachineTypeToolTipCores).ToBeVisibleAsync();
-            await Expect(addnode.MachineTypeToolTipRam).ToBeVisibleAsync();
-
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupMachineTypeToolTip(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupMachineTypeToolTipBox(addnode);
             await addnode.MachineTypeToolTipBox.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_MachineToolTipBox" +
                 ".png"
             });
-
         }
 
         [Test]
@@ -503,63 +404,46 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenAddNodePopup_ShouldValidateNodetypes_And_AddANode(string role)
         {
             var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await Page.WaitForLoadStateAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+            await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await addnode.NodeNameTextBox.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
 
-            await Expect(addnode.NodeNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.NodeNameTextBoxEdit.FillAsync("TestNode");
-
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await addnode.NodeTypeTextBox.ClickAsync();
-            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+            await addnodeworkflow.OpenAddNodePopupNodeTypeDropdownAsync();
+            
             await addnode.NodeTypeDropDownList.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_the_NodeTypes.png"
@@ -585,15 +469,11 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await addnode.NodeTypeSP2023.ClickAsync();
             await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
 
-            await addnode.AddNodeAddButton.WaitForAsync();
-            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
-            await addnode.AddNodeAddButton.ClickAsync();
-
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
             await Page.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_NodePage.png"
             });
-
         }
 
         [Test]
@@ -601,65 +481,49 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task OpenNodeConfigPage_ShouldContain_NodeDetails_AfterAdding_A_Node(string role)
         {
-            var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+                var addnode = new CreateProjectTemplatePage(Page);
+                var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+                await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+                await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+                await addnodeworkflow.SelectSystemSuiteAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+                await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+                await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+                await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+                await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+                await Page.WaitForLoadStateAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
-
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+            
             var beforecount = await Page.Locator("tbody tr").CountAsync();
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await addnode.NodeNameTextBox.ClickAsync();
 
-            await Expect(addnode.NodeNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.NodeNameTextBoxEdit.FillAsync("TestNode");
+            await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await addnode.NodeTypeTextBox.ClickAsync();
-            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeTypeDropdownAsync();
+
             await addnode.NodeTypeDropDownList.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_the_NodeTypes.png"
@@ -685,12 +549,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await addnode.NodeTypeSP2023.ClickAsync();
             await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
 
-            await addnode.AddNodeAddButton.WaitForAsync();
-            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
-            await addnode.AddNodeAddButton.ClickAsync();
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+            await addnodeworkflow.CloseAddNodePopupAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
 
             int afterCount = await Page.Locator("tbody tr").CountAsync();
             Assert.That(afterCount, Is.EqualTo(beforecount));
@@ -716,85 +577,61 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task OpenLaunchParametersPage_ShouldContain_AllFileds(string role)
         {
-            var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+                var addnode = new CreateProjectTemplatePage(Page);
+                var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+                await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+                await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+                await addnodeworkflow.SelectSystemSuiteAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+                await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+                await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+                await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+                await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+                await Page.WaitForLoadStateAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
 
-            var beforecount = await Page.Locator("tbody tr").CountAsync();
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await addnode.NodeNameTextBox.ClickAsync();
+                var beforecount = await Page.Locator("tbody tr").CountAsync();
+                await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await Expect(addnode.NodeNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.NodeNameTextBoxEdit.FillAsync("TestNode");
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+                await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+                await addnodeworkflow.OpenAddNodePopupNodeTypeDropdownAsync();
 
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await addnode.NodeTypeTextBox.ClickAsync();
-            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
 
             await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
             await addnode.NodeTypeSP2023.ClickAsync();
             await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
-            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
-            await addnode.AddNodeAddButton.ClickAsync();
 
-            await Expect(addnode.NodeConfigPageNextButton).ToBeVisibleAsync();
-            await addnode.NodeConfigPageNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+            await addnodeworkflow.CloseAddNodePopupAsync();
 
-            await Expect(addnode.LaunchParameterPage).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateHeader).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateHeader).ToContainTextAsync("Specify the default values for all runtime parameters for your project template's applications.\r\n");
-            await Expect(addnode.LaunchParametersText).ToBeVisibleAsync();
-            await Expect(addnode.LaunchParameterNodeBlock).ToBeVisibleAsync();
-            await Expect(addnode.LaunchParameterNodeBody).ToBeVisibleAsync();
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(addnode);
+            await addnodeworkflow.OpenLaunchParametersPageAsync();
 
-            await Expect(addnode.NodeConfigPagePreviousButton).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigPageNextButton).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigPageCancelButton).ToBeVisibleAsync();
+            await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(addnode);
 
             await Page.ScreenshotAsync(new()
             {
@@ -808,67 +645,49 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task OpenLaunchParametersPage_ShouldContain_LaunchParameters(string role)
         {
-            var addnode = new CreateProjectTemplatePage(Page);
-            await Expect(addnode.CreateProjectTemplateButton).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateButton).ToBeEnabledAsync();
-            await addnode.CreateProjectTemplateButton.ClickAsync();
+                var addnode = new CreateProjectTemplatePage(Page);
+                var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+                await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateInformationPage).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBox).ToBeVisibleAsync();
-            await Expect(addnode.ProjectTemplateNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.ProjectTemplateNameTextBoxEdit.FillAsync("Test Template");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+                await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
 
-            await Expect(addnode.DescriptionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeVisibleAsync();
-            await Expect(addnode.DescriptionTextBoxEdit).ToBeEditableAsync();
-            await addnode.DescriptionTextBoxEdit.FillAsync("For Automation testing purpose");
+                await addnodeworkflow.SelectSystemSuiteAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
 
-            await addnode.SystemSuiteDefinitionDropDownIcon.ClickAsync();
-            await Expect(addnode.SystemSuiteSelectionDialog).ToBeVisibleAsync();
-            await Expect(addnode.SS2023).ToBeVisibleAsync();
-            await addnode.SS2023.ClickAsync();
-            await addnode.SS2023Selected.IsVisibleAsync();
-            await Expect(addnode.SSOkButton).ToBeVisibleAsync();
-            await addnode.SSOkButton.ClickAsync();
+                await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
 
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionTextBox).ToBeEditableAsync();
-            await Expect(addnode.DefaultHostingRegionHelperText).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeVisibleAsync();
-            await Expect(addnode.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
-            await addnode.DefaultHostingRegionTextBox.ClickAsync();
-            await Expect(addnode.HostingRegionListBox).ToBeVisibleAsync();
-            await addnode.HostingRegions.ClickAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+                await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+                await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.PTInfoNextButton).ToBeEnabledAsync();
-            await addnode.PTInfoNextButton.ClickAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
+                await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+                await Page.WaitForLoadStateAsync();
 
-            await addnode.CreaterProjectTemplatePage.WaitForAsync();
-            await Expect(addnode.CreaterProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeConfigSubTitle).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeButton).ToBeEnabledAsync();
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
 
             var beforecount = await Page.Locator("tbody tr").CountAsync();
-            await addnode.AddNodeButton.ClickAsync();
-            await Expect(addnode.AddNodeDialog).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeDialogContent).ToBeVisibleAsync();
-            await Expect(addnode.AddNodeTitle).ToBeVisibleAsync();
-            await Expect(addnode.NodeNameTextBox).ToBeVisibleAsync();
-            await addnode.NodeNameTextBox.ClickAsync();
+            await addnodeworkflow.OpenAddNodePopupAsync();
 
-            await Expect(addnode.NodeNameTextBoxEdit).ToBeEditableAsync();
-            await addnode.NodeNameTextBoxEdit.FillAsync("TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeTypeDropdownAsync();
 
             var addnodetypes = new List<string>();
-
-            await Expect(addnode.NodeTypeTextBox).ToBeVisibleAsync();
-            await Expect(addnode.NodeTypeDropDownIcon).ToBeVisibleAsync();
-            await addnode.NodeTypeTextBox.ClickAsync();
-            await Expect(addnode.NodeTypeDropDownList).ToBeVisibleAsync();
 
             await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
 
@@ -892,15 +711,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
 
             await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
-            await Expect(addnode.AddNodeAddButton).ToBeVisibleAsync();
-            await addnode.AddNodeAddButton.ClickAsync();
 
-            await Expect(addnode.NodeConfigPageNextButton).ToBeVisibleAsync();
-            await addnode.NodeConfigPageNextButton.ClickAsync();
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+            await addnodeworkflow.CloseAddNodePopupAsync();
 
-            await Expect(addnode.LaunchParameterPage).ToBeVisibleAsync();
-            await Expect(addnode.CreateProjectTemplateHeader).ToBeVisibleAsync();
-
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(addnode);
+            await addnodeworkflow.OpenLaunchParametersPageAsync();
+            await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
             
             var expectedLaunchParameters = suite.roles.Where(r => addnodetypes.Contains(r.nodeType))
                                                .Where(r => r.parameters != null)
@@ -909,7 +726,6 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                                                .Distinct()
                                                .OrderBy(x=>x)
                                                .ToList();
-
 
             Console.WriteLine("\nFinal expected launch parameters:");
             Console.WriteLine(string.Join(", ", expectedLaunchParameters));
@@ -921,8 +737,6 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             Console.WriteLine(string.Join(", ", actualLaunchParameters));
 
             CollectionAssert.AreEquivalent(expectedLaunchParameters, actualLaunchParameters, "Launch parameters do not match system suite definition");
-        
         }
-
     }
 }

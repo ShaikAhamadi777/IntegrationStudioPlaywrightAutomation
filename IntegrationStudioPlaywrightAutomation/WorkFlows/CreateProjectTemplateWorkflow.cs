@@ -54,6 +54,30 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
         {
             await Page.ClickProjectTemplateInfoNextBuuttonAsync();
         }
+        public async Task OpenAddNodePopupAsync()
+        {
+            await Page.ClickAddNodeButtonAsync();
+        }
+        public async Task OpenAddNodePopupNodeTypeDropdownAsync()
+        {
+            await Page.ClickAddNodeTypeBoxAsync();
+        }
+        public async Task OpenAddNodePopupMachineTypeDropdownAsync()
+        {
+            await Page.ClickAddNodeMachineTypeBoxAsync();
+        }
+        public async Task OpenAddNodePopupNodeNameAsync(string nodename)
+        {
+            await Page.ClickAndFillNodeNameAsync(nodename);
+        }
+        public async Task CloseAddNodePopupAsync()
+        {
+            await Page.ClickAddNodeAddButtonAsync();
+        }
+        public async Task OpenLaunchParametersPageAsync()
+        {
+            await Page.ClickNodeConfigNextButtonAsync();
+        }
 
 
         

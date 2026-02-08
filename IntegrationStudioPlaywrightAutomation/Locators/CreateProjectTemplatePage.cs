@@ -159,6 +159,31 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         {
             await PTInfoNextButton.ClickAsync();
         }
+        public async Task ClickAddNodeButtonAsync()
+        {
+            await AddNodeButton.ClickAsync();
+        }
+        public async Task ClickAddNodeTypeBoxAsync()
+        {
+            await NodeTypeTextBox.ClickAsync();
+        }
+        public async Task ClickAddNodeMachineTypeBoxAsync()
+        {
+            await MachineTypeTextBox.ClickAsync();
+        }
+        public async Task ClickAndFillNodeNameAsync(string nodename)
+        {
+            await NodeNameTextBox.ClickAsync();
+            await NodeNameTextBoxEdit.FillAsync(nodename);
+        }
+        public async Task ClickAddNodeAddButtonAsync()
+        {
+            await AddNodeAddButton.ClickAsync();
+        }
+        public async Task ClickNodeConfigNextButtonAsync()
+        {
+            await NodeConfigPageNextButton.ClickAsync();
+        }
 
 
     }

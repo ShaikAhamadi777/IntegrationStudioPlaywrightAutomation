@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\createprojecttemplate_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\assertions\\createprojecttemplateassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\assertions\\createprojecttemplateassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\workflows\\createprojecttemplateworkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\workflows\\createprojecttemplateworkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\assertions\\createprojecttemplateassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\assertions\\createprojecttemplateassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\createprojecttemplatepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,26 +50,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CreateProjectTemplateAssertions.cs",
               "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
               "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAIwGkAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAIwMYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-07T10:40:18.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CreateProjectTemplateWorkflow.cs",
               "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
               "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACgAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAEgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-06T18:37:31.447Z",
               "EditorCaption": ""
@@ -82,7 +82,7 @@
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
               "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAALUAAABsAAAAAAAAAA==",
+              "ViewState": "AgIAAHwCAAAAAAAAAAAIwNgCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-23T05:55:49.155Z",
               "EditorCaption": ""
@@ -95,7 +95,7 @@
               "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
               "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
               "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAIwJ8AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAIwLgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-23T05:56:31.912Z",
               "EditorCaption": ""
