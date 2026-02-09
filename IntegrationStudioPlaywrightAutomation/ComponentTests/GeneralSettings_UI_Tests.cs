@@ -6,6 +6,8 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using IntegrationStudioPlaywrightAutomation.Locators;
+using IntegrationStudioPlaywrightAutomation.WorkFlows;
+using IntegrationStudioPlaywrightAutomation.Assertions;
 
 namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
@@ -17,6 +19,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenGeneralSettingsPage(string role)
         {
             var general = new GeneralSettingsPage(Page);
+            var generalworkflow = new GeneralSettingsWorkflow(Page);
 
             //Click on the general option from the LHS Menu
             await Expect(general.LHSMenu).ToBeVisibleAsync();

@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
+  "WorkspaceRootPath": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\createprojecttemplate_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\createprojecttemplate_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\componenttests\\projecttemplates_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\componenttests\\projecttemplates_ui_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\workflows\\createprojecttemplateworkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\workflows\\createprojecttemplateworkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\projecttemplatespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\projecttemplatespage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\assertions\\createprojecttemplateassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\assertions\\createprojecttemplateassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\assertions\\projecttemplatesassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\assertions\\projecttemplatesassertions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\dell\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\locators\\createprojecttemplatepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\locators\\createprojecttemplatepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|c:\\users\\shaik.ahamadi\\source\\repos\\integrationstudioplaywrightautomation\\integrationstudioplaywrightautomation\\workflows\\projecttemplatesworkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6EEFE30-D40A-470D-A0E9-243719541027}|IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation.csproj|solutionrelative:integrationstudioplaywrightautomation\\workflows\\projecttemplatesworkflow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,12 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -45,60 +41,60 @@
               "Name": "ST:130:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreateProjectTemplateAssertions.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Assertions\\CreateProjectTemplateAssertions.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAIwMYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-07T10:40:18.051Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CreateProjectTemplateWorkflow.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\WorkFlows\\CreateProjectTemplateWorkflow.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAEgAAAAwAAAAAAAAAA==",
+              "Title": "ProjectTemplatesPage.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\ProjectTemplatesPage.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAHAAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T18:37:31.447Z",
+              "WhenOpened": "2026-02-09T12:07:23.188Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CreateProjectTemplate_UI_Tests.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\CreateProjectTemplate_UI_Tests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "Title": "ProjectTemplates_UI_Tests.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\ComponentTests\\ProjectTemplates_UI_Tests.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAFMAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-23T05:55:49.155Z",
+              "WhenOpened": "2026-02-09T10:40:05.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectTemplatesAssertions.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Assertions\\ProjectTemplatesAssertions.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Assertions\\ProjectTemplatesAssertions.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Assertions\\ProjectTemplatesAssertions.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Assertions\\ProjectTemplatesAssertions.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-09T10:41:19.179Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CreateProjectTemplatePage.cs",
-              "DocumentMoniker": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
-              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
-              "ToolTip": "C:\\Users\\dell\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
-              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\Locators\\CreateProjectTemplatePage.cs",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAIwLgAAAASAAAAAAAAAA==",
+              "Title": "ProjectTemplatesWorkflow.cs",
+              "DocumentMoniker": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\WorkFlows\\ProjectTemplatesWorkflow.cs",
+              "RelativeDocumentMoniker": "IntegrationStudioPlaywrightAutomation\\WorkFlows\\ProjectTemplatesWorkflow.cs",
+              "ToolTip": "C:\\Users\\Shaik.Ahamadi\\source\\repos\\IntegrationStudioPlaywrightAutomation\\IntegrationStudioPlaywrightAutomation\\WorkFlows\\ProjectTemplatesWorkflow.cs",
+              "RelativeToolTip": "IntegrationStudioPlaywrightAutomation\\WorkFlows\\ProjectTemplatesWorkflow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-23T05:56:31.912Z",
+              "WhenOpened": "2026-02-09T10:41:01.648Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             }
           ]
         }

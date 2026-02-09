@@ -108,6 +108,10 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator ThreeDotMenuDelete => Page.Locator("//span[contains(text(),'Delete')]");
         public ILocator ProjectTemplateEdit => Page.Locator("//div[text()='Edit project template']");
 
+        public async Task ClickCollapseButtonInLHSMenu()
+        {
+            await CollapseButtonIcon.ClickAsync();
+        }
 
     }
 }

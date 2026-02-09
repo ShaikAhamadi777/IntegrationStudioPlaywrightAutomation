@@ -8,6 +8,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using IntegrationStudioPlaywrightAutomation.Locators;
+using IntegrationStudioPlaywrightAutomation.WorkFlows;
+using IntegrationStudioPlaywrightAutomation.Assertions;
 
 namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 {
@@ -21,33 +23,24 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenProjectTemplatePage_ShouldContain_LHSMenu_ForAdmins(string role)
         {
             var projectadminlhsmenu = new ProjectTemplatesPage(Page);
+            var projectadminlhsmenuworkflow = new ProjectTemplatesWorkflow(Page);
 
-            await Expect(projectadminlhsmenu.ProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.LHSMenu).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.ProjectTemplates).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.SystemSuites).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.GlobalRDPRules).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.General).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeVisibleAsync();
-            await projectadminlhsmenu.LHSMenu.WaitForAsync();
+            await ProjectTemplatesAssertions.VerifyLHSMenuForProjectAdmin(projectadminlhsmenu);
             await projectadminlhsmenu.LHSMenu.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_LHSMenu_For_Admins.png"
             });
 
-            //Click on the collapse button and check for the functionality
-            await projectadminlhsmenu.CollapseButtonIcon.ClickAsync();
-            await projectadminlhsmenu.CollapseButtonIcon.WaitForAsync();
-            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeHiddenAsync();
+            await projectadminlhsmenuworkflow.CloseOrOpenLHSMenuAsync();
+            await ProjectTemplatesAssertions.VerifyCollapseButtonContentHidden(projectadminlhsmenu);
+
             await projectadminlhsmenu.LHSMenu.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_Collapsed_LHSMenu_ForAdmins.png"
             });
 
-            //Click on the expand button
-            await projectadminlhsmenu.CollapseButtonIcon.ClickAsync();
-            await projectadminlhsmenu.LHSMenu.WaitForAsync();
-            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeVisibleAsync();
+            await projectadminlhsmenuworkflow.CloseOrOpenLHSMenuAsync();
+            await ProjectTemplatesAssertions.VerifyCollapseButtonContentVisible(projectadminlhsmenu);
         }
 
         [Test]
@@ -56,33 +49,26 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenProjectTemplatePage_ShouldContain_LHSMenu_ForProjectUser(string role)
         {
             var projectadminlhsmenu = new ProjectTemplatesPage(Page);
+            var projectadminlhsmenuworkflow = new ProjectTemplatesWorkflow(Page);
 
-            await Expect(projectadminlhsmenu.ProjectTemplatePage).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.LHSMenu).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.ProjectTemplates).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.SystemSuites).ToBeHiddenAsync();
-            await Expect(projectadminlhsmenu.GlobalRDPRules).ToBeHiddenAsync();
-            await Expect(projectadminlhsmenu.General).ToBeVisibleAsync();
-            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeVisibleAsync();
-            await projectadminlhsmenu.LHSMenu.WaitForAsync();
+            await ProjectTemplatesAssertions.VerifyLHSMenuForProjectUser(projectadminlhsmenu);
             await projectadminlhsmenu.LHSMenu.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_LHSMenu_For_ProjectUser.png"
             });
 
             //Click on the collapse button and check for the functionality
-            await projectadminlhsmenu.CollapseButtonIcon.ClickAsync();
-            await projectadminlhsmenu.CollapseButtonIcon.WaitForAsync();
-            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeHiddenAsync();
+            await projectadminlhsmenuworkflow.CloseOrOpenLHSMenuAsync();
+            await ProjectTemplatesAssertions.VerifyCollapseButtonContentHidden(projectadminlhsmenu);
+
             await projectadminlhsmenu.LHSMenu.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_Collapsed_LHSMenu_ForProjectUser.png"
             });
 
             //Click on the expand button
-            await projectadminlhsmenu.CollapseButtonIcon.ClickAsync();
-            await projectadminlhsmenu.LHSMenu.WaitForAsync();
-            await Expect(projectadminlhsmenu.CollapseButtonContent).ToBeVisibleAsync();
+            await projectadminlhsmenuworkflow.CloseOrOpenLHSMenuAsync();
+            await ProjectTemplatesAssertions.VerifyCollapseButtonContentVisible(projectadminlhsmenu);
         }
 
         [Test]
@@ -92,8 +78,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         {
             var pttitle = new ProjectTemplatesPage(Page);
 
-            await Expect(pttitle.ProjectTemplatePage).ToBeVisibleAsync();
-            await pttitle.ProjectTemplateTitle.IsVisibleAsync();
+            await ProjectTemplatesAssertions.VerifyProjectTemplatePageTitleVisible(pttitle);
             var title = await pttitle.ProjectTemplateTitle.InnerTextAsync();
             Console.WriteLine($"The Page title is :{title}");
             Assert.AreEqual(title, "Project templates");

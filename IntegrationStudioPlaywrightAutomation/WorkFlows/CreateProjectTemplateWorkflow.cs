@@ -17,7 +17,6 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
             Page = new CreateProjectTemplatePage(page);
         }
 
-
         public async Task OpenProjectTemplatePageAsync()
         {
             await Page.ClickProjectTemplateButtonAsync();
