@@ -1,4 +1,7 @@
-﻿using IntegrationStudioPlaywrightAutomation.Locators;
+﻿using IntegrationStudioPlaywrightAutomation.Assertions;
+using IntegrationStudioPlaywrightAutomation.Locators;
+using IntegrationStudioPlaywrightAutomation.Utilities.Models;
+using IntegrationStudioPlaywrightAutomation.WorkFlows;
 using Microsoft.Playwright;
 using System;
 using System.Collections.Generic;
@@ -20,24 +23,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         {
 
             var systemsuites = new SystemSuitesPage(Page);
+            var systemsuitesworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(systemsuites.LHSMenu).ToBeVisibleAsync();
-            await Expect(systemsuites.SystemSuites).ToBeVisibleAsync();
-
-            //Click on the System suites button
-            await systemsuites.SystemSuites.WaitForAsync();
-            await systemsuites.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(systemsuites.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(systemsuites.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(systemsuites.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(systemsuites.ManageSystemsuites).ToBeVisibleAsync();
-            await systemsuites.ManageSystemsuites.ClickAsync();
-
-            await systemsuites.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(systemsuites.ManageSystemSuitesPage).ToBeVisibleAsync();
-
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(systemsuites);
+            await systemsuitesworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(systemsuites);
+            await systemsuitesworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(systemsuites);
             await systemsuites.ManageSystemSuitesPage.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuitesPage_ForSystemAndExternalAdmins.png"
@@ -49,11 +41,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("ProjectUser")]
         public async Task OpenSystemSuitesPage_ShouldNot_BeVisible_ForProjectUser(string role)
         {
-            var psystemsuites = new SystemSuitesPage(Page);
+            var psystemsuites = new ProjectTemplatesPage(Page);
 
-            await psystemsuites.LHSMenu.WaitForAsync();
-            await Expect(psystemsuites.LHSMenu).ToBeVisibleAsync();
-            await Expect(psystemsuites.SystemSuites).ToBeHiddenAsync();
+            await ProjectTemplatesAssertions.VerifyLHSMenuForProjectUser(psystemsuites);
             Console.WriteLine("ProjectUser: System Suites option is not visible as expected");
             await psystemsuites.LHSMenu.ScreenshotAsync(new()
             {
@@ -68,36 +58,19 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_TitleSubTitle_ForAdmins(string role)
         {
             var title = new SystemSuitesPage(Page);
-            await Expect(title.LHSMenu).ToBeVisibleAsync();
+            var titleworkflow = new SystemSuitesWorkflow(Page);
 
-            //Click on the System suites button
-            await title.SystemSuites.WaitForAsync();
-            await title.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(title.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(title.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(title.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(title.ManageSystemsuites).ToBeVisibleAsync();
-            await title.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await title.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(title.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-            //Check for the System suite title 
-            await Expect(title.SystemSuiteTitle).ToBeVisibleAsync();
-            title.SystemSuiteTitle.Equals("System suites");
-
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(title);
+            await titleworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(title);
+            await titleworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(title);
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPageTitleAndSubTitle(title);
+            
             await title.SystemSuiteTitle.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuitesPage_Title.png"
             });
-
-            //Check for the system suites sub title
-            await Expect(title.SystemSuitesSubTitle).ToBeVisibleAsync();
-            title.SystemSuitesSubTitle.Equals("Create and manage system suites used by your project templates.");
-
         }
 
         [Test]
@@ -107,26 +80,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_SystemSuitesInUse_ForAdmins(string role)
         {
             var InUse = new SystemSuitesPage(Page);
-
-            await Expect(InUse.LHSMenu).ToBeVisibleAsync();
-
-            //Click on the System suites button
-            await InUse.SystemSuites.WaitForAsync();
-            await InUse.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(InUse.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(InUse.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(InUse.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(InUse.ManageSystemsuites).ToBeVisibleAsync();
-            await InUse.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await InUse.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(InUse.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-            //Check for the System suites words in use
-            await Expect(InUse.SystemSuitesInUse).ToBeVisibleAsync();
+            var InUseworkflow = new SystemSuitesWorkflow(Page);
+          
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(InUse);
+            await InUseworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(InUse);
+            await InUseworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(InUse);
+            await SystemSuitesAssertions.VerifySystemSuitesInUse(InUse);
             await InUse.SystemSuitesInUse.ScreenshotAsync(new()
             {
                 Path = "ScreenShot_Of_SystemSuitesInUse_Wordings.png"
@@ -139,31 +100,20 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_UploadFileButton_ForSystemAdmin(string role)
         {
             var UploadFile = new SystemSuitesPage(Page);
+            var UploadFileworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(UploadFile.LHSMenu).ToBeVisibleAsync();
-            await UploadFile.SystemSuites.WaitForAsync();
-            await UploadFile.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(UploadFile);
+            await UploadFileworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(UploadFile);
+            await UploadFileworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(UploadFile);
+            await SystemSuitesAssertions.VerifySystemSuiteUploadFileButton(UploadFile);
 
-            //Check and verify the system suites sub menu
-            await Expect(UploadFile.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(UploadFile.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(UploadFile.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(UploadFile.ManageSystemsuites).ToBeVisibleAsync();
-            await UploadFile.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await UploadFile.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(UploadFile.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-
-            await UploadFile.UploadFileButton.WaitForAsync();
-            await Expect(UploadFile.UploadFileButton).ToBeVisibleAsync();
             await UploadFile.UploadFileButton.ScreenshotAsync(new()
             {
                 Path = "ScreenShot_Of_UploadFileButton_ForSystemAdmin.png"
             });
         }
-
 
         [Test]
         [TestCase("ExternalAdmin")]
@@ -171,20 +121,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldNotContain_UploadFileButton_ForExternalAdmin(string role)
         {
             var ExtUploadFile = new SystemSuitesPage(Page);
+            var ExtUploadFileworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(ExtUploadFile.LHSMenu).ToBeVisibleAsync();
-            await ExtUploadFile.SystemSuites.WaitForAsync();
-            await ExtUploadFile.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(ExtUploadFile.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(ExtUploadFile.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(ExtUploadFile.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(ExtUploadFile.ManageSystemsuites).ToBeVisibleAsync();
-            await ExtUploadFile.ManageSystemsuites.ClickAsync();
-            await ExtUploadFile.ManageSystemSuitesPage.WaitForAsync();
-
-            await Expect(ExtUploadFile.UploadFileButton).ToBeHiddenAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(ExtUploadFile);
+            await ExtUploadFileworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(ExtUploadFile);
+            await ExtUploadFileworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(ExtUploadFile);
+            await SystemSuitesAssertions.VerifySystemSuiteUploadFileButtonHidden(ExtUploadFile);
             Console.WriteLine("The User is logged in as an external admin, hence the user should not see the upload file button");
 
             await ExtUploadFile.ManageSystemSuitesPage.ScreenshotAsync(new()
@@ -199,27 +143,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_AllColumnHeadings_ForSystemAdmin(string role)
         {
             var table = new SystemSuitesPage(Page);
+            var tableworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(table.LHSMenu).ToBeVisibleAsync();
-            await table.SystemSuites.WaitForAsync();
-            await table.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(table.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(table.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(table.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(table.ManageSystemsuites).ToBeVisibleAsync();
-            await table.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await table.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(table.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-            await Expect(table.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(table.SystemSuitesTableColumns).ToBeVisibleAsync();
-            await Expect(table.SystemSuitesColumnNameHeading).ToBeVisibleAsync();
-            await Expect(table.SystemSuitesColumnSSType).ToBeVisibleAsync();
-            await Expect(table.SystemSuitesColumnEdited).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(table);
+            await tableworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(table);
+            await tableworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(table);
+            await SystemSuitesAssertions.VerifySystemSuiteTableColumnHeadingsForSSAdmin(table);
             await table.SystemSuitesTableColumns.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuiteTableColumns_ForSystemAdmin.png"
@@ -232,26 +163,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldNotContain_SystemSuiteTypeColumnHeading_ForExternalAdmin(string role)
         {
             var Exttable = new SystemSuitesPage(Page);
+            var Exttableworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(Exttable.LHSMenu).ToBeVisibleAsync();
-            await Exttable.SystemSuites.WaitForAsync();
-            await Exttable.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(Exttable);
+            await Exttableworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(Exttable);
+            await Exttableworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(Exttable);
+            await SystemSuitesAssertions.VerifySystemSuiteTableColumnHeadingsForExtAdmin(Exttable);
 
-            //Check and verify the system suites sub menu
-            await Expect(Exttable.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(Exttable.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(Exttable.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(Exttable.ManageSystemsuites).ToBeVisibleAsync();
-            await Exttable.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await Exttable.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(Exttable.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(Exttable.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(Exttable.SystemSuitesTableColumns).ToBeVisibleAsync();
-            await Expect(Exttable.SystemSuitesColumnNameHeading).ToBeVisibleAsync();
-            await Expect(Exttable.SystemSuitesColumnSSType).ToBeHiddenAsync();
-            await Expect(Exttable.SystemSuitesColumnEdited).ToBeVisibleAsync();
             await Exttable.SystemSuitesTableColumns.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuiteTableColumns_ForExternalAdmin.png"
@@ -264,24 +184,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_AllColumnsRows_ForSystemAdmin(string role)
         {
             var tablerows = new SystemSuitesPage(Page);
+            var tablerowsworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(tablerows.LHSMenu).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(tablerows);
+            await tablerowsworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(tablerows);
+            await tablerowsworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(tablerows);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(tablerows);
 
-            await tablerows.SystemSuites.WaitForAsync();
-            await tablerows.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(tablerows.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(tablerows.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(tablerows.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(tablerows.ManageSystemsuites).ToBeVisibleAsync();
-            await tablerows.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await tablerows.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(tablerows.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-            await Expect(tablerows.SystemSuitesTableRows.First).ToBeVisibleAsync();
             await tablerows.SystemSuitesTableRows.First.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuiteTableRow_ForSystemAdmin.png"
@@ -294,24 +205,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldNotContain_SystemSuiteTypeColumnRows_ForExternalAdmin(string role)
         {
             var tablerows = new SystemSuitesPage(Page);
+            var tablerowsworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(tablerows.LHSMenu).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(tablerows);
+            await tablerowsworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(tablerows);
+            await tablerowsworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(tablerows);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(tablerows);
 
-            await tablerows.SystemSuites.WaitForAsync();
-            await tablerows.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(tablerows.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(tablerows.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(tablerows.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(tablerows.ManageSystemsuites).ToBeVisibleAsync();
-            await tablerows.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await tablerows.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(tablerows.ManageSystemSuitesPage).ToBeVisibleAsync();
-
-            await Expect(tablerows.SystemSuitesTableRows.First).ToBeVisibleAsync();
             await tablerows.SystemSuitesTableRows.First.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuiteTableRow_ForSystemAdmin.png"
@@ -324,27 +226,15 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_GlobalSS_ForSystemAdmin(string role)
         {
             var SAdminglobal = new SystemSuitesPage(Page);
+            var SAdminglobalworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(SAdminglobal.LHSMenu).ToBeVisibleAsync();
-
-            await SAdminglobal.SystemSuites.WaitForAsync();
-            await SAdminglobal.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(SAdminglobal.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(SAdminglobal.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(SAdminglobal.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(SAdminglobal.ManageSystemsuites).ToBeVisibleAsync();
-            await SAdminglobal.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await SAdminglobal.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(SAdminglobal.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(SAdminglobal.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(SAdminglobal.SystemSuitesTableRows.First).ToBeVisibleAsync();
-
-            await SAdminglobal.SystemSuiteTypeGlobal.First.WaitForAsync();
-            await Expect(SAdminglobal.SystemSuiteTypeGlobal.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(SAdminglobal);
+            await SAdminglobalworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(SAdminglobal);
+            await SAdminglobalworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(SAdminglobal);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(SAdminglobal);
+            await SystemSuitesAssertions.VerifyGlobalSystemSuiteForAdmins(SAdminglobal);
             Console.WriteLine("System suite type is Global which is present");
 
             await SAdminglobal.SystemSuiteTypeGlobal.First.ScreenshotAsync(new()
@@ -359,25 +249,16 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldNotContain_GlobalSS_ForExternalAdmin(string role)
         {
             var EAdminglobal = new SystemSuitesPage(Page);
+            var EAdminglobalworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(EAdminglobal.LHSMenu).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(EAdminglobal);
+            await EAdminglobalworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(EAdminglobal);
+            await EAdminglobalworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(EAdminglobal);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(EAdminglobal);
+            await SystemSuitesAssertions.VerifyGlobalSystemSuiteForExtAdmin(EAdminglobal);
 
-            await EAdminglobal.SystemSuites.WaitForAsync();
-            await EAdminglobal.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(EAdminglobal.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(EAdminglobal.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(EAdminglobal.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(EAdminglobal.ManageSystemsuites).ToBeVisibleAsync();
-            await EAdminglobal.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await EAdminglobal.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(EAdminglobal.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(EAdminglobal.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(EAdminglobal.SystemSuitesTableRows.First).ToBeVisibleAsync();
-            await Expect(EAdminglobal.SystemSuiteTypeGlobal.First).ToBeHiddenAsync();
             Console.WriteLine("System suite type is Global which is not present because of external admin role");
             await EAdminglobal.SystemSuitesTable.ScreenshotAsync(new()
             {
@@ -391,27 +272,19 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_TenantLevelSS_ForSystemAdmin(string role)
         {
             var tenant = new SystemSuitesPage(Page);
+            var tenantworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(tenant.LHSMenu).ToBeVisibleAsync();
-            await tenant.SystemSuites.WaitForAsync();
-            await tenant.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(tenant);
+            await tenantworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(tenant);
+            await tenantworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(tenant);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(tenant);
 
-            //Check and verify the system suites sub menu
-            await Expect(tenant.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(tenant.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(tenant.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(tenant.ManageSystemsuites).ToBeVisibleAsync();
-            await tenant.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await tenant.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(tenant.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(tenant.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(tenant.SystemSuitesTableRows.First).ToBeVisibleAsync();
 
             if (await tenant.SystemSuiteTypeTenant.First.CountAsync() > 0)
             {
-                await Expect(tenant.SystemSuiteTypeTenant.First).ToBeVisibleAsync();
+                await SystemSuitesAssertions.VerifyTenantLevelSystemSuiteVisible(tenant);
                 Console.WriteLine("Tenant level system suite is present in the system suites page");
                 await tenant.SystemSuitesTable.ScreenshotAsync(new()
                 {
@@ -420,7 +293,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
             else
             {
-                await Expect(tenant.SystemSuiteTypeTenant.First).ToBeHiddenAsync();
+                await SystemSuitesAssertions.VerifyTenantLevelSystemSuiteHidden(tenant);
                 Console.WriteLine("Tenant level system suite is not yet uploaded to the system suites page");
                 await tenant.SystemSuitesTable.ScreenshotAsync(new()
                 {
@@ -435,25 +308,16 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldNotContain_TenantLevelSS_ForExternalAdmin(string role)
         {
             var Etenant = new SystemSuitesPage(Page);
+            var ETenantWorkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(Etenant.LHSMenu).ToBeVisibleAsync();
-            await Etenant.SystemSuites.WaitForAsync();
-            await Etenant.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(Etenant);
+            await ETenantWorkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(Etenant);
+            await ETenantWorkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(Etenant);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(Etenant);
 
-            //Check and verify the system suites sub menu
-            await Expect(Etenant.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(Etenant.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(Etenant.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(Etenant.ManageSystemsuites).ToBeVisibleAsync();
-            await Etenant.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await Etenant.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(Etenant.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(Etenant.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(Etenant.SystemSuitesTableRows.First).ToBeVisibleAsync();
-
-            await Expect(Etenant.SystemSuiteTypeTenant.First).ToBeHiddenAsync();
+            await SystemSuitesAssertions.VerifyTenantLevelSystemSuiteHidden(Etenant);
             Console.WriteLine("System suite type is Tenant which is not present because of external admin role");
             await Etenant.SystemSuitesTable.ScreenshotAsync(new()
             {
@@ -467,27 +331,18 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_CustomSystemSuite_ForSystemAdmin(string role)
         {
             var custom = new SystemSuitesPage(Page);
-            await Expect(custom.LHSMenu).ToBeVisibleAsync();
-            await custom.SystemSuites.WaitForAsync();
-            await custom.SystemSuites.ClickAsync();
+            var customworkflow = new SystemSuitesWorkflow(Page);
 
-            //Check and verify the system suites sub menu
-            await Expect(custom.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(custom.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(custom.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(custom.ManageSystemsuites).ToBeVisibleAsync();
-            await custom.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await custom.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(custom.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(custom.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(custom.SystemSuitesTableRows.First).ToBeVisibleAsync();
-
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(custom);
+            await customworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(custom);
+            await customworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(custom);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(custom);
 
             if (await custom.SystemSuiteTypeCustom.CountAsync() > 0)
             {
-                await Expect(custom.SystemSuiteTypeCustom.First).ToBeVisibleAsync();
+                await SystemSuitesAssertions.VerifyCustomLevelSystemSuiteVisible(custom);
                 Console.WriteLine("System suite type is Custom which is present");
                 await custom.SystemSuitesTable.ScreenshotAsync(new()
                 {
@@ -496,7 +351,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
             else
             {
-                await Expect(custom.SystemSuiteTypeCustom.First).ToBeHiddenAsync();
+                await SystemSuitesAssertions.VerifyCustomLevelSystemSuiteHidden(custom);
                 Console.WriteLine("System suite type is Custom which is not present");
                 await custom.SystemSuitesTable.ScreenshotAsync(new()
                 {
@@ -508,26 +363,19 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Test]
         [TestCase("ExternalAdmin")]
         [Category("ExternalAdmin")]
-        public async Task OpenSystemSuitesPage_ShouldNotContain_CustomSS_ForExternalAdmin(string role)
+        public async Task OpenSystemSuitesPage_ShouldNotContain_CustomWordSS_ForExternalAdmin(string role)
         {
             var Ecustom = new SystemSuitesPage(Page);
-            await Expect(Ecustom.LHSMenu).ToBeVisibleAsync();
-            await Ecustom.SystemSuites.WaitForAsync();
-            await Ecustom.SystemSuites.ClickAsync();
+            var Ecustomworkflow = new SystemSuitesWorkflow(Page);
 
-            //Check and verify the system suites sub menu
-            await Expect(Ecustom.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(Ecustom.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(Ecustom.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(Ecustom.ManageSystemsuites).ToBeVisibleAsync();
-            await Ecustom.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await Ecustom.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(Ecustom.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(Ecustom.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(Ecustom.SystemSuitesTableRows.First).ToBeVisibleAsync();
-            await Expect(Ecustom.SystemSuiteTypeCustom.First).ToBeHiddenAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(Ecustom);
+            await Ecustomworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(Ecustom);
+            await Ecustomworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(Ecustom);
+            await SystemSuitesAssertions.VerifySystemSuiteTableColumnHeadingsForExtAdmin(Ecustom);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(Ecustom);
+            await SystemSuitesAssertions.VerifyCustomLevelSystemSuiteHidden(Ecustom);
             Console.WriteLine("Custom word is not present as user is an external admin");
             await Ecustom.SystemSuitesTable.ScreenshotAsync(new()
             {
@@ -542,28 +390,18 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_PublicIcon_ForAdmins(string role)
         {
             var pubIcon = new SystemSuitesPage(Page);
-            await Expect(pubIcon.LHSMenu).ToBeVisibleAsync();
+            var pubIconworkflow = new SystemSuitesWorkflow(Page);
 
-            await pubIcon.SystemSuites.WaitForAsync();
-            await pubIcon.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(pubIcon.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(pubIcon.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(pubIcon.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(pubIcon.ManageSystemsuites).ToBeVisibleAsync();
-            await pubIcon.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await pubIcon.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(pubIcon.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(pubIcon.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(pubIcon.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(pubIcon);
+            await pubIconworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(pubIcon);
+            await pubIconworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(pubIcon);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(pubIcon);
 
             if (await pubIcon.SystemSuiteTablePublicIcon.First.CountAsync() > 0)
             {
-                await pubIcon.SystemSuiteTablePublicIcon.First.WaitForAsync();
-                await Expect(pubIcon.SystemSuiteTablePublicIcon.First).ToBeVisibleAsync();
+                await SystemSuitesAssertions.VerifyPublicSSVisible(pubIcon);
                 Console.WriteLine("Public System suite is present");
                 await pubIcon.SystemSuiteTablePublicIcon.First.ScreenshotAsync(new()
                 {
@@ -572,7 +410,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
             else
             {
-                await Expect(pubIcon.SystemSuiteTablePublicIcon.First).ToBeHiddenAsync();
+                await SystemSuitesAssertions.VerifyPublicSSHidden(pubIcon);
                 Console.WriteLine("Public System suite is not present");
                 await pubIcon.SystemSuitesTable.ScreenshotAsync(new()
                 {
@@ -588,28 +426,18 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_PrivateIcon_ForAdmins(string role)
         {
             var priIcon = new SystemSuitesPage(Page);
-            await Expect(priIcon.LHSMenu).ToBeVisibleAsync();
+            var priIconworkflow = new SystemSuitesWorkflow(Page);
 
-            await priIcon.SystemSuites.WaitForAsync();
-            await priIcon.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(priIcon.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(priIcon.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(priIcon.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(priIcon.ManageSystemsuites).ToBeVisibleAsync();
-            await priIcon.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await priIcon.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(priIcon.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(priIcon.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(priIcon.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(priIcon);
+            await priIconworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(priIcon);
+            await priIconworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(priIcon);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(priIcon);
 
             if (await priIcon.SystemSuiteTablePrivateIcon.First.CountAsync() > 0)
             {
-                await priIcon.SystemSuiteTablePrivateIcon.First.WaitForAsync();
-                await Expect(priIcon.SystemSuiteTablePrivateIcon.First).ToBeVisibleAsync();
+                await SystemSuitesAssertions.VerifyPrivateSSVisible(priIcon);
                 Console.WriteLine("Private System suite is present");
                 await priIcon.SystemSuiteTablePrivateIcon.First.ScreenshotAsync(new()
                 {
@@ -618,7 +446,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
             else
             {
-                await Expect(priIcon.SystemSuiteTablePrivateIcon.First).ToBeHiddenAsync();
+                await SystemSuitesAssertions.VerifyPrivateSSHidden(priIcon);
                 Console.WriteLine("Private System suite is not present");
                 await priIcon.SystemSuitesTable.First.ScreenshotAsync(new()
                 {
@@ -633,26 +461,18 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_SystemSuiteRowElements_ForSystemAdmin(string role)
         {
             var sname = new SystemSuitesPage(Page);
-            await Expect(sname.LHSMenu).ToBeVisibleAsync();
+            var snameworkflow = new SystemSuitesWorkflow(Page);
 
-            await sname.SystemSuites.WaitForAsync();
-            await sname.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(sname);
+            await snameworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(sname);
+            await snameworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(sname);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(sname);
 
-            //Check and verify the system suites sub menu
-            await Expect(sname.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(sname.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(sname.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(sname.ManageSystemsuites).ToBeVisibleAsync();
-            await sname.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await sname.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(sname.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(sname.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(sname.SystemSuitesTableRows.First).ToBeVisibleAsync();
 
             //await Expect(sname.SystemSuiteNameList.First).ToBeVisibleAsync();
-            await Expect(sname.SystemSuiteEditedTime.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuiteEditedTime(sname);
             await sname.SystemSuiteEditedTime.First.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuiteRow_EditedTime_ForSystemAdmin.png"
@@ -661,9 +481,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             if (await sname.SystemSuiteInUseTickIcon.CountAsync() > 0)
             {
-                await sname.SystemSuiteInUseTickIcon.First.HoverAsync();
-                await sname.SystemSuiteInUseTickIcon.First.HighlightAsync();
-                await Expect(sname.SystemSuiteInUseTickIcon.First).ToBeVisibleAsync();
+                
+                await SystemSuitesAssertions.VerifySystemSuiteInUseTickIconVisible(sname);
                 await sname.SystemSuiteInUseTickIcon.First.ScreenshotAsync(new()
                 {
                     Path = "Screenshot_Of_SystemSuiteRow_InUseTickIcon_ForSystemAdmin.png"
@@ -672,7 +491,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
             else
             {
-                await Expect(sname.SystemSuiteInUseTickIcon).ToBeHiddenAsync();
+                await SystemSuitesAssertions.VerifySystemSuiteInUseTickIconHidden(sname);
             }   
         }
 
@@ -682,26 +501,16 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_SystemSuiteRowElements_ForExternalAdmin(string role)
         {
             var ename = new SystemSuitesPage(Page);
-            await Expect(ename.LHSMenu).ToBeVisibleAsync();
+            var enameworkflow = new SystemSuitesWorkflow (Page);
 
-            await ename.SystemSuites.WaitForAsync();
-            await ename.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(ename);
+            await enameworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(ename);
+            await enameworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(ename);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(ename);
+            await SystemSuitesAssertions.VerifySystemSuiteEditedTime(ename);
 
-            //Check and verify the system suites sub menu
-            await Expect(ename.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(ename.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(ename.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(ename.ManageSystemsuites).ToBeVisibleAsync();
-            await ename.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await ename.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(ename.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(ename.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(ename.SystemSuitesTableRows.First).ToBeVisibleAsync();
-
-            //await Expect(sname.SystemSuiteNameList.First).ToBeVisibleAsync();
-            await Expect(ename.SystemSuiteEditedTime.First).ToBeVisibleAsync();
             await ename.SystemSuiteEditedTime.First.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuiteRow_EditedTime_ForSystemAdmin.png"
@@ -710,9 +519,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             if (await ename.SystemSuiteInUseTickIcon.CountAsync() > 0)
             {
-                await ename.SystemSuiteInUseTickIcon.First.HoverAsync();
-                await ename.SystemSuiteInUseTickIcon.First.HighlightAsync();
-                await Expect(ename.SystemSuiteInUseTickIcon.First).ToBeVisibleAsync();
+                await SystemSuitesAssertions.VerifySystemSuiteInUseTickIconVisible(ename);
                 await ename.SystemSuiteInUseTickIcon.First.ScreenshotAsync(new()
                 {
                     Path = "Screenshot_Of_SystemSuiteRow_InUseTickIcon_ForSystemAdmin.png"
@@ -721,7 +528,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             }
             else
             {
-                await Expect(ename.SystemSuiteInUseTickIcon).ToBeHiddenAsync();
+                await SystemSuitesAssertions.VerifySystemSuiteInUseTickIconHidden(ename);
             }
         }
 

@@ -10,7 +10,6 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
 {
     public class ProjectTemplatesWorkflow
     {
-
         private readonly ProjectTemplatesPage Page;
 
         public ProjectTemplatesWorkflow(IPage page)
@@ -20,6 +19,10 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
         public async Task CloseOrOpenLHSMenuAsync()
         {
             await Page.ClickCollapseButtonInLHSMenu();
+        }
+        public async Task OpenPageNumberDropdownlist()
+        {
+            await Page.ClickPageDropdownIcon();
         }
             
 

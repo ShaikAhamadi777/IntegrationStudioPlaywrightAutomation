@@ -1,9 +1,10 @@
-﻿using System;
+﻿using IntegrationStudioPlaywrightAutomation.Utilities.Models;
+using Microsoft.Playwright;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Playwright;
 
 namespace IntegrationStudioPlaywrightAutomation.Locators
 {
@@ -63,6 +64,16 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator SystemSuiteRowDropdownListNumber50 => Page.Locator("//li[@data-value='50']");
         public ILocator SystemSuiteRowDropdownListNumber100 => Page.Locator("//li[@data-value='100']");
         //public ILocator globalRow = null;
+
+        public async Task ClickSystemSuitesOptionFromLHSMenu()
+        {
+            await SystemSuites.ClickAsync();
+        }
+        public async Task ClickManageSystemSuitesOption()
+        {
+            await ManageSystemsuites.ClickAsync();
+        }
+
 
     }
 }

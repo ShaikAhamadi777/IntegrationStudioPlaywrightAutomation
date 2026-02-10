@@ -112,6 +112,10 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         {
             await CollapseButtonIcon.ClickAsync();
         }
+        public async Task ClickPageDropdownIcon()
+        {
+            await ProjectTemplatePageDropDown.ClickAsync();
+        }
 
     }
 }
