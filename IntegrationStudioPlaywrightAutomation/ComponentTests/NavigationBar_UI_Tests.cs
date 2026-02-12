@@ -1,4 +1,5 @@
-﻿using IntegrationStudioPlaywrightAutomation.Locators;
+﻿using IntegrationStudioPlaywrightAutomation.Assertions;
+using IntegrationStudioPlaywrightAutomation.Locators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,12 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task LoginIntegrationStudio_ShouldContain_NavigationBar(string role)
         {
-            var nav = new ProjectTemplatesPage(Page);
-
-            //Verify if the AppBar is Visible
-            await nav.AppBar.FocusAsync();
+            var nav = new NavigationBarPage(Page);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(nav);
             await nav.AppBar.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_NavigationBar_ForAllRoles.png"
             });
-            await Expect(nav.AppBar).ToBeVisibleAsync();
         }
 
         [Test]
@@ -30,18 +28,17 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task LoginIntegrationStudio_ShouldContain_NavigationBarTitle(string role)
         {
-            var AppBartitle = new ProjectTemplatesPage(Page);
+            var AppBartitle = new NavigationBarPage(Page);
 
-            //Verify if the AppBar is Visible
-            await AppBartitle.AppBar.FocusAsync();
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(AppBartitle);
             await AppBartitle.AppBar.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_NavigationBarTitle_ForAllRoles.png"
             });
-            await Expect(AppBartitle.AppBar).ToBeVisibleAsync();
             string title = await Page.TitleAsync();
             Console.WriteLine(title);
             await Expect(Page).ToHaveTitleAsync(title);
+
         }
 
         [Test]

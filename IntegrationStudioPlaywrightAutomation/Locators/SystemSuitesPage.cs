@@ -73,6 +73,14 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         {
             await ManageSystemsuites.ClickAsync();
         }
+        public async Task ClickDownloadGlobalSS()
+        {
+            await SystemSuiteDownloadFile.ClickAsync();
+        }
+        public async Task ClickSystemSuitePageDropdown()
+        {
+            await SystemSuitePageDropDown.ClickAsync();
+        }
 
 
     }

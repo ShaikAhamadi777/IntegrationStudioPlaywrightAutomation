@@ -128,6 +128,47 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
         {
             await Expect(page.SystemSuiteInUseTickIcon).ToBeHiddenAsync();
         }
+        public static async Task VerifyGlobalSystemSuite3DotMenu(SystemSuitesPage page)
+        {
+            await Expect(page.SystemSuite3DotMenuList).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteDownloadFile).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteDownloadFile).ToBeEnabledAsync();
+        }
+        public static async Task VerifyTenantLevelSystemSuite3DotMenu(SystemSuitesPage page)
+        {
+            await Expect(page.SystemSuite3DotMenuList).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteDownloadFile).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteDownloadFile).ToBeEnabledAsync();
+            await Expect(page.SystemSuiteDeleteIcon).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+        }
+        public static async Task VerifyCustomSystemSuite3DotMenu(SystemSuitesPage page)
+        {
+        
+        await Expect(page.SystemSuite3DotMenuList).ToBeVisibleAsync();
+        await Expect(page.SystemSuiteDeleteIcon).ToBeVisibleAsync();
+        await Expect(page.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+        }
+        public static async Task VerifySystemSuiteRowToolbar(SystemSuitesPage page)
+        {
+            await Expect(page.SystemSuiteRowsToolbar).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteRowsPerpageName).ToBeVisibleAsync();
+            await Expect(page.SystemSuitePageDropDown).ToBeVisibleAsync();
+            await Expect(page.SystemSuitePageNumbers).ToBeVisibleAsync();
+            await Expect(page.SystemSuitePreviousButton).ToBeVisibleAsync();
+            await Expect(page.SystemSuitePreviousButton).ToBeDisabledAsync();
+            await Expect(page.SystemSuiteNextButton).ToBeVisibleAsync();
+        }
+        public static async Task VerifySystemSuiteRowPageDropdownList(SystemSuitesPage page)
+        {
+            await Expect(page.SystemSuiteRowDropdownList).ToBeVisibleAsync();
+
+            //Verify the numbers of the pages in the dropdown
+            await Expect(page.SystemSuiteRowDropdownListNumber10).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteRowDropdownListNumber25).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteRowDropdownListNumber50).ToBeVisibleAsync();
+            await Expect(page.SystemSuiteRowDropdownListNumber100).ToBeVisibleAsync();
+        }
 
     }
 }

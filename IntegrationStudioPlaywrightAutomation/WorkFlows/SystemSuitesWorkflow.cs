@@ -24,6 +24,14 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
         {
             await Page.ClickManageSystemSuitesOption();
         }
+        public async Task DownloadGlobalSS()
+        {
+            await Page.ClickDownloadGlobalSS();
+        }
+        public async Task OpenSystemSuitePageDropdownList()
+        {
+            await Page.ClickSystemSuitePageDropdown();
+        }
 
 
     }

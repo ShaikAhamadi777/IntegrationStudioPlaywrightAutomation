@@ -538,23 +538,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_OfGlobalSuite_ForSystemAdmin(string role)
         {
             var threedot = new SystemSuitesPage(Page);
+            var threedotworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(threedot.LHSMenu).ToBeVisibleAsync();            
-            await threedot.SystemSuites.WaitForAsync();
-            await threedot.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(threedot.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(threedot.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(threedot.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(threedot.ManageSystemsuites).ToBeVisibleAsync();
-            await threedot.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await threedot.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(threedot.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(threedot.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(threedot.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(threedot); 
+            await threedotworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(threedot);
+            await threedotworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(threedot);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(threedot);
 
             ILocator globalRow = null;
             for (int i = 0; i < await threedot.SystemSuitesTableRows.CountAsync(); i++)
@@ -573,10 +564,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                     {
                         Path = "ScreenShot_Of_3Dotmenu_Global_ForSystemAdmin.png"
                     });
-                    await Expect(threedot.SystemSuite3DotMenuList).ToBeVisibleAsync();
-                    await Expect(threedot.SystemSuiteDownloadFile).ToBeVisibleAsync();
-                    await Expect(threedot.SystemSuiteDownloadFile).ToBeEnabledAsync();
-                    await threedot.SystemSuiteDownloadFile.ClickAsync();
+                    await SystemSuitesAssertions.VerifyGlobalSystemSuite3DotMenu(threedot);
+                    await threedotworkflow.DownloadGlobalSS();
                     break;
                 }
                 else
@@ -592,24 +581,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_OfTenantLevelSuite_ForSystemAdmine(string role)
         {
             var threedotTenant = new SystemSuitesPage(Page);
+            var threedotTenantworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(threedotTenant.LHSMenu).ToBeVisibleAsync();
-
-            await threedotTenant.SystemSuites.WaitForAsync();
-            await threedotTenant.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(threedotTenant.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(threedotTenant.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(threedotTenant.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(threedotTenant.ManageSystemsuites).ToBeVisibleAsync();
-            await threedotTenant.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await threedotTenant.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(threedotTenant.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(threedotTenant.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(threedotTenant.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(threedotTenant);
+            await threedotTenantworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(threedotTenant);
+            await threedotTenantworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(threedotTenant);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(threedotTenant);
 
             ILocator TenantRow = null;
             
@@ -628,10 +607,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                     {
                         Path = "Screenshot_Of_3dotmenu_OfTenantLevelSS_ForSystemAdmin.png"
                     });
-                    await Expect(threedotTenant.SystemSuite3DotMenuList).ToBeVisibleAsync();
-                    await Expect(threedotTenant.SystemSuiteDownloadFile).ToBeVisibleAsync();
-                    await Expect(threedotTenant.SystemSuiteDeleteIcon).ToBeVisibleAsync();
-                    await Expect(threedotTenant.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+                    await SystemSuitesAssertions.VerifyTenantLevelSystemSuite3DotMenu(threedotTenant);
                     break;
                 }
                 else
@@ -647,23 +623,14 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_ofCustomSystemSuite_ForSystemAdmin(string role)
         {
             var threedotCustom = new SystemSuitesPage(Page);
+            var threedotCustomWorkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(threedotCustom.LHSMenu).ToBeVisibleAsync();
-            await threedotCustom.SystemSuites.WaitForAsync();
-            await threedotCustom.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(threedotCustom.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(threedotCustom.ManageSystemsuites).ToBeVisibleAsync();
-            await threedotCustom.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await threedotCustom.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(threedotCustom.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(threedotCustom);
+            await threedotCustomWorkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(threedotCustom);
+            await threedotCustomWorkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(threedotCustom);
+            await SystemSuitesAssertions.VerifySystemSuiteTableRows(threedotCustom);
 
             ILocator CustomRow = null;
             for (int i = 0; i < await threedotCustom.SystemSuitesTableRows.CountAsync(); i++)
@@ -681,9 +648,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                     {
                         Path = "ScreenShot_Of_3DotMenuList_Of_CustomSS_ForSystemAdmin.png"
                     });
-                    await Expect(threedotCustom.SystemSuite3DotMenuList).ToBeVisibleAsync();
-                    await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeVisibleAsync();
-                    await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeEnabledAsync();
+                    await SystemSuitesAssertions.VerifyCustomSystemSuite3DotMenu(threedotCustom);
                     break;
                 }
                 else
@@ -699,29 +664,22 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_3DotMenuPopUp_ofCustomSystemSuite_ForExternalAdmin(string role)
         {
             var threedotCustom = new SystemSuitesPage(Page);
+            var threedotCustomworkflow = new SystemSuitesWorkflow(Page);
 
-            await Expect(threedotCustom.LHSMenu).ToBeVisibleAsync();
-            await threedotCustom.SystemSuites.WaitForAsync();
-            await threedotCustom.SystemSuites.ClickAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(threedotCustom);
+            await threedotCustomworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(threedotCustom);
+            await threedotCustomworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(threedotCustom);
 
-            //Check and verify the system suites sub menu
-            await Expect(threedotCustom.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(threedotCustom.ManageSystemsuites).ToBeVisibleAsync();
-            await threedotCustom.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await threedotCustom.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(threedotCustom.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(threedotCustom.SystemSuitesTable).ToBeVisibleAsync();
-            
-            if(await threedotCustom.SystemSuitesTableRows.First.IsVisibleAsync())
+            if (await threedotCustom.SystemSuitesTableRows.First.IsVisibleAsync())
             {
                 await threedotCustom.SystemSuite3DotMenu.Last.WaitForAsync();
                 await Expect(threedotCustom.SystemSuite3DotMenu.Last).ToBeVisibleAsync();
                 await threedotCustom.SystemSuite3DotMenu.Last.ClickAsync();
                 await Expect(threedotCustom.SystemSuite3DotMenuList.Last).ToBeVisibleAsync();
+               // await Expect(threedotCustom.SystemSuite3DotMenuList).ToBeVisibleAsync();
+
                 await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeVisibleAsync();
                 await Expect(threedotCustom.SystemSuiteDeleteIcon).ToBeEnabledAsync();
                 await threedotCustom.SystemSuite3DotMenuList.Last.ScreenshotAsync(new()
@@ -743,32 +701,16 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_SSRowsPerPageAndPageIndicators_ForAdmins(string role)
         {
             var indicator = new SystemSuitesPage(Page);
+            var indicatorworkflow = new SystemSuitesWorkflow(Page);
 
-            await indicator.SystemSuites.WaitForAsync();
-            await indicator.SystemSuites.ClickAsync();
-
-            //Check and verify the system suites sub menu
-            await Expect(indicator.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(indicator.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(indicator.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(indicator.ManageSystemsuites).ToBeVisibleAsync();
-            await indicator.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await indicator.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(indicator.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(indicator);
+            await indicatorworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(indicator);
+            await indicatorworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(indicator);
 
             //Check if the rows per page and toolbar is present
-            await Expect(indicator.SystemSuiteRowsToolbar).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuiteRowsPerpageName).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuitePageDropDown).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuitePageNumbers).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuitePreviousButton).ToBeVisibleAsync();
-            await Expect(indicator.SystemSuitePreviousButton).ToBeDisabledAsync();
-            await Expect(indicator.SystemSuiteNextButton).ToBeVisibleAsync();
-
+            await SystemSuitesAssertions.VerifySystemSuiteRowToolbar(indicator);
             await indicator.SystemSuiteRowsToolbar.ScreenshotAsync(new()
             {
                 Path = "ScreenShot_Of_SystemSuites_RowsToolBar_ForAdmins.png"
@@ -782,38 +724,22 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task OpenSystemSuitesPage_ShouldContain_SSPageNumberDropDownList_ForAdmins(string role)
         {
             var rowsdropdown = new SystemSuitesPage(Page);
- 
-            await rowsdropdown.SystemSuites.WaitForAsync();
-            await rowsdropdown.SystemSuites.ClickAsync();
+            var rowsdropdownworkflow = new SystemSuitesWorkflow(Page);
 
-            //Check and verify the system suites sub menu
-            await Expect(rowsdropdown.SystemsuitesSubMenu).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemsuitesSubMenuClose).ToBeVisibleAsync();
-            await Expect(rowsdropdown.ManageSystemsuites).ToBeVisibleAsync();
-            await rowsdropdown.ManageSystemsuites.ClickAsync();
-
-            //Check if the Manage system suite page is visible
-            await rowsdropdown.ManageSystemSuitesPage.WaitForAsync();
-            await Expect(rowsdropdown.ManageSystemSuitesPage).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemSuitesTable).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemSuitesTableRows.First).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesOptionFromLHSMenu(rowsdropdown);
+            await rowsdropdownworkflow.OpenSystemSuiteSubMenuAsync();
+            await SystemSuitesAssertions.VerifySystemSuitesSubMenu(rowsdropdown);
+            await rowsdropdownworkflow.OpenManageSystemSuitesPageAsync();
+            await SystemSuitesAssertions.VerifyManageSystemSuitesPage(rowsdropdown);
 
             //Check if the rows tool bar is present
-            await Expect(rowsdropdown.SystemSuiteRowsToolbar).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemSuitePageDropDown).ToBeVisibleAsync();
-            await rowsdropdown.SystemSuitePageDropDown.ClickAsync();
-            await Expect(rowsdropdown.SystemSuiteRowDropdownList).ToBeVisibleAsync();
+            await SystemSuitesAssertions.VerifySystemSuiteRowToolbar(rowsdropdown);
+            await rowsdropdownworkflow.OpenSystemSuitePageDropdownList();
+            await SystemSuitesAssertions.VerifySystemSuiteRowPageDropdownList(rowsdropdown);
             await rowsdropdown.SystemSuiteRowDropdownList.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_SystemSuitePage_PageNumbersDropdownList_ForAdmins.png"
             });
-
-            //Verify the numbers of the pages in the dropdown
-            await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber10).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber25).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber50).ToBeVisibleAsync();
-            await Expect(rowsdropdown.SystemSuiteRowDropdownListNumber100).ToBeVisibleAsync();
 
         }
     }
