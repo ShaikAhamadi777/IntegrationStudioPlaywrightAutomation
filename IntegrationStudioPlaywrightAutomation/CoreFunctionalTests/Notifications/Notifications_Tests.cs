@@ -12,7 +12,7 @@ namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Notification
         [Test]
         public async Task Verify_NotificationPanel_When_No_Notifications_Available()
         {
-            var notification = new NotificationHubPage(Page);
+            var notification = new NavigationBarNotificationPanelPage(Page);
 
             //Click on the notification bell icon
             await Expect(notification.NotificationBellIcon).ToBeVisibleAsync();
@@ -39,7 +39,7 @@ namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Notification
         [Test]
         public async Task Verify_NotificationPanel_When_Notifications_Available()
         {
-            var notificationsavail = new NotificationHubPage(Page);
+            var notificationsavail = new NavigationBarNotificationPanelPage(Page);
 
             //Click on the notification bell icon
             await Expect(notificationsavail.NotificationBellIcon).ToBeVisibleAsync();
@@ -82,7 +82,7 @@ namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Notification
         [Test]
         public async Task Verify_CloseButton_Of_NotificationPanel()
         {
-            var closebutton = new NotificationHubPage(Page);
+            var closebutton = new NavigationBarNotificationPanelPage(Page);
 
             //Check the Notification Bell Icon
             await Expect(closebutton.NotificationBellIcon).ToBeVisibleAsync();
@@ -105,7 +105,7 @@ namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Notification
         {
 
 
-            var number = new NotificationHubPage(Page);
+            var number = new NavigationBarNotificationPanelPage(Page);
             if (await number.NumberOnBellIcon.IsVisibleAsync())
             {
 
@@ -191,7 +191,7 @@ namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Notification
         public async Task Verify_ClearAll_Button_Of_NotificationPanel()
         {
 
-            var clearallbutton = new NotificationHubPage(Page);
+            var clearallbutton = new NavigationBarNotificationPanelPage(Page);
 
             //Check the Notification Bell Icon
             await Expect(clearallbutton.NotificationBellIcon).ToBeVisibleAsync();
@@ -273,7 +273,7 @@ namespace IntegrationStudioPlaywrightAutomation.CoreFunctionalTests.Notification
         [Test]
         public async Task Verify_ScrollBar_In_NotificationPanel_When_HighNumberOf_Notifications()
         {
-            var scrollbar = new NotificationHubPage(Page);
+            var scrollbar = new NavigationBarNotificationPanelPage(Page);
 
             await scrollbar.NotificationBellIcon.IsVisibleAsync();
             await scrollbar.NotificationBellIcon.ClickAsync();

@@ -1,5 +1,6 @@
 ﻿using IntegrationStudioPlaywrightAutomation.Assertions;
 using IntegrationStudioPlaywrightAutomation.Locators;
+using IntegrationStudioPlaywrightAutomation.WorkFlows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task LoginIntegrationStudio_ShouldContain_NavigationBar(string role)
         {
-            var nav = new NavigationBarPage(Page);
+            var nav = new NavigationBarNotificationPanelPage(Page);
             await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(nav);
             await nav.AppBar.ScreenshotAsync(new()
             {
@@ -28,8 +29,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task LoginIntegrationStudio_ShouldContain_NavigationBarTitle(string role)
         {
-            var AppBartitle = new NavigationBarPage(Page);
-
+            var AppBartitle = new NavigationBarNotificationPanelPage(Page);
             await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(AppBartitle);
             await AppBartitle.AppBar.ScreenshotAsync(new()
             {
@@ -47,17 +47,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         public async Task LoginIntegrationStudio_ShouldContain_NotificationIcon(string role)
         {
 
-            var NotifyIcon = new ProjectTemplatesPage(Page);
-            await NotifyIcon.AppBar.FocusAsync();
-            await Expect(NotifyIcon.AppBar).ToBeVisibleAsync();
-
-            //Verify if the Notification Bell Icon is Visible
-            await NotifyIcon.NotificationBellIcon.FocusAsync();
+            var NotifyIcon = new NavigationBarNotificationPanelPage(Page);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(NotifyIcon);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIcons(NotifyIcon);
             await NotifyIcon.NotificationBellIcon.ScreenshotAsync(new()
             {
                 Path = "Screeshot_Of_NotificationBellIcon_ForAllRoles.png"
             });
-            await Expect(NotifyIcon.NotificationBellIcon).ToBeVisibleAsync();
         }
 
         [Test]
@@ -65,15 +61,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task LoginIntegrationStudio_ShouldContain_HelpIcon(string role)
         {
-            var helpicon = new ProjectTemplatesPage(Page);
-
-            //Verify if the AppBar is Visible
-            await helpicon.AppBar.FocusAsync();
-            await Expect(helpicon.AppBar).ToBeVisibleAsync();
-            await helpicon.AVEVAHelpIcon.WaitForAsync();
-
-            //Verify if the AVEVA Help Icon is Visible
-            await Expect(helpicon.AVEVAHelpIcon).ToBeVisibleAsync();
+            var helpicon = new NavigationBarNotificationPanelPage(Page);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(helpicon);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIcons(helpicon);
             await helpicon.AVEVAHelpIcon.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_AVEVAHelpIcon_ForAllRoles.png"
@@ -85,14 +75,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task LoginIntegrationStudio_ShouldContain_UserProfileIcon(string role)
         {
-            var profileicon = new ProjectTemplatesPage(Page);
-
-            //Verify if the AppBar is Visible
-            await profileicon.AppBar.FocusAsync();
-            await Expect(profileicon.AppBar).ToBeVisibleAsync();
-
-            //Verify if the User Profile Icon is Visible
-            await Expect(profileicon.UserProfileIcon).ToBeVisibleAsync();
+            var profileicon = new NavigationBarNotificationPanelPage(Page);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(profileicon);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIcons(profileicon);
             await profileicon.UserProfileIcon.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_UserProfileIcon_ForAllRoles.png"
@@ -104,16 +89,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         [Category("Common")]
         public async Task OpenUserProfileIcon_ShouldContain_Elements(string role)
         {
-            var userprofileicon = new ProjectTemplatesPage(Page);
-
-            //Check the user profile button and items in it
-            await userprofileicon.UserProfileIcon.WaitForAsync();
-            await Expect(userprofileicon.UserProfileIcon).ToBeVisibleAsync();
-            await userprofileicon.UserProfileIcon.ClickAsync();
+            var userprofileicon = new NavigationBarNotificationPanelPage(Page);
+            var userprofileiconworkflow = new NavigationBarNotificationPanelWorkflow(Page);
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(userprofileicon);
+            await userprofileiconworkflow.OpenUserProfilePopupAsync();
 
             //Popup appears
-            await userprofileicon.UserProfilePopUp.WaitForAsync();
-            await Expect(userprofileicon.UserProfilePopUp).ToBeVisibleAsync();
+            await NavigationBarNotificationPanelAssertions.VerifyAppBarIsVisible(userprofileicon);
 
             var email = Page.Locator("span.mdc-list-item__text").Filter(new() { HasTextRegex = new Regex("@") });
             var tenant = email.Locator("xpath=following::span[contains(@class,'mdc-list-item__text')][1]");
@@ -123,17 +105,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             await tenant.WaitForAsync();
             await Expect(tenant).ToBeVisibleAsync();
-
-            await Expect(userprofileicon.NetworkSpeedTest).ToBeVisibleAsync();
-            await Expect(userprofileicon.NetworkSpeedTest).ToBeEnabledAsync();
-
-            await Expect(userprofileicon.LogOut).ToBeVisibleAsync();
-            await Expect(userprofileicon.LogOut).ToBeEnabledAsync();
-
-            await userprofileicon.CopyRightAndLegal.WaitForAsync();
-            await Expect(userprofileicon.CopyRightAndLegal).ToBeVisibleAsync();
-
-            await userprofileicon.UserProfilePopUp.HighlightAsync();
+            await NavigationBarNotificationPanelAssertions.VerifyUserProfileIcon(userprofileicon);
             await userprofileicon.UserProfilePopUp.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_UserProfile_Popup_ForAllRoles.png"

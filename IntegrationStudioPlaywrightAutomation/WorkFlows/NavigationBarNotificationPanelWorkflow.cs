@@ -11,22 +11,22 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
 {
     public class NavigationBarNotificationPanelWorkflow
     {
-        private readonly NotificationHubPage NHPage;
-        private readonly NavigationBarPage NBPage;
+        private readonly NavigationBarNotificationPanelPage NHPage;
+        private readonly NavigationBarNotificationPanelPage NBPage;
 
 
         public NavigationBarNotificationPanelWorkflow(IPage page)
         {
-            NHPage = new NotificationHubPage(page);
-            NBPage = new NavigationBarPage(page);
+            NHPage = new NavigationBarNotificationPanelPage(page);
+            NBPage = new NavigationBarNotificationPanelPage(page);
         }
-        public async Task Open()
+        public async Task OpenUserProfilePopupAsync()
         {
-
+            await NBPage.ClickUserProfileButton();
         }
-        public async Task OpenNew()
+        public async Task OpenNotificationPanelAsync()
         {
-
+            await NHPage.ClickNotificationPanelIcon();
         }
 
     }

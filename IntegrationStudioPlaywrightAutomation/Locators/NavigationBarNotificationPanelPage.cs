@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace IntegrationStudioPlaywrightAutomation.Locators
 {
-    public class NavigationBarPage
+    public class NavigationBarNotificationPanelPage
     {
 
         private readonly IPage Page;
 
         //Page Object doesnot create browser . It only receives it 
-        public NavigationBarPage(IPage page)
+        public NavigationBarNotificationPanelPage(IPage page)
         {
             Page = page;
         }
@@ -45,5 +45,29 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator LegalResources => Page.Locator("//h1[text()='Legal Resources']");
 
         public ILocator NoProjectTemplates => Page.Locator("//td[text()='No project templates defined']");
+
+        //Notification Panel Elements locators
+        public ILocator NotificationPanel => Page.Locator("#notifyContainer");
+        public ILocator NotificationScrollBar => Page.Locator("//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorRight css-1ab2xsx']");
+        public ILocator NumberOfNotifications => Page.Locator("#notifyCount");
+        public ILocator NumberOfNotificationsInBellIcon => Page.Locator(".uilab-badge on-icon-btn--");
+        public ILocator NotificationClearAllButton => Page.Locator("//button[text()='Clear all']");
+        public ILocator NotificationCloseButton => Page.Locator("//div[@id='notifyHeader']//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk']");
+        public ILocator NotificationsAvailable => Page.Locator(".notifyInfo");
+        public ILocator NumberOnBellIcon => Page.Locator("//span[contains(@class,'uilab-badge on-icon-btn')]");
+        public ILocator InstanceExpiryWarnings => Page.Locator("//div[@class='notifyCard decoration-line-warning']");
+        public ILocator InstanceDeletion => Page.Locator("//div[contains(@class,'notifyCard') and contains(@class,'decoration-line-error')]");
+        //public ILocator FirstInstanceDeletion => InstanceDeletion.First;
+
+
+        public async Task ClickUserProfileButton()
+        {
+            await UserProfileIcon.ClickAsync();
+        }
+        public async Task ClickNotificationPanelIcon()
+        {
+            await NotificationBellIcon.ClickAsync();
+        }
+
     }
 }
