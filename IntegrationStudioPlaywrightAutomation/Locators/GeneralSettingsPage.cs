@@ -26,6 +26,10 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator NumberOfVMsInUse => Page.Locator("//div[text()='Number of VMs in use']");
         public ILocator NumberOfSnapshotsInUse => Page.Locator("//div[text()='Number of snapshots in use']");
 
+        public async Task ClickGeneralSettingsOption()
+        {
+            await General.ClickAsync();
+        }
 
     }
 }

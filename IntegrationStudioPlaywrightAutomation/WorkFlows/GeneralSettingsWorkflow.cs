@@ -16,8 +16,9 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
         {
             Page = new GeneralSettingsPage(page);
         }
-        public async Task Open()
+        public async Task OpenGeneralPage()
         {
+            await Page.ClickGeneralSettingsOption();
 
         }
 

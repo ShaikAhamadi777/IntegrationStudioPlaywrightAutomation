@@ -49,9 +49,9 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
         {
             await Page.ClickDefaultHostingRegionOptionAsync();
         }
-        public async Task SelectProjectTemplateInfoNextButtonAsync()
+        public async Task OpenNextPageButtonAsync()
         {
-            await Page.ClickProjectTemplateInfoNextBuuttonAsync();
+            await Page.ClickPageNextBuuttonAsync();
         }
         public async Task OpenAddNodePopupAsync()
         {
@@ -73,14 +73,37 @@ namespace IntegrationStudioPlaywrightAutomation.WorkFlows
         {
             await Page.ClickAddNodeAddButtonAsync();
         }
-        public async Task OpenLaunchParametersPageAsync()
+        
+        public async Task OpenShutdownBehaviourDropdownListAsync()
         {
-            await Page.ClickNodeConfigNextButtonAsync();
+            await Page.ClickShutdownBehaviourDropdownIconAsync();
+        }
+        public async Task CloseShutdownBehaviourDropdownListAsync()
+        {
+            await Page.ClickShutdownBehaviourDropdownListAsync();
+        }
+        public async Task OpenProjectVisibilityDropdown()
+        {
+            await Page.ClickProjectVisibilityDrodown();
+        }
+        public async Task CloseProjectVisibilityDropdownAsync()
+        {
+            await Page.ClickProjectVisibilityDropdownList();
+        }
+        public async Task CreateProjectTemplateAsync()
+        {
+            await Page.ClickCreateProjectTemplateButtonAsync();
+
+        }
+        public async Task CloseCreateSuccessfulDialogAsync()
+        {
+            await Page.ClickCreateSuccessfulDialogOKButtonAsync();
         }
 
 
-        
-        
+
+
+
 
     }
 }

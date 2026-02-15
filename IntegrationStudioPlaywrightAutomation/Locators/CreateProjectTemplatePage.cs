@@ -46,8 +46,8 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator DefaultHostingRegionTextBox => Page.Locator("#host-region-select");
         public ILocator DefaultHostingRegionHelperText => Page.Locator("//div[text()='This field is required.']").Last;
         public ILocator DefaultHostingRegionDropDownIcon => Page.Locator("[data-testid='ArrowDropDownIcon']").Last;
-        public ILocator PTInfoCancelButton => Page.Locator("#wizard-form-cancel-btn");
-        public ILocator PTInfoNextButton => Page.Locator("#wizard-form-next-btn");
+        public ILocator PageCancelButton => Page.Locator("#wizard-form-cancel-btn");
+        public ILocator PageNextButton => Page.Locator("#wizard-form-next-btn");
 
         public ILocator SystemSuiteSelectionDialog => Page.Locator("[role='dialog']");
         public ILocator SystemSuiteSelectionHeader => Page.Locator("//h2[text()='System suite selection']");
@@ -67,9 +67,8 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator AddNodeButton => Page.Locator("#add-another-node");
         public ILocator NodeConfigPageTableHeader => Page.Locator("#node-configure-table-head");
         public ILocator NodeConfigPageTableRows => Page.Locator("//td[text()='You have no nodes.']");
-        public ILocator NodeConfigPagePreviousButton => Page.Locator("#wizard-form-previous-btn");
-        public ILocator NodeConfigPageCancelButton => Page.Locator("#wizard-form-cancel-btn");
-        public ILocator NodeConfigPageNextButton => Page.Locator("#wizard-form-next-btn");
+        public ILocator PagePreviousButton => Page.Locator("#wizard-form-previous-btn");
+
 
         public ILocator NodeConfigPageTableNameColumn => Page.Locator("//th[text()='Name']");
         public ILocator NodeConfigPageTableTypeColumn => Page.Locator("//th[text()='Type']");
@@ -122,6 +121,32 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
 
         public ILocator NodeTypeSP2023 => Page.Locator("//div[@class='MuiTreeItem-label' and text()='SystemPlatform']");
         public ILocator NodeList => Page.Locator("li[role='treeitem']:not([aria-expanded])");
+        
+        public ILocator ShutdownBehaviourPageSubTitle => Page.Locator("//div[contains(text(),'Set a time when a running node')]");
+        public ILocator ShutdownBehaviourText => Page.Locator("//div[text()='Shutdown behavior']");
+        public ILocator ShutdownBehaviourField => Page.Locator("//div[@class='MuiFormControl-root MuiFormControl-fullWidth css-tzsjye']");
+        public ILocator ShutdownBehaviourDropdownField => Page.Locator("[aria-haspopup='listbox']");
+        public ILocator ShutdownBehaviourDropdownText => Page.Locator("#auto-shutdown-select-label");
+        public ILocator ShutdownBehaviourDropdownIcon => Page.Locator("[data-testid='ArrowDropDownIcon']");
+        public ILocator ShutdownBehaviourFieldHelperText => Page.Locator("//p[contains(@class,'MuiFormHelperText-root MuiFormHelperText')]");
+        public ILocator ShutdownBehaviourDropdownList => Page.Locator("[aria-labelledby='auto-shutdown-select-label']");
+
+        public ILocator ConfirmCompleteSubTitle => Page.Locator("//div[contains(text(),'Your project template is almost ready.')]");
+        public ILocator ConfirmCompleteText => Page.Locator("//div[contains(text(),'Confirm and complete')]");
+        public ILocator ProjectVisibilityArea => Page.Locator("#project-visible-area");
+        public ILocator ProjectVisibilityTextField => Page.Locator("//div[@class='MuiFormControl-root css-13sljp9']");
+        public ILocator ProjectVisiblityText => Page.Locator("#project-visible-select-label");
+        public ILocator ProjectVisibilityDropdownIcon => Page.Locator("[data-testid='ArrowDropDownIcon']");
+        public ILocator ProjectVisibilityDropdownList => Page.Locator("[aria-labelledby='project-visible-select-label']");
+        public ILocator ProjectVisibilityHelpertext => Page.Locator("//p[contains(@class,'MuiFormHelperText-root')]");
+        public ILocator ConfirmCompleteNodeDetailsGrid => Page.Locator("//div[@class='chp-card-grid']");
+        public ILocator ConfirmCompleteNodeDetails => Page.Locator("//div[@class='chp-card-grid-body']");
+        public ILocator CreateProjectTemplateCompletionButton => Page.Locator("#wizard-form-submit-action0");
+
+        public ILocator CreateProjectTemplateSuccessfulPopup => Page.Locator("[aria-labelledby='alert-dialog-title']");
+        public ILocator CreateSuccessfulTitle => Page.Locator("#alert-dialog-title");
+        public ILocator CreateSuccessfulDialogContent => Page.Locator("#succeed-dialog-content");
+        public ILocator CreateSuccessfulDialogOKButton => Page.Locator("#succeed-dialog-confirm");
 
         public async Task ClickProjectTemplateButtonAsync()
         {
@@ -155,9 +180,9 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         {
             await HostingRegions.ClickAsync();
         }
-        public async Task ClickProjectTemplateInfoNextBuuttonAsync()
+        public async Task ClickPageNextBuuttonAsync()
         {
-            await PTInfoNextButton.ClickAsync();
+            await PageNextButton.ClickAsync();
         }
         public async Task ClickAddNodeButtonAsync()
         {
@@ -180,11 +205,30 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         {
             await AddNodeAddButton.ClickAsync();
         }
-        public async Task ClickNodeConfigNextButtonAsync()
+        public async Task ClickShutdownBehaviourDropdownIconAsync()
         {
-            await NodeConfigPageNextButton.ClickAsync();
+            await ShutdownBehaviourDropdownField.ClickAsync();
         }
-
+        public async Task ClickShutdownBehaviourDropdownListAsync()
+        {
+            await ShutdownBehaviourDropdownList.ClickAsync();
+        }
+        public async Task ClickProjectVisibilityDrodown()
+        {
+            await ProjectVisibilityTextField.ClickAsync();
+        }
+        public async Task ClickProjectVisibilityDropdownList()
+        {
+            await ProjectVisibilityDropdownList.ClickAsync();
+        }
+        public async Task ClickCreateProjectTemplateButtonAsync()
+        {
+            await CreateProjectTemplateCompletionButton.ClickAsync();
+        }
+        public async Task ClickCreateSuccessfulDialogOKButtonAsync()
+        {
+            await CreateSuccessfulDialogOKButton.ClickAsync();
+        }
 
     }
 }

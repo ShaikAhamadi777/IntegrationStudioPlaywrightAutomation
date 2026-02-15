@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿
+using Microsoft.Playwright;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,11 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         {
             var general = new GeneralSettingsPage(Page);
             var generalworkflow = new GeneralSettingsWorkflow(Page);
+            var projecttemp = new ProjectTemplatesPage(Page);
 
-            //Click on the general option from the LHS Menu
-            await Expect(general.LHSMenu).ToBeVisibleAsync();
-            await Expect(general.General).ToBeVisibleAsync();
-            await general.General.ClickAsync();
-
-            //General Settings page should be displayed
-            await general.GeneralPage.WaitForAsync();
-            await Expect(general.GeneralPage).ToBeVisibleAsync();
-            await Expect(general.GeneralSettingPage).ToBeVisibleAsync();
+            await ProjectTemplatesAssertions.VerifyLHSMenuForProjectAdmin(projecttemp);
+            await generalworkflow.OpenGeneralPage();
+            await GeneralSettingsAssertions.VerifyGeneralPage(general);
             await general.GeneralPage.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_GeneralSettings_page_ForAllRoles.png"
@@ -43,19 +39,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
         {
 
             var numberofvms = new GeneralSettingsPage(Page);
+            var generalworkflow = new GeneralSettingsWorkflow(Page);
+            var projecttemp = new ProjectTemplatesPage(Page);
 
-            //Click on the general option from the LHS Menu
-            await Expect(numberofvms.LHSMenu).ToBeVisibleAsync();
-            await Expect(numberofvms.General).ToBeVisibleAsync();
-            await numberofvms.General.ClickAsync();
-
-
-            //Verify that the Number of VMs text present
-            await numberofvms.GeneralPage.WaitForAsync();
-            await numberofvms.GeneralSettingPage.WaitForAsync();
-            await Expect(numberofvms.GeneralSettingPage).ToBeVisibleAsync();
-            await Expect(numberofvms.NumberOfVMsInUse).ToBeVisibleAsync();
-            await Expect(numberofvms.NumberOfSnapshotsInUse).ToBeVisibleAsync();
+            await ProjectTemplatesAssertions.VerifyLHSMenuForProjectAdmin(projecttemp);
+            await generalworkflow.OpenGeneralPage();
+            await GeneralSettingsAssertions.VerifyGeneralPage(numberofvms);
+            await GeneralSettingsAssertions.VerifyNumberOfVmsSnapshots(numberofvms);
             await Page.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_NumberOfVMandSnapshots_page_ForAllRoles.png"

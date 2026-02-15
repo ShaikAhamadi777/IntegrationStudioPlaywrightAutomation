@@ -42,7 +42,10 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator GPSaveButton => Page.Locator("#submit-launch-btn");
         public ILocator Buttons => Page.Locator("//div[@style='text-align: right;']");
 
-
+        public async Task ClickGlobalParametersOption()
+        {
+            await GlobalParameters.ClickAsync();
+        }
 
 
 

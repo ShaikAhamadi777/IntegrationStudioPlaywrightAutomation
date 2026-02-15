@@ -25,6 +25,8 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.SystemsuitesSubMenuTitle).ToBeVisibleAsync();
             await Expect(page.SystemsuitesSubMenuClose).ToBeVisibleAsync();
             await Expect(page.ManageSystemsuites).ToBeVisibleAsync();
+            await Expect(page.GlobalParameters).ToBeVisibleAsync();
+
         }
         public static async Task VerifyManageSystemSuitesPage(SystemSuitesPage page)
         {

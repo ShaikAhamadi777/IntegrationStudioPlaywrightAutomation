@@ -1,13 +1,14 @@
 ﻿using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
 
 namespace IntegrationStudioPlaywrightAutomation
 {
@@ -65,6 +66,21 @@ namespace IntegrationStudioPlaywrightAutomation
 
             //Waiting for the URL to sync with the integration studio url
             await Page.WaitForURLAsync("https://internal.integrationstudio.capdev-connect.aveva.com/projects");
+        }
+
+        [TearDown]
+        public async Task CleanupAsync()
+        {
+            Console.WriteLine("TearDown is running...");
+
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                await Page.ScreenshotAsync(new()
+                {
+                    Path = $"Screenshots/FAILED_{TestContext.CurrentContext.Test.Name}.png",
+                    FullPage = true
+                });
+            }
         }
     }
 }

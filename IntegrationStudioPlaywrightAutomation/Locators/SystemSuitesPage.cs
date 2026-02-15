@@ -28,6 +28,8 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator ManageSystemSuitesPage => Page.Locator("#app-main-container");
         public ILocator SystemSuiteTitle => Page.Locator("#systemsuite-page-toolbar");
         public ILocator SystemSuitesSubTitle => Page.Locator("#systemsuite-page-subtitle");
+        public ILocator GlobalParameters => Page.Locator("[aria-label='Global parameters']");
+
 
         //Table locators 
         public ILocator SystemSuitesInUse => Page.Locator(".chp-body-1");

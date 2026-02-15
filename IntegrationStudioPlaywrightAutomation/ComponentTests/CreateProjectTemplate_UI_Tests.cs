@@ -69,7 +69,7 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(button);
             await buttonworkflow.OpenProjectTemplatePageAsync();
             await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(button);
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(button);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(button);
             await button.CreaterProjectTemplatePage.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_ProjectTemplateInfo_Page.png"
@@ -125,13 +125,12 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await ptinfoworkflow.OpenDefaultHostingRegionPopupAsync();
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(ptinfofields);
             await ptinfoworkflow.SelectHostingRegionOptionAsync();
-
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(ptinfofields);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(ptinfofields);
             await Page.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_ProjectTemplateInfo_FilledFields.png"
             });
-            await ptinfoworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await ptinfoworkflow.OpenNextPageButtonAsync();
         }
 
         [Test]
@@ -166,18 +165,19 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await nodeconfigfieldsworkflow.OpenDefaultHostingRegionPopupAsync();
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(nodeconfigfields);
             await nodeconfigfieldsworkflow.SelectHostingRegionOptionAsync();
-
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(nodeconfigfields);
-            await nodeconfigfieldsworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(nodeconfigfields);
+            await nodeconfigfieldsworkflow.OpenNextPageButtonAsync();
 
             await Page.WaitForLoadStateAsync();
             await nodeconfigfields.CreaterProjectTemplatePage.WaitForAsync();
+
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(nodeconfigfields);
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(nodeconfigfields);
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(nodeconfigfields);
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageEmptyNodes(nodeconfigfields);
-            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(nodeconfigfields);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(nodeconfigfields);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(nodeconfigfields);
             await nodeconfigfields.CreaterProjectTemplatePage.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_NodeConfigurationPage.png"
@@ -215,8 +215,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
             await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
             await Page.WaitForLoadStateAsync();
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -270,8 +270,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
             await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
             await Page.WaitForLoadStateAsync();
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -323,8 +323,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
             await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode); 
+            await addnodeworkflow.OpenNextPageButtonAsync();
             await Page.WaitForLoadStateAsync();
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -378,8 +378,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
             await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
             await Page.WaitForLoadStateAsync();
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -428,8 +428,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
             await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-            await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-            await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
             await Page.WaitForLoadStateAsync();
 
             await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -506,8 +506,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
                 await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-                await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-                await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode); 
+            await addnodeworkflow.OpenNextPageButtonAsync();
                 await Page.WaitForLoadStateAsync();
 
                 await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -602,8 +602,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
                 await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-                await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-                await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
                 await Page.WaitForLoadStateAsync();
 
                 await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -627,12 +627,13 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
             await addnodeworkflow.CloseAddNodePopupAsync();
 
-            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(addnode);
-            await addnodeworkflow.OpenLaunchParametersPageAsync();
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
 
             await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
-            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(addnode);
-
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
             await Page.ScreenshotAsync(new()
             {
                 Path = "Screenshot_Of_LaunchParametersPage.png"
@@ -670,8 +671,8 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
                 await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
                 await addnodeworkflow.SelectHostingRegionOptionAsync();
 
-                await CreateProjectTemplateAssertions.VerifyProjectTemplateInfoPageButtonsAsync(addnode);
-                await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
                 await Page.WaitForLoadStateAsync();
 
                 await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
@@ -715,8 +716,9 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
             await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
             await addnodeworkflow.CloseAddNodePopupAsync();
 
-            await CreateProjectTemplateAssertions.VerifyNodeConfigurationPageButtonsAsync(addnode);
-            await addnodeworkflow.OpenLaunchParametersPageAsync();
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
             await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
             
             var expectedLaunchParameters = suite.roles.Where(r => addnodetypes.Contains(r.nodeType))
@@ -738,5 +740,359 @@ namespace IntegrationStudioPlaywrightAutomation.ComponentTests
 
             CollectionAssert.AreEquivalent(expectedLaunchParameters, actualLaunchParameters, "Launch parameters do not match system suite definition");
         }
+
+
+        /*[Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenLaunchParametersPage_ShouldContain_ToggleButtonsAndHelperText(string role)
+        {
+            
+                var addnode = new CreateProjectTemplatePage(Page);
+                var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+                await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+                await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
+
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+                await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
+
+                await addnodeworkflow.SelectSystemSuiteAsync();
+                await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
+
+                await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+
+                await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+                await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+                await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+                await addnodeworkflow.SelectHostingRegionOptionAsync();
+
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+        await addnodeworkflow.SelectProjectTemplateInfoNextButtonAsync();
+                await Page.WaitForLoadStateAsync();
+
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+                await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+
+                var beforecount = await Page.Locator("tbody tr").CountAsync();
+                await addnodeworkflow.OpenAddNodePopupAsync();
+
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+                await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+                await addnodeworkflow.OpenAddNodePopupNodeTypeDropdownAsync();
+
+                var addnodetypes = new List<string>();
+
+                await Expect(addnode.NodeTypeSP2023).ToBeVisibleAsync();
+
+                var selectedNodeType = (await addnode.NodeTypeSP2023.InnerTextAsync()).Trim();
+                selectedNodeType = $"2023-{selectedNodeType}";
+
+                await addnode.NodeTypeSP2023.ClickAsync();
+                addnodetypes.Add(selectedNodeType);
+
+                Console.WriteLine("Node type added:");
+                foreach (var nt in addnodetypes)
+                {
+                    Console.WriteLine($"[{nt}] length={nt.Length}");
+                }
+
+                var suite = SystemSuiteLoader.Load("2023.json");
+                Console.WriteLine("NODE TYPES FROM JSON:");
+                foreach (var r in suite.roles)
+                {
+                    Console.WriteLine($"[{r.nodeType}] length={r.nodeType.Length}");
+                }
+
+                await Expect(addnode.NodeTypeTextBox).ToContainTextAsync("2023-SystemPlatform");
+
+                await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+                await addnodeworkflow.CloseAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+        await addnodeworkflow.OpenLaunchParametersPageAsync();
+                await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
+
+                var expectedLaunchParameters = suite.roles.Where(r => addnodetypes.Contains(r.nodeType))
+                                                   .Where(r => r.parameters != null)
+                                                   .SelectMany(r => r.parameters)
+                                                   .Select(p => p.label.Trim())
+                                                   .Distinct()
+                                                   .OrderBy(x => x)
+                                                   .ToList();
+
+                Console.WriteLine("\nFinal expected launch parameters:");
+                Console.WriteLine(string.Join(", ", expectedLaunchParameters));
+
+                var actualLaunchParameters = await Page.Locator(".node-param-field-label").AllInnerTextsAsync();
+                actualLaunchParameters = actualLaunchParameters.Select(p => p.Trim()).ToList();
+
+                Console.WriteLine("\nFinal actual launch parameters:");
+                Console.WriteLine(string.Join(", ", actualLaunchParameters));
+
+                foreach (var param in expectedLaunchParameters)
+                {
+                    var section = Page.Locator(".node-section:has-text('{param.label}')");
+                    await Expect(section).ToContainTextAsync(param.label);
+
+                    if (param.parameterType == "Boolean")
+                    {
+                        var toggle = section.Locator("");
+                        await Expect(toggle).ToBeVisibleAsync();
+
+                        var actualState = await toggle.GetAttributeAsync("aria-checked");
+                        Assert.AreEqual(param.default.ToLower(), actualState);
+
+                    }
+                    if (!string.IsNullOrEmpty(param.description))
+                    {
+                        await Expect(section).ToContainTextAsync(param.description);
+                    }
+                }
+                Console.WriteLine("";)
+
+            
+        }*/
+
+
+        [Test]
+            [TestCase("SystemAdmin")]
+            [Category("Common")]
+            public async Task OpenLaunchParametersPage_ShouldContain_Buttons(string role)
+            {
+
+            var addnode = new CreateProjectTemplatePage(Page);
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
+
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
+
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
+
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
+
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await Page.WaitForLoadStateAsync();
+
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+
+            var beforecount = await Page.Locator("tbody tr").CountAsync();
+            await addnodeworkflow.OpenAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+            await addnodeworkflow.CloseAddNodePopupAsync();
+
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_LaunchParametersPage.png"
+            });
+            await addnodeworkflow.OpenNextPageButtonAsync();
+        }
+
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenShutdownBehaviourPageAndConfirmCompletePage_ShouldContain_FieldsAndButtons(string role)
+        {
+
+            var addnode = new CreateProjectTemplatePage(Page);
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
+
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
+
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
+
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
+
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await Page.WaitForLoadStateAsync();
+
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+
+            var beforecount = await Page.Locator("tbody tr").CountAsync();
+            await addnodeworkflow.OpenAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+            await addnodeworkflow.CloseAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
+
+            await CreateProjectTemplateAssertions.VerifyShutdownBehaviourFields(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenShutdownBehaviourDropdownListAsync();
+            await CreateProjectTemplateAssertions.VerifyShutdownBehaviourDropdownList(addnode);
+            await addnodeworkflow.CloseShutdownBehaviourDropdownListAsync();
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_ShutdownBehaviourPage.png"
+            });
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyConfirmCompleteFields(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await addnodeworkflow.OpenProjectVisibilityDropdown();
+            await CreateProjectTemplateAssertions.VerifyProjectVisibilityDropdownList(addnode);
+            await addnodeworkflow.CloseProjectVisibilityDropdownAsync();
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_ConfirmCompletePage.png"
+            });
+            await addnodeworkflow.CreateProjectTemplateAsync();
+
+        }
+
+
+        [Test]
+        [TestCase("SystemAdmin")]
+        [Category("Common")]
+        public async Task OpenCreateSuccessfulDialog_ContainsFields(string role)
+        {
+
+            var addnode = new CreateProjectTemplatePage(Page);
+            var addnodeworkflow = new CreateProjectTemplateWorkflow(Page);
+            await CreateProjectTemplateAssertions.VerifyCreateProjectTemplateButtonAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateNameFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTNameAsync(PTName: "TestAutomation");
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDescriptionFieldAsync(addnode);
+            await addnodeworkflow.OpenProjectTemplatePageFillPTDescriptionAsync(description: "For Automation testing purpose");
+
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateSystemSuiteFieldAsync(addnode);
+            await addnodeworkflow.OpenSystemSuiteSelectionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectionPopupAsync(addnode);
+
+            await addnodeworkflow.SelectSystemSuiteAsync();
+            await CreateProjectTemplateAssertions.VerifySystemSuiteSelectedFromPopUpAsync(addnode);
+
+            await addnodeworkflow.SelectSystemSuiteOKButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateTitleAndHeaderAsync(addnode);
+
+            await CreateProjectTemplateAssertions.VerifyProjectTemplateDefaultHostingRegionFieldAsync(addnode);
+            await addnodeworkflow.OpenDefaultHostingRegionPopupAsync();
+            await CreateProjectTemplateAssertions.VerifyDefaultHostingRegionDropdownList(addnode);
+            await addnodeworkflow.SelectHostingRegionOptionAsync();
+
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await Page.WaitForLoadStateAsync();
+
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTitleAndHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationTableHeaderAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyNodeConfigurationAddNodeButtonAsync(addnode);
+
+            var beforecount = await Page.Locator("tbody tr").CountAsync();
+            await addnodeworkflow.OpenAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupDialogContent(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeNameTextBox(addnode);
+            await addnodeworkflow.OpenAddNodePopupNodeNameAsync(nodename: "TestNode");
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupNodeTypeTextBox(addnode);
+            await CreateProjectTemplateAssertions.VerifyAddNodePopupButtons(addnode);
+            await addnodeworkflow.CloseAddNodePopupAsync();
+
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyLaunchParametersPage(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenNextPageButtonAsync();
+
+            await CreateProjectTemplateAssertions.VerifyShutdownBehaviourFields(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await CreateProjectTemplateAssertions.VerifyPageNextCancelButtonsAsync(addnode);
+            await addnodeworkflow.OpenShutdownBehaviourDropdownListAsync();
+            await CreateProjectTemplateAssertions.VerifyShutdownBehaviourDropdownList(addnode);
+            await addnodeworkflow.CloseShutdownBehaviourDropdownListAsync();
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_ShutdownBehaviourPage.png"
+            });
+            await addnodeworkflow.OpenNextPageButtonAsync();
+            await CreateProjectTemplateAssertions.VerifyConfirmCompleteFields(addnode);
+            await CreateProjectTemplateAssertions.VerifyPagePreviousButtonsAsync(addnode);
+            await addnodeworkflow.OpenProjectVisibilityDropdown();
+            await CreateProjectTemplateAssertions.VerifyProjectVisibilityDropdownList(addnode);
+            await addnodeworkflow.CloseProjectVisibilityDropdownAsync();
+            await Page.ScreenshotAsync(new()
+            {
+                Path = "Screenshot_Of_ConfirmCompletePage.png"
+            });
+            await addnodeworkflow.CreateProjectTemplateAsync();
+            await CreateProjectTemplateAssertions.VerifyCreateSuccessfulDialog(addnode);
+            await addnodeworkflow.CloseCreateSuccessfulDialogAsync();
+            await Page.ScreenshotAsync(new()
+            {
+               Path = "Screenshot_Of_CreateProjectTemplateCreationSuccessful.png"
+            });
+
+        }
+
     }
 }

@@ -59,12 +59,12 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.DefaultHostingRegionDropDownIcon).ToBeEnabledAsync();
 
         }
-        public static async Task VerifyProjectTemplateInfoPageButtonsAsync(CreateProjectTemplatePage page)
+        public static async Task VerifyPageNextCancelButtonsAsync(CreateProjectTemplatePage page)
         {
-            await Expect(page.PTInfoCancelButton).ToBeVisibleAsync();
-            await Expect(page.PTInfoCancelButton).ToBeEnabledAsync();
-            await Expect(page.PTInfoNextButton).ToBeVisibleAsync();
-            await Expect(page.PTInfoNextButton).ToBeEnabledAsync();
+            await Expect(page.PageCancelButton).ToBeVisibleAsync();
+            await Expect(page.PageCancelButton).ToBeEnabledAsync();
+            await Expect(page.PageNextButton).ToBeVisibleAsync();
+            await Expect(page.PageNextButton).ToBeEnabledAsync();
         }
         public static async Task VerifySystemSuiteSelectionPopupAsync(CreateProjectTemplatePage page)
         {
@@ -110,16 +110,10 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.NodeConfigPageTableRows).ToBeVisibleAsync();
 
         }
-        public static async Task VerifyNodeConfigurationPageButtonsAsync(CreateProjectTemplatePage page)
+        public static async Task VerifyPagePreviousButtonsAsync(CreateProjectTemplatePage page)
         {
-            await Expect(page.NodeConfigPagePreviousButton).ToBeVisibleAsync();
-            await Expect(page.NodeConfigPagePreviousButton).ToBeEnabledAsync();
-
-            await Expect(page.NodeConfigPageCancelButton).ToBeVisibleAsync();
-            await Expect(page.NodeConfigPageCancelButton).ToBeEnabledAsync();
-
-            await Expect(page.NodeConfigPageNextButton).ToBeVisibleAsync();
-            await Expect(page.NodeConfigPageNextButton).ToBeEnabledAsync();
+            await Expect(page.PagePreviousButton).ToBeVisibleAsync();
+            await Expect(page.PagePreviousButton).ToBeEnabledAsync();
         }
         public static async Task VerifyNodeConfigurationPageEmptyNodes(CreateProjectTemplatePage page)
         {
@@ -196,6 +190,46 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.LaunchParametersText).ToBeVisibleAsync();
             await Expect(page.LaunchParameterNodeBlock).ToBeVisibleAsync();
             await Expect(page.LaunchParameterNodeBody).ToBeVisibleAsync();
+        }
+        public static async Task VerifyShutdownBehaviourFields(CreateProjectTemplatePage page)
+        {
+            await Expect(page.ShutdownBehaviourPageSubTitle).ToBeVisibleAsync();
+            await Expect(page.ShutdownBehaviourText).ToBeVisibleAsync();
+            await Expect(page.ShutdownBehaviourField).ToBeVisibleAsync();
+            await Expect(page.ShutdownBehaviourDropdownField).ToBeVisibleAsync();
+            await Expect(page.ShutdownBehaviourDropdownText).ToBeVisibleAsync();
+            await Expect(page.ShutdownBehaviourDropdownIcon).ToBeVisibleAsync();
+            await Expect(page.ShutdownBehaviourFieldHelperText).ToBeVisibleAsync();
+        }
+        public static async Task VerifyShutdownBehaviourDropdownList(CreateProjectTemplatePage page)
+        {
+            await Expect(page.ShutdownBehaviourDropdownList).ToBeVisibleAsync();
+        }
+        public static async Task VerifyConfirmCompleteFields(CreateProjectTemplatePage page)
+        {
+            await Expect(page.ConfirmCompleteSubTitle).ToBeVisibleAsync();
+            await Expect(page.ConfirmCompleteText).ToBeVisibleAsync();
+            await Expect(page.ProjectVisibilityArea).ToBeVisibleAsync();
+            await Expect(page.ProjectVisibilityTextField).ToBeVisibleAsync();
+            await Expect(page.ProjectVisiblityText).ToBeVisibleAsync();
+            await Expect(page.ProjectVisibilityHelpertext).ToBeVisibleAsync();
+            await Expect(page.ProjectVisibilityDropdownIcon).ToBeVisibleAsync();
+            await Expect(page.ConfirmCompleteNodeDetails).ToBeVisibleAsync();
+            await Expect(page.ConfirmCompleteNodeDetailsGrid).ToBeVisibleAsync();
+            await Expect(page.CreateProjectTemplateCompletionButton).ToBeVisibleAsync();
+            await Expect(page.CreateProjectTemplateCompletionButton).ToBeEditableAsync();
+        }
+        public static async Task VerifyProjectVisibilityDropdownList(CreateProjectTemplatePage page)
+        {
+            await Expect(page.ProjectVisibilityDropdownList).ToBeVisibleAsync();
+        }
+        public static async Task VerifyCreateSuccessfulDialog(CreateProjectTemplatePage page)
+        {
+            await Expect(page.CreateProjectTemplateSuccessfulPopup).ToBeVisibleAsync();
+            await Expect(page.CreateSuccessfulDialogContent).ToBeVisibleAsync();
+            await Expect(page.CreateSuccessfulTitle).ToBeVisibleAsync();
+            await Expect(page.CreateSuccessfulDialogOKButton).ToBeVisibleAsync();
+            await Expect(page.CreateSuccessfulDialogOKButton).ToBeEnabledAsync();
         }
 
     }

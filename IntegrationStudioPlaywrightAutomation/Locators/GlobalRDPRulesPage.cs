@@ -40,5 +40,11 @@ namespace IntegrationStudioPlaywrightAutomation.Locators
         public ILocator FirewallIPAddressTitle => Page.Locator("//th[text()='IP address/range']");
         public ILocator FirewallRuleDeleteOptions => Page.Locator("//uilab-button[@class='firewall-item-delete-btn hydrated']");
 
+        public async Task ClickGlobalRDPRulesOption()
+        {
+            await GlobalRDPRules.ClickAsync();
+        }
+
+
     }
 }

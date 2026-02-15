@@ -30,6 +30,7 @@ namespace IntegrationStudioPlaywrightAutomation.Assertions
             await Expect(page.ProjectTemplates).ToBeVisibleAsync();
             await Expect(page.SystemSuites).ToBeHiddenAsync();
             await Expect(page.GlobalRDPRules).ToBeHiddenAsync();
+            await Expect(page.GlobalParameters).ToBeHiddenAsync();
             await Expect(page.General).ToBeVisibleAsync();
             await Expect(page.CollapseButtonContent).ToBeVisibleAsync();
             await page.LHSMenu.WaitForAsync();
